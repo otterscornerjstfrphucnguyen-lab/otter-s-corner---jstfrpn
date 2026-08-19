@@ -162,16 +162,33 @@
         margin: 50px auto;
     }
 
-    .pn-profile-header h2 {
-        font-size: 30px;
-    }
-
+.pn-profile-header h2 {
+    margin: 0 0 35px;
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    color: #38536a;
+    font-weight: normal;
+}
     .pn-profile-card {
         grid-template-columns: repeat(2, 1fr);
     }
 
 }
+.pn-photo {
+    width: 180px;
+    height: 230px;
+    margin: 0 auto 25px;
+    overflow: hidden;
+    border-radius: 90px 90px 20px 20px;
+    border: 3px solid rgba(255,255,255,0.75);
+    background: rgba(255,255,255,0.3);
+}
 
+.pn-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 </style>
 </head>
 <body>
@@ -222,10 +239,14 @@
 <section class="pn-profile">
 
     <div class="pn-profile-header">
-        <span>PROFILE</span>
-        <h2>PHÚC NGUYÊN</h2>
-        <p>Nguyễn Thanh Phúc Nguyên</p>
+
+    <div class="pn-photo">
+        <img src="phuc-nguyen.jpg" alt="Nguyễn Thanh Phúc Nguyên">
     </div>
+
+    <h2>Nguyễn Thanh Phúc Nguyên</h2>
+
+</div>
 
     <div class="pn-profile-card">
 
