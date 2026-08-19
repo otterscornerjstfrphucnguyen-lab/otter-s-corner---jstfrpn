@@ -1,120 +1,137 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donation — Otter's Corner</title>
-<style>
-* {
-    box-sizing: border-box;
+background: rgba(255,255,255,0.5);
 }
-body {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    background: #dcecff;
-    color: #ffffff;
-}
-.container {
-    width: min(900px, 90%);
-    margin: auto;
-    padding: 50px 0;
-}
-.back {
-    display: inline-block;
-    margin-bottom: 35px;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 1px;
-}
-.back:hover {
-    opacity: 0.7;
-}
-.title {
+
+/* ===== FOOTER ===== */
+
+.footer {
+    margin-top: 70px;
+
     text-align: center;
-    margin-bottom: 45px;
-}
-.title h1 {
-    margin: 0;
-    font-size: 42px;
-    letter-spacing: 5px;
-}
-.title p {
-    margin-top: 12px;
-    font-size: 14px;
+
+    font-size: 10px;
+
     letter-spacing: 2px;
+
+    color: rgba(70,90,105,0.65);
 }
-.projects {
-    display: grid;
-    gap: 22px;
-}
-.project-card {
-    display: block;
-    text-decoration: none;
-    color: white;
-    background: rgba(255,255,255,0.16);
-    border: 1px solid rgba(255,255,255,0.5);
-    border-radius: 20px;
-    padding: 28px;
-    transition: 0.3s ease;
-}
-.project-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255,255,255,0.25);
-}
-.project-number {
-    font-size: 12px;
-    letter-spacing: 3px;
-    opacity: 0.8;
-}
-.project-card h2 {
-    margin: 10px 0 8px;
-    font-size: 25px;
-    letter-spacing: 2px;
-}
-.project-card p {
-    margin: 0;
-    font-size: 14px;
-    line-height: 1.7;
-}
-.status {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 7px 14px;
-    border: 1px solid rgba(255,255,255,0.7);
-    border-radius: 20px;
-    font-size: 11px;
-    letter-spacing: 1.5px;
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 88%;
+
+        padding-top: 35px;
+    }
+
+    .back {
+        margin-bottom: 40px;
+    }
+
+    .title h1 {
+        letter-spacing: 5px;
+    }
+
+    .title p {
+        font-size: 9px;
+
+        letter-spacing: 2px;
+    }
+
+    .project-card {
+        padding: 25px 23px;
+    }
+
+    .project-card h2 {
+        font-size: 22px;
+    }
+
+    .project-card p {
+        font-size: 13px;
+    }
 }
 </style>
 </head>
+
 <body>
+
 <div class="container">
-    <a href="index.html" class="back">← BACK TO HOME</a>
+
+    <a href="index.html" class="back">
+        ← BACK TO HOME
+    </a>
+
     <div class="title">
+
         <h1>DONATION</h1>
-        <p>SUPPORT PROJECTS FOR UPRIZE PN</p>
+
+        <p>
+            SUPPORT PROJECTS FOR UPRIZE PN
+        </p>
+
     </div>
+
+    <div class="decor">
+        ♡ ･ﾟ✧ ･ﾟ♡
+    </div>
+
     <div class="projects">
+
+        <!-- PROJECT 01 -->
+
         <a href="#" class="project-card">
-            <div class="project-number">PROJECT 01</div>
-            <h2>Le Petit PriNce</h2>
+
+            <div class="project-number">
+                PROJECT 01
+            </div>
+
+            <h2>
+                Le Petit PriNce
+            </h2>
+
             <p>
                 A special support project dedicated to
                 UPRIZE PN by Otter's Corner.
             </p>
-            <span class="status">VIEW PROJECT →</span>
+
+            <span class="status">
+                VIEW PROJECT →
+            </span>
+
         </a>
+
+
+        <!-- PROJECT 02 -->
+
         <a href="#" class="project-card">
-            <div class="project-number">PROJECT 02</div>
-            <h2>COMING SOON</h2>
+
+            <div class="project-number">
+                PROJECT 02
+            </div>
+
+            <h2>
+                COMING SOON
+            </h2>
+
             <p>
                 The next project from Otter's Corner
                 will be revealed soon.
             </p>
-            <span class="status">COMING SOON</span>
+
+            <span class="status">
+                COMING SOON
+            </span>
+
         </a>
+
     </div>
+
+    <div class="footer">
+        OTTER'S CORNER · JUST FOR PHUC NGUYEN
+    </div>
+
 </div>
+
 </body>
 </html>
