@@ -1,137 +1,169 @@
-background: rgba(255,255,255,0.5);
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation — Otter's Corner</title>
+<style>
+* {
+    box-sizing: border-box;
 }
-
-/* ===== FOOTER ===== */
-
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    background: linear-gradient(135deg, #c8dcea, #aec9dc);
+    color: #43596a;
+}
+.container {
+    width: 90%;
+    max-width: 920px;
+    margin: auto;
+    padding: 55px 0 80px;
+}
+.back {
+    display: inline-block;
+    margin-bottom: 50px;
+    color: #526b7d;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+.title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+.title h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: normal;
+    letter-spacing: 7px;
+    color: #405668;
+}
+.title p {
+    margin-top: 14px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: #62798a;
+}
+.decor {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 18px;
+    letter-spacing: 10px;
+    color: white;
+}
+.projects {
+    display: grid;
+    gap: 25px;
+}
+.project-card {
+    display: block;
+    padding: 32px;
+    text-decoration: none;
+    color: #43596a;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 22px;
+    box-shadow: 0 12px 35px rgba(70,95,110,0.1);
+    transition: 0.3s ease;
+}
+.project-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.7);
+}
+.project-number {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #7890a0;
+}
+.project-card h2 {
+    margin: 11px 0;
+    font-size: 26px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    color: #3f5668;
+}
+.project-card p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #607687;
+}
+.status {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 8px 16px;
+    border: 1px solid rgba(82,107,125,0.35);
+    border-radius: 30px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #526b7d;
+}
 .footer {
     margin-top: 70px;
-
     text-align: center;
-
     font-size: 10px;
-
     letter-spacing: 2px;
-
     color: rgba(70,90,105,0.65);
 }
-
-/* ===== MOBILE ===== */
-
 @media (max-width: 600px) {
-
     .container {
         width: 88%;
-
         padding-top: 35px;
     }
-
-    .back {
-        margin-bottom: 40px;
-    }
-
     .title h1 {
+        font-size: 36px;
         letter-spacing: 5px;
     }
-
-    .title p {
-        font-size: 9px;
-
-        letter-spacing: 2px;
-    }
-
     .project-card {
         padding: 25px 23px;
     }
-
     .project-card h2 {
         font-size: 22px;
-    }
-
-    .project-card p {
-        font-size: 13px;
     }
 }
 </style>
 </head>
-
 <body>
-
 <div class="container">
-
-    <a href="index.html" class="back">
-        ← BACK TO HOME
-    </a>
-
-    <div class="title">
-
-        <h1>DONATION</h1>
-
-        <p>
-            SUPPORT PROJECTS FOR UPRIZE PN
-        </p>
-
-    </div>
-
-    <div class="decor">
-        ♡ ･ﾟ✧ ･ﾟ♡
-    </div>
-
-    <div class="projects">
-
-        <!-- PROJECT 01 -->
-
-        <a href="#" class="project-card">
-
-            <div class="project-number">
-                PROJECT 01
-            </div>
-
-            <h2>
-                Le Petit PriNce
-            </h2>
-
-            <p>
-                A special support project dedicated to
-                UPRIZE PN by Otter's Corner.
-            </p>
-
-            <span class="status">
-                VIEW PROJECT →
-            </span>
-
-        </a>
-
-
-        <!-- PROJECT 02 -->
-
-        <a href="#" class="project-card">
-
-            <div class="project-number">
-                PROJECT 02
-            </div>
-
-            <h2>
-                COMING SOON
-            </h2>
-
-            <p>
-                The next project from Otter's Corner
-                will be revealed soon.
-            </p>
-
-            <span class="status">
-                COMING SOON
-            </span>
-
-        </a>
-
-    </div>
-
-    <div class="footer">
-        OTTER'S CORNER · JUST FOR PHUC NGUYEN
-    </div>
-
+<a href="index.html" class="back">
+← BACK TO HOME
+</a>
+<div class="title">
+<h1>DONATION</h1>
+<p>SUPPORT PROJECTS FOR UPRIZE PN</p>
 </div>
-
+<div class="decor">
+♡ ･ﾟ✧ ･ﾟ♡
+</div>
+<div class="projects">
+<a href="#" class="project-card">
+<div class="project-number">PROJECT 01</div>
+<h2>Le Petit PriNce</h2>
+<p>
+A special support project dedicated to
+UPRIZE PN by Otter's Corner.
+</p>
+<span class="status">
+VIEW PROJECT →
+</span>
+</a>
+<a href="#" class="project-card">
+    <div class="project-number">PROJECT 02</div>
+<h2>COMING SOON</h2>
+<p>
+The next project from Otter's Corner
+will be revealed soon.
+</p>
+<span class="status">
+COMING SOON
+</span>
+</a>
+</div>
+<div class="footer">
+OTTER'S CORNER · JUST FOR PHUC NGUYEN
+</div>
+</div>
 </body>
 </html>
