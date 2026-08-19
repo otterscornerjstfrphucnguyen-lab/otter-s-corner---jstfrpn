@@ -79,6 +79,100 @@
     }
 }
 </style>
+  <style>
+
+.pn-profile {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 20px;
+    color: #425b70;
+}
+
+.pn-profile-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pn-profile-header span {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #7892a7;
+}
+
+.pn-profile-header h2 {
+    margin: 12px 0 8px;
+    font-size: 38px;
+    letter-spacing: 5px;
+    color: #38536a;
+    font-weight: normal;
+}
+
+.pn-profile-header p {
+    margin: 0;
+    font-size: 14px;
+    color: #61798c;
+}
+
+.pn-profile-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    overflow: hidden;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.7);
+}
+
+.pn-info {
+    padding: 28px 15px;
+    text-align: center;
+    background: rgba(255,255,255,0.3);
+}
+
+.pn-info span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #7892a7;
+}
+
+.pn-info strong {
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    color: #425b70;
+}
+
+.pn-description {
+    max-width: 650px;
+    margin: 35px auto 0;
+    text-align: center;
+}
+
+.pn-description p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #587186;
+}
+
+@media (max-width: 700px) {
+
+    .pn-profile {
+        margin: 50px auto;
+    }
+
+    .pn-profile-header h2 {
+        font-size: 30px;
+    }
+
+    .pn-profile-card {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+</style>
 </head>
 <body>
   <!-- MOBILE MENU BUTTON -->
@@ -125,37 +219,47 @@
       <div class="decor">♪　♬　♩　♫</div>
     </section>
 
-    <section id="about" class="section two-col">
-      <div class="card">
-        <p class="section-title">✦ ABOUT PROJECT ✦</p>
-        <h2>Le Petit PriNce</h2>
-        <p>Le Petit PriNce là project tiếp ứng dành cho UPRIZE PN. Đây là nơi Otter's Corner lưu giữ những hoạt động, dấu mốc và tình cảm mà mọi người cùng dành cho PN.</p>
-        <p>Concept có thể phát triển theo hướng một bữa tiệc trà nhỏ giữa những tầng mây — nhẹ nhàng, trong trẻo và ấm áp.</p>
-      </div>
+<section class="pn-profile">
 
-      <div id="donation" class="card donation">
-        <p class="section-title">✦ DONATION PROGRESS ✦</p>
-        <p class="target">TARGET: 100.000.000 VNĐ</p>
-        <div class="money">70.000.000 <small>VNĐ</small></div>
-        <div class="progress"><div class="progress-bar"></div></div>
-        <div class="percent">70%</div>
-        <div class="stats">
-          <div><b>356</b><span>DONORS</span></div>
-          <div><b>25</b><span>DAYS LEFT</span></div>
+    <div class="pn-profile-header">
+        <span>PROFILE</span>
+        <h2>PHÚC NGUYÊN</h2>
+        <p>Nguyễn Thanh Phúc Nguyên</p>
+    </div>
+
+    <div class="pn-profile-card">
+
+        <div class="pn-info">
+            <span>STAGE NAME</span>
+            <strong>PN</strong>
         </div>
-        <button onclick="alert('Sau này bạn có thể gắn link QR hoặc form donate vào nút này!')">DONATE NOW</button>
-      </div>
-    </section>
 
-    <section id="project" class="section">
-      <p class="section-title">✦ PROJECT TIMELINE ✦</p>
-      <h2>Our Little Journey</h2>
-      <div class="timeline">
-        <article class="project-card"><span>01</span><h3>Le Sceptre</h3><p>Booth Check-in</p><small>Không gian check-in xinh xắn dành cho fan.</small></article>
-        <article class="project-card"><span>02</span><h3>La Couronne</h3><p>Food Booth</p><small>Bữa tiệc nhỏ ấm áp dành cho PN và ekip.</small></article>
-        <article class="project-card"><span>03</span><h3>L'Étoile</h3><p>Special Gift</p><small>Món quà đặc biệt từ Otter's Corner.</small></article>
-      </div>
-    </section>
+        <div class="pn-info">
+            <span>GROUP</span>
+            <strong>UPRIZE</strong>
+        </div>
+
+        <div class="pn-info">
+            <span>BORN</span>
+            <strong>12.12.2005</strong>
+        </div>
+
+        <div class="pn-info">
+            <span>FROM</span>
+            <strong>ĐÀ LẠT</strong>
+        </div>
+
+    </div>
+
+    <div class="pn-description">
+        <p>
+            A little space dedicated to Phúc Nguyên —
+            his journey, his moments, and everything
+            we continue to cherish along the way.
+        </p>
+    </div>
+
+</section>
 
     <section id="update" class="section two-col">
       <div class="card">
