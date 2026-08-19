@@ -1,119 +1,327 @@
-<a href="index.html" class="back">← BACK TO HOME</a>
+<!DOCTYPE html>
+<html lang="vi">
 
-<div class="title">
-    <h1>A LITTLE WISH</h1>
-    <p>Leave a little wish for PN ♡</p>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Wish</title>
+
+<style>
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: 100% !important;
+}
+
+body {
+    background: #dcebf6 !important;
+    color: #4d6679 !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 18px 60px;
+}
+
+.content {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 35px;
+    color: #4d6679;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    margin: 0;
+    color: #3f586c;
+    font-size: 30px;
+    font-weight: normal;
+    letter-spacing: 4px;
+}
+
+.header p {
+    color: #71889a;
+    font-size: 14px;
+}
+
+.form-box {
+    width: 100%;
+    padding: 30px 25px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 22px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+input,
+textarea {
+    width: 100%;
+    display: block;
+    padding: 14px;
+    margin-bottom: 22px;
+    border: 0;
+    outline: 0;
+    border-radius: 12px;
+    background: white;
+    color: #4d6679;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+textarea {
+    min-height: 130px;
+}
+
+button {
+    width: 100%;
+    display: block;
+    padding: 14px;
+    border: 0;
+    border-radius: 20px;
+    background: #718fa8;
+    color: white;
+    font-family: inherit;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.letter {
+    display: none;
+    width: 100%;
+    margin-top: 30px;
+    padding: 35px 25px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 22px;
+    text-align: center;
+}
+
+.letter-title {
+    margin-bottom: 22px;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #7891a3;
+}
+
+.letter h2 {
+    font-size: 23px;
+    font-weight: normal;
+    color: #3f586c;
+}
+
+.wish-box {
+    margin: 25px 0;
+    padding: 20px;
+    background: #dcebf6;
+    border-radius: 15px;
+    line-height: 1.8;
+    font-style: italic;
+}
+
+.wish-label {
+    margin-bottom: 10px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-style: normal;
+    color: #7891a3;
+}
+
+.text {
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.signature {
+    margin-top: 28px;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 25px 15px 50px;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .form-box,
+    .letter {
+        padding: 25px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="content">
+
+<a href="index.html" class="back">
+← BACK TO HOME
+</a>
+
+<div class="header">
+
+<h1>A LITTLE WISH</h1>
+
+<p>
+Leave a little wish for PN ♡
+</p>
+    <div class="form-box" id="formBox">
+
+<label>YOUR NAME</label>
+
+<input
+type="text"
+id="name"
+placeholder="Tên của bạn"
+>
+
+<label>YOUR WISH</label>
+
+<textarea
+id="wish"
+placeholder="Viết một lời chúc dành cho Phúc Nguyên..."
+></textarea>
+
+<button id="sendButton">
+♡ SEND MY WISH
+</button>
+
 </div>
 
-<div class="card" id="wishForm">
-
-    <label>YOUR NAME</label>
-
-    <input
-        type="text"
-        id="name"
-        placeholder="Tên của bạn"
-    >
-
-    <label>YOUR WISH</label>
-
-    <textarea
-        id="wish"
-        placeholder="Viết một lời chúc dành cho Phúc Nguyên..."
-    ></textarea>
-
-    <button id="sendButton">
-        ♡ SEND MY WISH
-    </button>
-
-</div>
 
 <div class="letter" id="letter">
 
-    <div class="letter-title">
-        A LITTLE LETTER FOR YOU
-    </div>
+<div class="letter-title">
+A LITTLE LETTER FOR YOU
+</div>
 
-    <h2>
-        Cảm ơn bạn, <span id="displayName"></span> ♡
-    </h2>
+<h2>
+Cảm ơn bạn,
+<span id="displayName"></span> ♡
+</h2>
 
-    <div class="letter-text">
-        Cảm ơn bạn đã dành một chút thời gian
-        để gửi lời chúc đến <b>Phúc Nguyên</b>
-        và trở thành một phần nhỏ trong hành trình
-        của chúng mình.
-    </div>
+<div class="text">
 
-    <div class="wish-box">
+Cảm ơn bạn đã dành một chút thời gian
+để gửi lời chúc đến <b>Phúc Nguyên</b>
+và trở thành một phần nhỏ trong hành trình
+của chúng mình.
 
-        <div class="wish-label">
-            YOUR WISH FOR PN
-        </div>
+</div>
 
-        <span id="displayWish"></span>
+<div class="wish-box">
 
-    </div>
+<div class="wish-label">
+YOUR WISH FOR PN
+</div>
 
-    <div class="letter-text">
-        Mỗi lời chúc, mỗi sự yêu thương và đồng hành
-        của bạn đều là một điều thật đẹp mà
-        <b>Otter's Corner</b> muốn lưu giữ.
+<span id="displayWish"></span>
 
-        <br><br>
+</div>
 
-        Hy vọng rằng trên chặng đường phía trước,
-        chúng ta sẽ vẫn cùng nhau chứng kiến thật nhiều
-        khoảnh khắc đáng nhớ của
-        <b>Nguyễn Thanh Phúc Nguyên</b>.
-    </div>
+<div class="text">
 
-    <div class="signature">
+Mỗi lời chúc, mỗi sự yêu thương và đồng hành
+của bạn đều là một điều thật đẹp mà
+<b>Otter's Corner</b> muốn lưu giữ.
 
-        Cảm ơn bạn vì đã ở đây. ♡
+<br><br>
 
-        <br><br>
+Hy vọng rằng trên chặng đường phía trước,
+chúng ta sẽ vẫn cùng nhau chứng kiến thật nhiều
+khoảnh khắc đáng nhớ của
+<b>Nguyễn Thanh Phúc Nguyên</b>.
 
-        With love,<br>
-        <b>OTTER'S CORNER</b>
+</div>
 
-        <br>
+<div class="signature">
 
-        Just for Phuc Nguyen
+Cảm ơn bạn vì đã ở đây. ♡
 
-    </div>
+<br><br>
+
+With love,<br>
+
+<b>OTTER'S CORNER</b>
+
+<br>
+
+Just for Phuc Nguyen
 
 </div>
 
 </div>
+
+</div>
+
+</div>
+
 
 <script>
-document.getElementById("sendButton").addEventListener("click", function () {
 
-    var name = document.getElementById("name").value.trim();
-    var wish = document.getElementById("wish").value.trim();
+document.getElementById("sendButton").onclick = function() {
 
-    if (name === "" || wish === "") {
-        alert("Bạn hãy điền tên và lời chúc nhé ♡");
-        return;
-    }
+var name =
+document.getElementById("name").value.trim();
 
-    document.getElementById("displayName").textContent = name;
+var wish =
+document.getElementById("wish").value.trim();
 
-    document.getElementById("displayWish").textContent =
-        "“" + wish + "”";
+if (name === "" || wish === "") {
 
-    document.getElementById("wishForm").style.display = "none";
+alert("Bạn hãy điền tên và lời chúc nhé ♡");
 
-    document.getElementById("letter").style.display = "block";
+return;
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+}
 
-});
+document.getElementById("displayName").innerText = name;
+
+document.getElementById("displayWish").innerText =
+"“" + wish + "”";
+
+document.getElementById("formBox").style.display = "none";
+
+document.getElementById("letter").style.display = "block";
+
+};
+
 </script>
 
 </body>
+
 </html>
+
+</div>
