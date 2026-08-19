@@ -1,28 +1,119 @@
-if (!name || !wish) {
+<a href="index.html" class="back">← BACK TO HOME</a>
 
+<div class="title">
+    <h1>A LITTLE WISH</h1>
+    <p>Leave a little wish for PN ♡</p>
+</div>
+
+<div class="card" id="wishForm">
+
+    <label>YOUR NAME</label>
+
+    <input
+        type="text"
+        id="name"
+        placeholder="Tên của bạn"
+    >
+
+    <label>YOUR WISH</label>
+
+    <textarea
+        id="wish"
+        placeholder="Viết một lời chúc dành cho Phúc Nguyên..."
+    ></textarea>
+
+    <button id="sendButton">
+        ♡ SEND MY WISH
+    </button>
+
+</div>
+
+<div class="letter" id="letter">
+
+    <div class="letter-title">
+        A LITTLE LETTER FOR YOU
+    </div>
+
+    <h2>
+        Cảm ơn bạn, <span id="displayName"></span> ♡
+    </h2>
+
+    <div class="letter-text">
+        Cảm ơn bạn đã dành một chút thời gian
+        để gửi lời chúc đến <b>Phúc Nguyên</b>
+        và trở thành một phần nhỏ trong hành trình
+        của chúng mình.
+    </div>
+
+    <div class="wish-box">
+
+        <div class="wish-label">
+            YOUR WISH FOR PN
+        </div>
+
+        <span id="displayWish"></span>
+
+    </div>
+
+    <div class="letter-text">
+        Mỗi lời chúc, mỗi sự yêu thương và đồng hành
+        của bạn đều là một điều thật đẹp mà
+        <b>Otter's Corner</b> muốn lưu giữ.
+
+        <br><br>
+
+        Hy vọng rằng trên chặng đường phía trước,
+        chúng ta sẽ vẫn cùng nhau chứng kiến thật nhiều
+        khoảnh khắc đáng nhớ của
+        <b>Nguyễn Thanh Phúc Nguyên</b>.
+    </div>
+
+    <div class="signature">
+
+        Cảm ơn bạn vì đã ở đây. ♡
+
+        <br><br>
+
+        With love,<br>
+        <b>OTTER'S CORNER</b>
+
+        <br>
+
+        Just for Phuc Nguyen
+
+    </div>
+
+</div>
+
+</div>
+
+<script>
+document.getElementById("sendButton").addEventListener("click", function () {
+
+    var name = document.getElementById("name").value.trim();
+    var wish = document.getElementById("wish").value.trim();
+
+    if (name === "" || wish === "") {
         alert("Bạn hãy điền tên và lời chúc nhé ♡");
-
         return;
-
     }
 
-
-    document.getElementById("displayName").textContent =
-        name;
+    document.getElementById("displayName").textContent = name;
 
     document.getElementById("displayWish").textContent =
         "“" + wish + "”";
 
+    document.getElementById("wishForm").style.display = "none";
 
-    document.getElementById("wishForm").style.display =
-        "none";
+    document.getElementById("letter").style.display = "block";
 
-    document.getElementById("letter").classList.add("show");
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
-}
-
+});
 </script>
 
 </body>
-
 </html>
