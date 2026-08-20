@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Donation — Otter's Corner</title>
-
 <style>
 * {
     box-sizing: border-box;
 }
-
 body {
     margin: 0;
     min-height: 100vh;
     font-family: Georgia, "Times New Roman", serif;
     background: linear-gradient(135deg, #c8dcea, #aec9dc);
     color: #43596a;
+    display: flex;
+    flex-direction: column;
 }
-
+/* ===== CONTAINER ===== */
 .container {
     width: 90%;
     max-width: 920px;
     margin: auto;
-    padding: 55px 0 80px;
+    padding: 55px 0 40px;
+    flex: 1;
 }
-
+/* ===== BACK ===== */
 .back {
     display: inline-block;
     margin-bottom: 50px;
@@ -34,12 +34,11 @@ body {
     font-size: 12px;
     letter-spacing: 2px;
 }
-
+/* ===== TITLE ===== */
 .title {
     text-align: center;
     margin-bottom: 45px;
 }
-
 .title h1 {
     margin: 0;
     font-size: 48px;
@@ -47,14 +46,13 @@ body {
     letter-spacing: 7px;
     color: #405668;
 }
-
 .title p {
     margin-top: 14px;
     font-size: 11px;
     letter-spacing: 3px;
     color: #62798a;
 }
-
+/* ===== DECOR ===== */
 .decor {
     text-align: center;
     margin-bottom: 35px;
@@ -62,33 +60,28 @@ body {
     letter-spacing: 10px;
     color: white;
 }
-
+/* ===== PROJECTS ===== */
 .projects {
     display: grid;
     gap: 25px;
 }
-
 /* ===== PROJECT CARD ===== */
-
 .project-card {
     padding: 32px;
-    text-decoration: none;
     color: #43596a;
     background: rgba(255,255,255,0.5);
     border: 1px solid rgba(255,255,255,0.7);
     border-radius: 22px;
     box-shadow: 0 12px 35px rgba(70,95,110,0.1);
 }
-
-/* ===== PROJECT HEADER ===== */
-
+/* ===== PROJECT NUMBER ===== */
 .project-number {
     display: block;
     font-size: 10px;
     letter-spacing: 3px;
     color: #7890a0;
 }
-
+/* ===== PROJECT TITLE ===== */
 .project-card h2 {
     margin: 11px 0 8px;
     font-size: 26px;
@@ -96,22 +89,20 @@ body {
     letter-spacing: 2px;
     color: #3f5668;
 }
-
 .project-description {
     margin: 0;
     font-size: 14px;
     line-height: 1.8;
     color: #607687;
 }
-
-/* ===== VIEW PROJECT BUTTON ===== */
-
+/* ===== VIEW PROJECT ===== */
 .view-project {
     display: inline-block;
     margin-top: 22px;
     padding: 10px 18px;
     border: 1px solid rgba(82,107,125,0.35);
     border-radius: 30px;
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 10px;
     letter-spacing: 2px;
     color: #526b7d;
@@ -119,25 +110,19 @@ body {
     cursor: pointer;
     transition: 0.3s ease;
 }
-
 .view-project:hover {
     background: rgba(255,255,255,0.55);
     transform: translateY(-2px);
 }
-
 /* ===== PROJECT DETAILS ===== */
-
 .project-details {
     display: none;
     margin-top: 30px;
 }
-
 .project-details.active {
     display: block;
 }
-
 /* ===== DONATION SUMMARY ===== */
-
 .donation-summary {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -147,13 +132,11 @@ body {
     background: rgba(255,255,255,0.5);
     border: 1px solid rgba(255,255,255,0.6);
 }
-
 .summary-card {
     padding: 25px 15px;
     text-align: center;
     background: rgba(255,255,255,0.25);
 }
-
 .summary-label {
     display: block;
     margin-bottom: 10px;
@@ -161,14 +144,13 @@ body {
     letter-spacing: 2px;
     color: #7890a0;
 }
-
 .summary-card strong {
     font-size: 18px;
     font-weight: normal;
     letter-spacing: 1px;
     color: #43596a;
-    /* ===== STATEMENT ===== */
-
+}
+/* ===== STATEMENT ===== */
 .statement-box {
     margin-top: 25px;
     padding: 25px;
@@ -177,14 +159,12 @@ body {
     background: rgba(255,255,255,0.3);
     border: 1px solid rgba(255,255,255,0.55);
 }
-
 .statement-box p {
     margin: 0 0 15px;
     font-size: 10px;
     letter-spacing: 3px;
     color: #7890a0;
 }
-
 .statement-button {
     display: inline-block;
     padding: 10px 18px;
@@ -197,122 +177,127 @@ body {
     background: rgba(255,255,255,0.3);
     transition: 0.3s ease;
 }
-
 .statement-button:hover {
     background: rgba(255,255,255,0.6);
 }
-
+/* ===== COMING SOON ===== */
+.coming-soon {
+    padding: 28px 32px;
+    text-align: center;
+    background: rgba(255,255,255,0.28);
+    border: 1px solid rgba(255,255,255,0.55);
+    border-radius: 22px;
+    color: #607687;
+}
+.coming-soon-number {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #7890a0;
+}
+.coming-soon h2 {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    color: #526b7d;
+}
+.coming-soon p {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #7890a0;
+}
 /* ===== FOOTER ===== */
-
 .footer {
-    margin-top: 70px;
+    width: 100%;
+    padding: 30px 20px 35px;
     text-align: center;
     font-size: 10px;
     letter-spacing: 2px;
     color: rgba(70,90,105,0.65);
 }
-
+.footer p {
+    margin: 6px 0;
+}
 /* ===== MOBILE ===== */
-
 @media (max-width: 600px) {
-
     .container {
         width: 88%;
         padding-top: 35px;
     }
-
     .title h1 {
         font-size: 36px;
         letter-spacing: 5px;
     }
-
     .project-card {
         padding: 25px 23px;
     }
-
     .project-card h2 {
         font-size: 22px;
     }
-
     .donation-summary {
         grid-template-columns: 1fr;
     }
-
     .summary-card {
         padding: 20px;
+    }
+    .coming-soon {
+        padding: 25px 20px;
     }
 }
 </style>
 </head>
-
 <body>
-
 <div class="container">
-
     <a href="index.html" class="back">
         ← BACK TO HOME
     </a>
-
     <div class="title">
         <h1>DONATION</h1>
-        <p>SUPPORT PROJECTS FOR UPRIZE PN</p>
+        <p>
+            SUPPORT PROJECTS FOR UPRIZE PN
+        </p>
     </div>
-
     <div class="decor">
         ♡ ･ﾟ✧ ･ﾟ♡
     </div>
-
     <div class="projects">
-
+        <!-- ==================== -->
         <!-- PROJECT 01 -->
-
+        <!-- ==================== -->
         <div class="project-card">
-
             <span class="project-number">
                 PROJECT 01
             </span>
-
             <h2>
                 LE PETIT PRINCE
             </h2>
-
             <p class="project-description">
                 A special support project for PN by Otter's Corner.
             </p>
-
             <button
                 class="view-project"
-                onclick="toggleProject()"
+                onclick="toggleProject(this)"
             >
                 VIEW PROJECT →
             </button>
-
-
             <!-- PROJECT DETAILS -->
-
-            <div
-                class="project-details"
-                id="projectDetails"
-            >
-
+            <div class="project-details">
                 <div class="donation-summary">
-
                     <div class="summary-card">
                         <span class="summary-label">
                             TOTAL RECEIVED
                         </span>
-
                         <strong>
                             0 ₫
                         </strong>
                     </div>
-
-
                     <div class="summary-card">
                         <span class="summary-label">
                             TOTAL SPENT
                         </span>
-
                         <strong>
                             0 ₫
                         </strong>
@@ -321,23 +306,16 @@ body {
                         <span class="summary-label">
                             REMAINING
                         </span>
-
                         <strong>
                             0 ₫
                         </strong>
                     </div>
-
                 </div>
-
-
                 <!-- STATEMENT -->
-
                 <div class="statement-box">
-
                     <p>
                         PROJECT STATEMENT
                     </p>
-
                     <a
                         href="https://docs.google.com/spreadsheets/d/1z0Cvoltb0STKUVKDeYnIQfkzhRyT7CsSreyg_638dt4/edit?usp=drivesdk"
                         target="_blank"
@@ -346,54 +324,61 @@ body {
                     >
                         VIEW STATEMENT →
                     </a>
-
                 </div>
-
             </div>
-
         </div>
-
+        <!-- ==================== -->
+        <!-- COMING SOON 02 -->
+        <!-- ==================== -->
+        <div class="coming-soon">
+            <span class="coming-soon-number">
+                PROJECT 02
+            </span>
+            <h2>
+                COMING SOON
+            </h2>
+            <p>
+                A NEW PROJECT IS ON THE WAY
+            </p>
+        </div>
+        <!-- ==================== -->
+        <!-- COMING SOON 03 -->
+        <!-- ==================== -->
+        <div class="coming-soon">
+            <span class="coming-soon-number">
+                PROJECT 03
+            </span>
+            <h2>
+                COMING SOON
+            </h2>
+            <p>
+                STAY TUNED
+            </p>
+        </div>
     </div>
-
-
-    <div class="footer">
-        OTTER'S CORNER · JUST FOR PHUC NGUYEN
-    </div>
-
 </div>
-
-
+<!-- ==================== -->
+<!-- FOOTER -->
+<!-- ==================== -->
+<footer class="footer">
+    <p>
+        OTTER'S CORNER · JUST FOR PHUC NGUYEN
+    </p>
+</footer>
 <script>
-
-function toggleProject() {
-
+function toggleProject(button) {
     const details =
-        document.getElementById("projectDetails");
-
-    const button =
-        document.querySelector(".view-project");
-
-
+        button.parentElement.querySelector(".project-details");
     if (details.classList.contains("active")) {
-
         details.classList.remove("active");
-
         button.textContent =
             "VIEW PROJECT →";
-
     } else {
-
         details.classList.add("active");
-
         button.textContent =
             "HIDE PROJECT ↑";
-
     }
-
 }
-
 </script>
-
 </body>
 </html>
-}
