@@ -2,6 +2,7 @@
 
 console.log("Otter's Corner project is ready!");
 
+
 /* ===== MOBILE MENU ===== */
 
 function openMobileMenu() {
@@ -25,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
+
+    /* ===== SETTINGS ===== */
+
     bgMusic.volume = 0.4;
 
     const savedTime = parseFloat(
@@ -35,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.getItem("otterMusicState") || "on";
 
 
-    /* ===== CẬP NHẬT NÚT ===== */
+    /* ===== BUTTON ===== */
 
     function updateButton() {
 
@@ -48,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== KHÔI PHỤC VỊ TRÍ ===== */
+    /* ===== RESTORE MUSIC POSITION ===== */
 
     function restorePosition() {
 
@@ -58,15 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
             isFinite(bgMusic.duration)
         ) {
 
-            // Không cho currentTime vượt quá thời lượng bài
             bgMusic.currentTime = Math.min(
                 savedTime,
-                bgMusic.duration - 0.1
-            );
-
-            console.log(
-                "Restored music position:",
-                bgMusic.currentTime
+                Math.max(0, bgMusic.duration - 0.1)
             );
 
         }
@@ -74,46 +72,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /*
-     * Khi metadata đã sẵn sàng
-     * thì khôi phục vị trí trước khi phát.
-     */
+    /* ===== START MUSIC ===== */
 
-    if (bgMusic.readyState >= 1) {
+    function startMusic() {
 
-        restorePosition();
-
-    } else {
-
-        bgMusic.addEventListener(
-            "loadedmetadata",
-            restorePosition,
-            { once: true }
-        );
-
-    }
-
-
-    /* ===== PHÁT NHẠC SAU KHI KHÔI PHỤC ===== */
-
-    function playMusic() {
-
-        // Nếu người dùng đã tắt nhạc
-        // thì không tự phát.
-
-        if (savedState === "off") {
-
+        if (
+            localStorage.getItem("otterMusicState") === "off"
+        ) {
             bgMusic.pause();
             updateButton();
             return;
-
         }
 
 
-        // Đợi audio load xong rồi mới play
-        // để currentTime không bị reset.
-
-        function start() {
+        function play() {
 
             restorePosition();
 
@@ -128,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     updateButton();
 
                     console.log(
-                        "Music resumed from:",
+                        "🎵 Music playing from:",
                         bgMusic.currentTime
                     );
 
@@ -139,6 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Autoplay blocked:",
                         error
                     );
+
+                    // Vẫn hiện ON vì người dùng chưa tắt
                     musicToggle.textContent =
                         "MUSIC ON ♫";
 
@@ -148,14 +122,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (bgMusic.readyState >= 1) {
-
-            start();
-
+            play();
         } else {
 
             bgMusic.addEventListener(
                 "loadedmetadata",
-                start,
+                play,
                 { once: true }
             );
 
@@ -164,9 +136,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== TỰ PHÁT / KHÔI PHỤC ===== */
+    /* ===== TỰ PHÁT NGAY KHI MỞ WEB ===== */
 
-    playMusic();
+    startMusic();
 
 
     /* ===== MUSIC ON / OFF ===== */
@@ -174,13 +146,14 @@ document.addEventListener("DOMContentLoaded", function () {
     musicToggle.addEventListener(
         "click",
         function (event) {
-
             event.stopPropagation();
 
 
             if (bgMusic.paused) {
 
                 // OFF → ON
+
+                restorePosition();
 
                 bgMusic.play()
                     .then(function () {
@@ -190,8 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             "on"
                         );
 
-                        musicToggle.textContent =
-                            "MUSIC ON ♫";
+                        updateButton();
 
                     })
                     .catch(function (error) {
@@ -219,8 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     bgMusic.currentTime
                 );
 
-                musicToggle.textContent =
-                    "MUSIC OFF ♫";
+                updateButton();
 
             }
 
@@ -228,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* ===== LƯU VỊ TRÍ LIÊN TỤC ===== */
+    /* ===== SAVE POSITION ===== */
 
     setInterval(function () {
 
@@ -244,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 500);
 
 
-    /* ===== LƯU TRƯỚC KHI ĐỔI TRANG ===== */
+    /* ===== SAVE BEFORE LEAVING PAGE ===== */
 
     window.addEventListener(
         "pagehide",
@@ -272,14 +243,13 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* ===== IPHONE / SAFARI ===== */
+    /* ===== AUTOPLAY FALLBACK ===== */
 
     document.addEventListener(
         "pointerdown",
         function (event) {
 
-            // Không can thiệp khi bấm Music
-
+            // Không can thiệp vào nút MUSIC
             if (
                 event.target.closest("#musicToggle")
             ) {
@@ -287,8 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            // Người dùng đã OFF thì không tự bật
-
+            // Người dùng đã OFF
             if (
                 localStorage.getItem(
                     "otterMusicState"
@@ -298,10 +267,14 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
+            // Nhạc đang chạy
             if (!bgMusic.paused) {
                 return;
             }
 
+
+            // Thử phát sau tương tác
+            restorePosition();
 
             bgMusic.play()
                 .then(function () {
@@ -312,6 +285,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                     updateButton();
+
+                    console.log(
+                        "🎵 Music started after interaction."
+                    );
 
                 })
                 .catch(function (error) {
