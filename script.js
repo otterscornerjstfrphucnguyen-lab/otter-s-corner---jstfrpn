@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     bgMusic.volume = 0.4;
 
 
-    // ===== TRẠNG THÁI NÚT =====
+    // ===== CẬP NHẬT NÚT MUSIC =====
 
     function updateMusicButton() {
 
@@ -47,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
     bgMusic.play()
         .then(function () {
 
-            // Autoplay được cho phép
             musicToggle.textContent = "MUSIC ON ♫";
 
             console.log("Music is playing.");
@@ -55,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(function (error) {
 
-            // Trình duyệt chặn autoplay
-            console.log("Autoplay blocked:", error);
+            console.log("Autoplay bị trình duyệt chặn:", error);
 
-            // Vẫn hiển thị ON vì người dùng chưa tắt nhạc
+            // Người dùng chưa chủ động tắt
+            // nên nút vẫn hiển thị ON
             musicToggle.textContent = "MUSIC ON ♫";
 
         });
@@ -81,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch(function (error) {
 
-                    console.log("Cannot play music:", error);
+                    console.log("Không thể phát nhạc:", error);
 
                 });
 
@@ -99,20 +98,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // ===== IPHONE / SAFARI AUTOPLAY =====
-    // Nếu autoplay bị chặn, lần đầu người dùng
-    // chạm vào TRANG (không phải nút Music)
+    // ===== IPHONE / SAFARI AUTOPLAY FALLBACK =====
+    // Nếu trình duyệt chặn autoplay,
+    // lần đầu người dùng chạm vào trang
     // thì nhạc sẽ bắt đầu.
 
     document.addEventListener("pointerdown", function startMusic(event) {
 
-        // Nếu người dùng đang bấm nút Music thì
-        // không can thiệp vào nút.
+        // Nếu đang bấm nút Music thì không can thiệp
         if (event.target.closest("#musicToggle")) {
             return;
         }
 
-        // Nếu nhạc đã chạy thì không làm gì.
+        // Nếu nhạc đang chạy thì không làm gì
         if (!bgMusic.paused) {
             return;
         }
@@ -126,9 +124,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             })
             .catch(function (error) {
-});
+
+                console.log("Music still blocked:", error);
+
+            });
 
     });
 
 });
-                console.log("Music still blocked:", error);
