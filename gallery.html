@@ -5,9 +5,240 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Gallery — Otter's Corner</title>
+  <title>Gallery — Otter's Corner</title>
 
-   
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background: #f8f1e7;
+    color: #4b4038;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* MAIN GALLERY */
+
+.gallery-page {
+    width: calc(100% - 60px);
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 45px 0 70px;
+}
+
+/* BACK */
+
+.gallery-back {
+    display: inline-block;
+    margin-bottom: 55px;
+
+    color: #6b5a4d;
+    text-decoration: none;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.gallery-back:hover {
+    text-decoration: underline;
+}
+
+/* HEADER */
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 55px;
+}
+
+.gallery-header h1 {
+    margin: 0 0 18px;
+
+    font-size: clamp(45px, 7vw, 75px);
+    font-weight: normal;
+    letter-spacing: 9px;
+
+    color: #59483c;
+}
+
+.gallery-header p {
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    color: #806f61;
+}
+
+/* GALLERY LIST */
+
+.gallery-list {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 28px;
+}
+
+/* CARD */
+
+.gallery-item {
+    min-height: 270px;
+
+    padding: 35px;
+
+    background: #fffaf4;
+
+    border: 1px solid #ded1c3;
+    border-radius: 18px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    box-shadow: 0 8px 25px rgba(80, 60, 40, 0.08);
+
+    transition: 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 15px 35px rgba(80, 60, 40, 0.13);
+}
+
+/* NUMBER */
+
+.gallery-number {
+    margin-bottom: 15px;
+
+    color: #a18872;
+
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+/* TITLE */
+
+.gallery-item h2 {
+    margin: 0 0 25px;
+
+    color: #554238;
+
+    font-size: 30px;
+    font-weight: normal;
+}
+
+/* BUTTON */
+
+.gallery-link {
+    display: inline-block;
+    width: fit-content;
+
+    padding: 11px 18px;
+
+    border: 1px solid #9c8672;
+    border-radius: 30px;
+
+    color: #665448;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    transition: 0.25s ease;
+}
+
+.gallery-link:hover {
+    background: #665448;
+    color: white;
+}
+
+/* COMING SOON */
+
+.coming-soon {
+    opacity: 0.75;
+}
+
+.coming-soon p {
+    margin: 0 0 20px;
+
+    color: #89796c;
+
+    line-height: 1.6;
+}
+
+.coming-text {
+    display: inline-block;
+    width: fit-content;
+
+    padding: 9px 15px;
+
+    border: 1px dashed #b8a493;
+    border-radius: 20px;
+
+    color: #a18d7c;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+/* FOOTER */
+
+.gallery-footer {
+    width: 100%;
+
+    text-align: center;
+
+    padding: 25px 20px 40px;
+
+    color: #927e6d;
+
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .gallery-page {
+        width: calc(100% - 35px);
+        padding-top: 30px;
+    }
+
+    .gallery-header h1 {
+        letter-spacing: 5px;
+    }
+
+    .gallery-list {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .gallery-item {
+        min-height: 230px;
+        padding: 28px;
+    }
+
+    .gallery-item h2 {
+        font-size: 26px;
+    }
+}
+
+</style>
+
 </head>
 
 <body>
