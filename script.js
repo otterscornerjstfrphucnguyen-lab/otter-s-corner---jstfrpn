@@ -29,9 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
     bgMusic.volume = 0.4;
 
 
-    // ===== UPDATE BUTTON =====
+    // ===== CẬP NHẬT TRẠNG THÁI NÚT =====
 
-    function updateMusicButton() {
+    function updateButton() {
 
         if (bgMusic.paused) {
             musicToggle.textContent = "MUSIC OFF ♫";
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ===== AUTOPLAY =====
+    // ===== TỰ PHÁT KHI MỞ WEB =====
 
     bgMusic.play()
         .then(function () {
@@ -54,16 +54,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             console.log("Autoplay bị trình duyệt chặn:", error);
 
-            updateMusicButton();
+            // Vẫn để ON vì người dùng chưa chủ động tắt
+            musicToggle.textContent = "MUSIC ON ♫";
 
         });
 
 
-    // ===== ON / OFF BUTTON =====
+    // ===== NÚT MUSIC ON / OFF =====
 
-    musicToggle.addEventListener("click", function (event) {
-
-        event.stopPropagation();
+    musicToggle.addEventListener("click", function () {
 
         if (bgMusic.paused) {
 
@@ -75,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch(function (error) {
 
-                    console.log("Cannot play music:", error);
+                    console.log("Không thể phát nhạc:", error);
 
                 });
 
@@ -90,13 +89,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    // ===== IPHONE / SAFARI AUTOPLAY FALLBACK =====
+    // ===== AUTOPLAY FALLBACK CHO IPHONE / SAFARI =====
+    // Nếu trình duyệt chặn autoplay,
+    // lần đầu người dùng chạm vào trang sẽ phát nhạc.
 
-    function playAfterInteraction() {
+    let userTurnedOff = false;
 
-        // Nếu nhạc đang OFF do người dùng bấm nút
-        // thì không tự bật lại
-        if (bgMusic.paused && musicToggle.textContent === "MUSIC OFF ♫") {
+
+    musicToggle.addEventListener("click", function () {
+
+        if (bgMusic.paused) {
+            userTurnedOff = true;
+        } else {
+            userTurnedOff = false;
+        }
+
+    });
+
+
+    document.addEventListener("pointerdown", function () {
+
+        if (userTurnedOff) {
             return;
         }
 
@@ -108,19 +121,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     musicToggle.textContent = "MUSIC ON ♫";
 
                 })
-                .catch(function () {
+                .catch(function (error) {
 
-                    console.log("Music cannot start yet.");
+                    console.log("Music still blocked:", error);
 
                 });
 
         }
 
-    }
-
-
-    document.addEventListener("pointerdown", playAfterInteraction, {
-        once: true
-    });
+    }, { once: true });
 
 });
