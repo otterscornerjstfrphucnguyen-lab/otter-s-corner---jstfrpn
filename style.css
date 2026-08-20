@@ -138,14 +138,20 @@ footer{padding:55px 20px;text-align:center;background:#bcd8f0}footer p{font-size
 
 .gallery-back-home {
     display: inline-block;
-    margin-bottom: 75px;
+    margin-bottom: 60px;
 
-    color: #61798c;
+    color: #7892a7;
     text-decoration: none;
 
-    font-size: 11px;
-    letter-spacing: 2.5px;
-    transition: 0.3s ease;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: normal;
+
+    transition: opacity 0.3s ease;
+}
+
+.gallery-back-home:hover {
+    opacity: 0.6;
 }
 
 .gallery-back-home:hover {
