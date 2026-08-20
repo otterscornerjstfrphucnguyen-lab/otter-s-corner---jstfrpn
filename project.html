@@ -1,484 +1,229 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Le Petit PriNce — Otter's Corner</title>
-
-
+<title>Project — Otter's Corner</title>
 <style>
-
 * {
     box-sizing: border-box;
 }
-
-
 body {
-
     margin: 0;
-
     min-height: 100vh;
-
     font-family: Georgia, "Times New Roman", serif;
-
     background: #d8e8f5;
-
     color: #425b70;
-
 }
-
-
 /* ===== CONTAINER ===== */
-
 .container {
-
-    width: min(950px, 90%);
-
+    width: min(900px, 90%);
     margin: auto;
-
-    padding: 45px 0 50px;
-
+    padding: 50px 0 60px;
 }
-
-
 /* ===== BACK ===== */
-
 .back {
-
     display: inline-block;
-
-    margin-bottom: 40px;
-
-    color: #425b70;
-
-    text-decoration: none;
-
-    font-size: 13px;
-
-    letter-spacing: 2px;
-
-}
-
-.back:hover {
-
-    opacity: 0.7;
-
-}
-
-
-/* ===== HEADER ===== */
-
-.header {
-
-    text-align: center;
-
     margin-bottom: 45px;
-
+    color: #425b70;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 2px;
 }
-
-
-.project-number {
-
-    display: block;
-
-    margin-bottom: 12px;
-
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    color: #7890a0;
-
+.back:hover {
+    opacity: 0.7;
 }
-
-
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
 .header h1 {
-
     margin: 0;
-
-    font-size: 42px;
-
+    font-size: 46px;
     font-weight: normal;
-
-    letter-spacing: 5px;
-
+    letter-spacing: 7px;
     color: #38536a;
-
 }
-
-
 .header p {
-
-    margin-top: 15px;
-
-    font-size: 13px;
-
-    letter-spacing: 2px;
-
-    color: #61798c;
-
-}
-
-
-/* ===== GALLERY ===== */
-
-.gallery {
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 18px;
-
-    margin-bottom: 35px;
-
-}
-
-
-.gallery-item {
-
-    width: 100%;
-
-    aspect-ratio: 1 / 1;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    border: 1px solid rgba(255,255,255,0.7);
-
-    background: rgba(255,255,255,0.35);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-}
-
-
-.gallery-item span {
-
-    font-size: 10px;
-
+    margin-top: 14px;
+    font-size: 11px;
     letter-spacing: 3px;
-
-    color: #7890a0;
-
+    color: #61798c;
 }
-
-
-.gallery-item img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
+/* ===== PROJECT LIST ===== */
+.projects {
+    display: grid;
+    gap: 22px;
 }
-
-
-/* ===== NOTE ===== */
-
-.note {
-
-    padding: 30px;
-
-    margin-bottom: 30px;
-
-    border-radius: 22px;
-
+/* ===== PROJECT CARD ===== */
+.project {
+    padding: 30px 32px;
     background: rgba(255,255,255,0.45);
-
     border: 1px solid rgba(255,255,255,0.7);
-
+    border-radius: 22px;
+    box-shadow:
+        0 12px 35px rgba(70,95,110,0.08);
+    transition: 0.3s ease;
 }
-
-
-.note-title {
-
-    margin: 0 0 18px;
-
-    text-align: center;
-
-    font-size: 11px;
-
-    letter-spacing: 4px;
-
+.project:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.55);
+}
+/* ===== PROJECT NUMBER ===== */
+.number {
+    font-size: 10px;
+    letter-spacing: 3px;
     color: #7890a0;
-
 }
-
-
-.note h2 {
-
-    margin: 0 0 15px;
-
-    text-align: center;
-
+/* ===== PROJECT NAME ===== */
+.project h2 {
+    margin: 10px 0 8px;
     font-size: 25px;
-
     font-weight: normal;
-
     letter-spacing: 2px;
-
     color: #38536a;
-
 }
-
-
-.note p {
-
+/* ===== DESCRIPTION ===== */
+.project p {
     margin: 0;
-
-    text-align: center;
-
-    font-size: 14px;
-
-    line-height: 2;
-
+    font-size: 13px;
+    line-height: 1.8;
     color: #587186;
-
 }
-
-
-/* ===== FOOTER ===== */
-
-.footer {
-
-    text-align: center;
-
-    padding: 35px 20px 45px;
-
-    font-size: 11px;
-
+/* ===== VIEW BUTTON ===== */
+.view {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 9px 17px;
+    border: 1px solid #7d9bb4;
+    border-radius: 20px;
+    color: #425b70;
+    text-decoration: none;
+    font-size: 10px;
     letter-spacing: 2px;
-
+    transition: 0.3s ease;
+}
+.view:hover {
+    background: rgba(255,255,255,0.45);
+}
+/* ===== COMING SOON ===== */
+.coming-soon {
+    opacity: 0.85;
+}
+.coming-soon h2 {
+    color: #6d8293;
+}
+.coming-soon .view {
+    opacity: 0.7;
+    cursor: default;
+}
+/* ===== FOOTER ===== */
+.footer {
+    text-align: center;
+    padding: 30px 20px 45px;
+    font-size: 11px;
+    letter-spacing: 2px;
     color: rgba(70,90,105,0.7);
-
 }
-
-
 .footer p {
-
     margin: 0;
-
 }
-
-
 /* ===== MOBILE ===== */
-
-@media (max-width: 650px) {
-
+@media (max-width: 600px) {
+    .container {
+        width: 88%;
+        padding-top: 35px;
+    }
     .header h1 {
-
-        font-size: 31px;
-
-        letter-spacing: 3px;
-
+        font-size: 36px;
+        letter-spacing: 5px;
     }
-
-
-    .gallery {
-
-        grid-template-columns: 1fr 1fr;
-
-        gap: 10px;
-
+    .project {
+        padding: 25px 23px;
     }
-
-
-    .note {
-
-        padding: 24px 20px;
-
+    .project h2 {
+        font-size: 22px;
     }
-
 }
-
 </style>
-
 </head>
-
-
 <body>
-
-
 <div class="container">
-
-<a href="project.html" class="back">
-
-        ← BACK TO PROJECT
-
-    </a>
-
-
-    <!-- HEADER -->
-
-    <div class="header">
-
-        <span class="project-number">
-
-            PROJECT 01
-
-        </span>
-
-
-        <h1>
-
-            Le Petit PriNce
-
-        </h1>
-
-
-        <p>
-
-            A special support project for Phúc Nguyên
-
-        </p>
-
-    </div>
-
-
-    <!-- ================================= -->
-    <!-- 4 IMAGES -->
-    <!-- ================================= -->
-
-    <div class="gallery">
-
-
-        <!-- IMAGE 01 -->
-
-        <div class="gallery-item">
-
-            <!--
-            SAU NÀY THÊM ẢNH:
-
-            project-01-1.jpg
-            -->
-
-            <span>
-                IMAGE 01
-            </span>
-
-        </div>
-
-
-        <!-- IMAGE 02 -->
-
-        <div class="gallery-item">
-
-            <!--
-            SAU NÀY THÊM ẢNH:
-
-            project-01-2.jpg
-            -->
-
-            <span>
-                IMAGE 02
-            </span>
-
-        </div>
-
-
-        <!-- IMAGE 03 -->
-
-        <div class="gallery-item">
-
-            <!--
-            SAU NÀY THÊM ẢNH:
-
-            project-01-3.jpg
-            -->
-
-            <span>
-                IMAGE 03
-            </span>
-
-        </div>
-
-
-        <!-- IMAGE 04 -->
-
-        <div class="gallery-item">
-
-            <!--
-            SAU NÀY THÊM ẢNH:
-
-            project-01-4.jpg
-            -->
-
-            <span>
-                IMAGE 04
-            </span>
-
-        </div>
-
-
-    </div>
-
-
-    <!-- ================================= -->
-    <!-- PROJECT NOTE -->
-    <!-- ================================= -->
-
-    <div class="note">
-
-
-        <p class="note-title">
-
-            PROJECT NOTE
-
-        </p>
-
-
-        <h2>
-
-            Le Petit PriNce
-
-        </h2>
-
-
-        <p>
-
-            A special support project dedicated to
-            Phúc Nguyên by Otter's Corner.
-
-            <br><br>
-
-            Information about the concept, activities,
-            support items and project milestones will be
-            updated here.
-
-        </p>
-
-
-    </div>
-
-
-</div>
-
-
-<!-- FOOTER -->
-
-<footer class="footer">
-
-    <p>
-
-        Otter's Corner - Just for Phuc Nguyen
-
-    </p>
-
-</footer>
-
-
-</body>
-
-</html>
     <!-- BACK -->
+    <a href="index.html" class="back">
+        ← BACK TO HOME
+    </a>
+    <div class="header">
+        <h1>
+            PROJECT
+        </h1>
+        <p>
+            OTTER'S CORNER — PROJECT ARCHIVE
+        </p>
+    </div>
+    <!-- ================================= -->
+    <!-- PROJECT LIST -->
+    <!-- ================================= -->
+    <div class="projects">
+        <!-- PROJECT 01 -->
+        <div class="project">
+            <div class="number">
+                PROJECT 01
+            </div>
+            <h2>
+                Le Petit PriNce
+            </h2>
+            <p>
+                A special support project dedicated to
+                Phúc Nguyên by Otter's Corner.
+            </p>
+            <a
+                href="project-01.html"
+                class="view"
+            >
+                VIEW PROJECT 1 →
+            </a>
+        </div>
+        <!-- PROJECT 02 -->
+        <div class="project coming-soon">
+            <div class="number">
+                PROJECT 02
+            </div>
+            <h2>
+                COMING SOON
+            </h2>
+            <p>
+                The next project from Otter's Corner
+                will be revealed soon.
+            </p>
+            <span class="view">
+                COMING SOON
+            </span>
+        </div>
+        <!-- PROJECT 03 -->
+        <div class="project coming-soon">
+            <div class="number">
+                PROJECT 03
+            </div>
+            <h2>
+                COMING SOON
+            </h2>
+            <p>
+                Another special project for UPRIZE PN.
+            </p>
+            <span class="view">
+                COMING SOON
+            </span>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<footer class="footer">
+    <p>
+        Otter's Corner - Just for Phuc Nguyen
+    </p>
+</footer>
+</body>
+</html>
+    <!-- HEADER -->
