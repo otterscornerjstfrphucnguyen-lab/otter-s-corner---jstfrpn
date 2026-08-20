@@ -288,80 +288,66 @@ Just for Phuc Nguyen
 
 </div>
 
-
 <script>
 
 const sendButton = document.getElementById("sendButton");
+const nameInput = document.getElementById("name");
 const wishBox = document.getElementById("wish");
 
 sendButton.onclick = async function () {
-    const message = wishBox.value.trim();
 
-    if (!message) {
-        alert("Hãy viết một lời chúc trước khi gửi nhé ♡");
-        wishBox.focus();
+    const name = nameInput.value.trim();
+    const wish = wishBox.value.trim();
+
+    // Kiểm tra người dùng đã điền đủ chưa
+    if (name === "" || wish === "") {
+        alert("Bạn hãy điền tên và lời chúc nhé ♡");
         return;
     }
 
+    // Đổi trạng thái nút
     sendButton.disabled = true;
     sendButton.innerHTML = "♡ SENDING...";
 
     try {
-        await fetch("https://script.google.com/macros/s/AKfycby9-9ubjeKYyn1u784uOQGxkNVkI3QLOFoGt9ttWfp3RvNEHLX8GJJFse5ij2NrFkaleA/exec", {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-                "Content-Type": "text/plain;charset=utf-8"
-            },
-            body: JSON.stringify({
-                name: "Otter's Corner",
-                message: message
-            })
-        });
 
-        wishBox.value = "";
-        sendButton.innerHTML = "♡ SENT WITH LOVE";
+        // Gửi dữ liệu vào Google Sheet
+        await fetch(
+            "https://script.google.com/macros/s/AKfycby9-9ubjeKYyn1u784uOQGxkNVkI3QLOFoGt9ttWfp3RvNEHLX8GJJFse5ij2NrFkaleA/exec",
+            {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain;charset=utf-8"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    message: wish
+                })
+            }
+        );
 
-        setTimeout(() => {
-            sendButton.innerHTML = "♡ SEND MY WISH";
-            sendButton.disabled = false;
-        }, 2500);
+        // Hiển thị tên và lời chúc trên lá thư
+        document.getElementById("displayName").innerText = name;
+
+        document.getElementById("displayWish").innerText =
+            "“" + wish + "”";
+
+        // Ẩn form
+        document.getElementById("formBox").style.display = "none";
+
+        // Hiện lá thư cảm ơn
+        document.getElementById("letter").style.display = "block";
 
     } catch (error) {
+
         console.error(error);
 
-        sendButton.innerHTML = "♡ TRY AGAIN";
+        sendButton.disabled = false;
+        sendButton.innerHTML = "♡ SEND MY WISH";
 
-        setTimeout(() => {
-            sendButton.innerHTML = "♡ SEND MY WISH";
-            sendButton.disabled = false;
-        }, 2500);
+        alert("Có lỗi xảy ra, bạn thử gửi lại nhé ♡");
     }
-};
-
-var name =
-document.getElementById("name").value.trim();
-
-var wish =
-document.getElementById("wish").value.trim();
-
-if (name === "" || wish === "") {
-
-alert("Bạn hãy điền tên và lời chúc nhé ♡");
-
-return;
-
-}
-
-document.getElementById("displayName").innerText = name;
-
-document.getElementById("displayWish").innerText =
-"“" + wish + "”";
-
-document.getElementById("formBox").style.display = "none";
-
-document.getElementById("letter").style.display = "block";
-
 };
 
 </script>
