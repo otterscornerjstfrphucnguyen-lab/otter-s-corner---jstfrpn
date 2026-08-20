@@ -24,9 +24,12 @@ footer{padding:55px 20px;text-align:center;background:#bcd8f0}footer p{font-size
     width: min(950px, 90%);
     margin: auto;
     padding: 45px 0 60px;
+    text-align: left;
+}
+.gallery-header,
+.gallery-list {
     text-align: center;
 }
-
 
 /* ===== BACK ===== */
 
