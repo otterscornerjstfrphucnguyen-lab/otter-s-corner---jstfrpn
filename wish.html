@@ -291,7 +291,53 @@ Just for Phuc Nguyen
 
 <script>
 
-document.getElementById("sendButton").onclick = function() {
+const sendButton = document.getElementById("sendButton");
+const wishBox = document.getElementById("wish");
+
+sendButton.onclick = async function () {
+    const message = wishBox.value.trim();
+
+    if (!message) {
+        alert("Hãy viết một lời chúc trước khi gửi nhé ♡");
+        wishBox.focus();
+        return;
+    }
+
+    sendButton.disabled = true;
+    sendButton.innerHTML = "♡ SENDING...";
+
+    try {
+        await fetch("https://script.google.com/macros/s/AKfycby9-9ubjeKYyn1u784uOQGxkNVkI3QLOFoGt9ttWfp3RvNEHLX8GJJFse5ij2NrFkaleA/exec", {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                name: "Otter's Corner",
+                message: message
+            })
+        });
+
+        wishBox.value = "";
+        sendButton.innerHTML = "♡ SENT WITH LOVE";
+
+        setTimeout(() => {
+            sendButton.innerHTML = "♡ SEND MY WISH";
+            sendButton.disabled = false;
+        }, 2500);
+
+    } catch (error) {
+        console.error(error);
+
+        sendButton.innerHTML = "♡ TRY AGAIN";
+
+        setTimeout(() => {
+            sendButton.innerHTML = "♡ SEND MY WISH";
+            sendButton.disabled = false;
+        }, 2500);
+    }
+};
 
 var name =
 document.getElementById("name").value.trim();
