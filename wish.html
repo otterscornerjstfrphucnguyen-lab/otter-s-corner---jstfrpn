@@ -176,6 +176,84 @@ button {
     .letter {
         padding: 25px 20px;
     }
+
+.recent-wishes {
+    max-width: 700px;
+    margin: 70px auto 40px;
+    padding: 0 20px;
+}
+
+.recent-wishes-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.recent-wishes-title h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: #718fa8;
+}
+
+.recent-wishes-title span {
+    color: #718fa8;
+    opacity: 0.7;
+}
+
+.recent-wishes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.wish-card {
+    padding: 22px 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(113, 143, 168, 0.18);
+    box-shadow: 0 8px 25px rgba(113, 143, 168, 0.08);
+    animation: wishAppear 0.7s ease both;
+}
+
+.wish-card:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.wish-message {
+    margin: 0 0 12px;
+    color: #526b80;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+.wish-name {
+    margin: 0;
+    text-align: right;
+    color: #718fa8;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.loading-wishes {
+    text-align: center;
+    color: #9aabba;
+    font-size: 13px;
+}
+
+@keyframes wishAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 </style>
 </head>
@@ -351,7 +429,65 @@ sendButton.onclick = async function () {
 };
 
 </script>
+    <script>
 
+const wishesURL = "https://script.google.com/macros/s/AKfycby9-9ubjeKYyn1u784uOQGxkNVkI3QLOFoGt9ttWfp3RvNEHLX8GJJFse5ij2NrFkaleA/exec";
+
+async function loadRecentWishes() {
+
+    const container = document.getElementById("recentWishes");
+
+    if (!container) return;
+
+    try {
+
+        const response = await fetch(wishesURL);
+        const wishes = await response.json();
+
+        if (!wishes.length) {
+            container.innerHTML =
+                '<p class="loading-wishes">Be the first to leave a little wish ♡</p>';
+            return;
+        }
+
+        container.innerHTML = wishes.map(wish => `
+            <div class="wish-card">
+                <p class="wish-message">“${escapeHTML(wish.message)}”</p>
+                <p class="wish-name">— ${escapeHTML(wish.name)}</p>
+            </div>
+        `).join("");
+
+    } catch (error) {
+
+        console.error("Không thể tải lời chúc:", error);
+
+        container.innerHTML =
+            '<p class="loading-wishes">Little wishes will appear here soon ♡</p>';
+    }
+}
+
+
+function escapeHTML(text) {
+    const div = document.createElement("div");
+    div.textContent = text || "";
+    return div.innerHTML;
+}
+
+
+loadRecentWishes();
+
+</script>
+<section class="recent-wishes">
+    <div class="recent-wishes-title">
+        <span>♡</span>
+        <h2>Little Wishes</h2>
+        <span>♡</span>
+    </div>
+
+    <div id="recentWishes" class="recent-wishes-list">
+        <p class="loading-wishes">Loading little wishes...</p>
+    </div>
+</section>
 </body>
 
 </html>
