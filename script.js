@@ -2,6 +2,7 @@
 
 console.log("Otter's Corner project is ready!");
 
+
 /* ===== MOBILE MENU ===== */
 
 function openMobileMenu() {
@@ -27,16 +28,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
     bgMusic.volume = 0.4;
 
-    musicToggle.addEventListener("click", function () {
+
+    // ===== UPDATE BUTTON =====
+
+    function updateMusicButton() {
+
+        if (bgMusic.paused) {
+            musicToggle.textContent = "MUSIC OFF ♫";
+        } else {
+            musicToggle.textContent = "MUSIC ON ♫";
+        }
+
+    }
+
+
+    // ===== AUTOPLAY =====
+
+    bgMusic.play()
+        .then(function () {
+
+            musicToggle.textContent = "MUSIC ON ♫";
+
+        })
+        .catch(function (error) {
+
+            console.log("Autoplay bị trình duyệt chặn:", error);
+
+            updateMusicButton();
+
+        });
+
+
+    // ===== ON / OFF BUTTON =====
+
+    musicToggle.addEventListener("click", function (event) {
+
+        event.stopPropagation();
 
         if (bgMusic.paused) {
 
             bgMusic.play()
                 .then(function () {
+
                     musicToggle.textContent = "MUSIC ON ♫";
+
                 })
                 .catch(function (error) {
+
                     console.log("Cannot play music:", error);
+
                 });
 
         } else {
@@ -44,8 +84,43 @@ document.addEventListener("DOMContentLoaded", function () {
             bgMusic.pause();
 
             musicToggle.textContent = "MUSIC OFF ♫";
+
         }
 
+    });
+
+
+    // ===== IPHONE / SAFARI AUTOPLAY FALLBACK =====
+
+    function playAfterInteraction() {
+
+        // Nếu nhạc đang OFF do người dùng bấm nút
+        // thì không tự bật lại
+        if (bgMusic.paused && musicToggle.textContent === "MUSIC OFF ♫") {
+            return;
+        }
+
+        if (bgMusic.paused) {
+
+            bgMusic.play()
+                .then(function () {
+
+                    musicToggle.textContent = "MUSIC ON ♫";
+
+                })
+                .catch(function () {
+
+                    console.log("Music cannot start yet.");
+
+                });
+
+        }
+
+    }
+
+
+    document.addEventListener("pointerdown", playAfterInteraction, {
+        once: true
     });
 
 });
