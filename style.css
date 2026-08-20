@@ -1,366 +1,916 @@
-// ===== OTTER'S CORNER =====
+/* =====================================================
+   OTTER'S CORNER — MAIN STYLE
+   ===================================================== */
 
-console.log("Otter's Corner project is ready!");
 
-/* ===== MOBILE MENU ===== */
+/* =====================
+   RESET
+   ===================== */
 
-function openMobileMenu() {
-    const menu = document.getElementById("mobileMenu");
-
-    if (menu) {
-        menu.classList.add("active");
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-function closeMobileMenu() {
-    const menu = document.getElementById("mobileMenu");
+html {
+    scroll-behavior: smooth;
+}
 
-    if (menu) {
-        menu.classList.remove("active");
-    }
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    font-family:
+        "Times New Roman",
+        Georgia,
+        serif;
+
+    color: #425b70;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dcecf7 0%,
+            #edf5fa 45%,
+            #d5e7f3 100%
+        );
 }
 
 
 /* =====================================================
-   BACKGROUND MUSIC
-   Nhạc chạy xuyên suốt các trang
+   NAVIGATION
    ===================================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
+header.nav {
+    width: 100%;
 
-    const bgMusic = document.getElementById("bgMusic");
-    const musicToggle = document.getElementById("musicToggle");
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    if (!bgMusic || !musicToggle) {
-        console.log("Music elements not found.");
-        return;
+    padding: 28px 7%;
+
+    position: relative;
+    z-index: 100;
+
+    background: rgba(255, 255, 255, 0.20);
+
+    backdrop-filter: blur(10px);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.45);
+}
+
+
+/* =====================
+   LOGO
+   ===================== */
+
+.logo {
+    font-size: 24px;
+
+    line-height: 0.85;
+
+    letter-spacing: 1px;
+
+    color: #38536a;
+}
+
+.logo span {
+    font-size: 17px;
+
+    letter-spacing: 5px;
+
+    color: #7892a7;
+}
+
+
+/* =====================
+   DESKTOP MENU
+   ===================== */
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #425b70;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease,
+        opacity 0.3s ease;
+}
+
+nav a:hover {
+    color: #789fbb;
+
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+    min-height: 82vh;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding:
+        100px 20px
+        80px;
+
+    position: relative;
+}
+
+
+/* =====================
+   STARS
+   ===================== */
+
+.stars {
+    font-size: 18px;
+
+    letter-spacing: 8px;
+
+    color: #789fbb;
+
+    margin-bottom: 35px;
+
+    animation:
+        starsFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+@keyframes starsFloat {
+
+    0% {
+        transform: translateY(0);
+        opacity: 0.6;
     }
 
+    50% {
+        transform: translateY(-8px);
+        opacity: 1;
+    }
 
-    /* ===== CÀI ÂM LƯỢNG ===== */
+    100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
 
-    bgMusic.volume = 0.4;
+}
 
 
-    /* ===== LẤY TRẠNG THÁI CŨ ===== */
+/* =====================
+   EYEBROW
+   ===================== */
 
-    const savedTime = parseFloat(
-        localStorage.getItem("otterMusicTime") || "0"
+.eyebrow {
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    color: #7892a7;
+
+    margin-bottom: 18px;
+}
+
+
+/* =====================
+   MAIN TITLE
+   ===================== */
+
+.hero h1 {
+    font-size: clamp(
+        60px,
+        9vw,
+        120px
     );
 
-    const savedState =
-        localStorage.getItem("otterMusicState") || "on";
+    font-weight: normal;
+
+    line-height: 0.8;
+
+    letter-spacing: 10px;
+
+    color: #38536a;
+
+    margin-bottom: 35px;
+
+    text-shadow:
+        0 10px 30px
+        rgba(80, 110, 140, 0.15);
+}
+
+.hero h1 span {
+    font-size: 0.65em;
+
+    letter-spacing: 18px;
+
+    color: #6f94b3;
+}
 
 
-    /* ===== CẬP NHẬT NÚT ===== */
+/* =====================
+   ARTIST TEXT
+   ===================== */
 
-    function updateButton() {
+.artist {
+    font-size: 15px;
 
-        if (bgMusic.paused) {
-            musicToggle.textContent = "MUSIC OFF ♫";
-        } else {
-            musicToggle.textContent = "MUSIC ON ♫";
-        }
+    letter-spacing: 1px;
 
+    color: #587186;
+
+    margin-bottom: 22px;
+}
+
+
+/* =====================
+   QUOTE
+   ===================== */
+
+.quote {
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #61798c;
+
+    margin-bottom: 35px;
+}
+
+
+/* =====================
+   SCROLL BUTTON
+   ===================== */
+
+.scroll {
+    display: inline-block;
+
+    padding: 13px 25px;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #ffffff;
+
+    background: #6f94b3;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(60, 90, 115, 0.20);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.scroll:hover {
+    transform: translateY(-4px);
+
+    background: #587d9c;
+
+    box-shadow:
+        0 13px 28px
+        rgba(60, 90, 115, 0.25);
+}
+
+
+/* =====================
+   MUSIC DECORATION
+   ===================== */
+
+.decor {
+    margin-top: 35px;
+
+    font-size: 20px;
+
+    letter-spacing: 15px;
+
+    color: #789fbb;
+
+    animation:
+        musicFloat
+        5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes musicFloat {
+
+    0% {
+        transform: translateY(0);
     }
 
-
-    /* ===== KHÔI PHỤC VỊ TRÍ NHẠC ===== */
-
-    function restoreMusicPosition() {
-
-        if (
-            !isNaN(savedTime) &&
-            savedTime >= 0 &&
-            isFinite(bgMusic.duration) &&
-            bgMusic.duration > 0
-        ) {
-
-            bgMusic.currentTime =
-                Math.min(savedTime, bgMusic.duration - 0.1);
-
-        }
-
+    50% {
+        transform: translateY(-7px);
     }
 
+    100% {
+        transform: translateY(0);
+    }
 
-    /* ===== LƯU VỊ TRÍ ===== */
+}
 
-    function saveMusicPosition() {
 
-        if (
-            bgMusic &&
-            isFinite(bgMusic.currentTime)
-        ) {
+/* =====================================================
+   PN PROFILE
+   ===================================================== */
 
-            localStorage.setItem(
-                "otterMusicTime",
-                bgMusic.currentTime
+.pn-profile {
+    width: min(
+        900px,
+        calc(100% - 40px)
+    );
+
+    margin:
+        40px auto
+        100px;
+
+    padding: 50px 30px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255, 255, 255, 0.28);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.70);
+
+    box-shadow:
+        0 20px 60px
+        rgba(70, 100, 130, 0.10);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =====================
+   PROFILE HEADER
+   ===================== */
+
+.pn-profile-header {
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+
+/* =====================
+   PROFILE PHOTO
+   ===================== */
+
+.pn-photo {
+    width: 220px;
+    height: 275px;
+
+    margin:
+        0 auto
+        28px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255, 255, 255, 0.50);
+
+    border:
+        3px solid
+        rgba(255, 255, 255, 0.85);
+
+    box-shadow:
+        0 15px 35px
+        rgba(60, 90, 115, 0.18);
+
+    transition:
+        transform 0.4s ease;
+}
+
+.pn-photo:hover {
+    transform:
+        translateY(-6px)
+        rotate(1deg);
+}
+
+.pn-photo img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =====================
+   PROFILE TITLE
+   ===================== */
+
+.pn-profile-header h2 {
+    font-size: 38px;
+
+    font-weight: normal;
+
+    letter-spacing: 5px;
+
+    color: #38536a;
+
+    margin-bottom: 10px;
+}
+
+.pn-profile-header p {
+    font-size: 14px;
+
+    color: #61798c;
+}
+
+
+/* =====================================================
+   PROFILE INFO CARDS
+   ===================================================== */
+
+.pn-profile-card {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 1px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255, 255, 255, 0.55);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.75);
+}
+
+.pn-info {
+    padding:
+        28px 15px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.30);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.pn-info:hover {
+    background:
+        rgba(255, 255, 255, 0.65);
+
+    transform:
+        translateY(-3px);
+}
+
+.pn-info span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #7892a7;
+}
+
+.pn-info strong {
+    font-size: 15px;
+
+    font-weight: normal;
+
+    letter-spacing: 1px;
+
+    color: #425b70;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+   ===================================================== */
+
+.pn-description {
+    max-width: 650px;
+
+    margin:
+        40px auto
+        0;
+
+    text-align: center;
+}
+
+.pn-description p {
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    color: #587186;
+
+    font-style: italic;
+}
+
+
+/* =====================================================
+   MUSIC BUTTON
+   ===================================================== */
+
+.music-toggle {
+    position: fixed;
+
+    left: 25px;
+    bottom: 25px;
+
+    z-index: 999;
+
+    border: none;
+
+    padding:
+        12px 20px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(111, 148, 179, 0.92);
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(60, 90, 115, 0.22);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform:
+        translateY(-3px);
+
+    background: #587d9c;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    text-align: center;
+
+    padding:
+        70px 20px
+        40px;
+
+    color: #61798c;
+
+    background:
+        rgba(255, 255, 255, 0.22);
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.45);
+}
+
+footer .logo {
+    margin-bottom: 20px;
+
+    font-size: 25px;
+}
+
+footer p {
+    margin: 10px 0;
+
+    font-size: 11px;
+
+    letter-spacing: 1.5px;
+
+    color: #7892a7;
+}
+
+
+/* =====================================================
+   MOBILE MENU
+   ===================================================== */
+
+.menu-toggle {
+    display: none;
+
+    position: fixed;
+
+    top: 18px;
+    right: 18px;
+
+    z-index: 9999;
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #6f94b3;
+
+    color: #ffffff;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 18px
+        rgba(60, 90, 115, 0.20);
+}
+
+.mobile-menu {
+    display: none;
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    nav {
+        gap: 18px;
+    }
+
+    nav a {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    header.nav {
+        padding:
+            22px
+            25px;
+    }
+
+    nav {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-menu {
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 9998;
+
+        display: none;
+
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+        background:
+            rgba(
+                220,
+                236,
+                247,
+                0.98
             );
 
-        }
-
+        backdrop-filter:
+            blur(15px);
     }
 
-
-    /* =================================================
-       KHI AUDIO LOAD XONG
-       ================================================= */
-
-    bgMusic.addEventListener(
-        "loadedmetadata",
-        function () {
-
-            restoreMusicPosition();
-
-            if (savedState === "off") {
-
-                bgMusic.pause();
-
-                updateButton();
-
-                return;
-            }
-
-            /*
-             * Cố gắng tự phát.
-             * Nếu trình duyệt chặn autoplay,
-             * lần tương tác đầu tiên sẽ phát.
-             */
-
-            bgMusic.play()
-                .then(function () {
-
-                    updateButton();
-
-                    console.log(
-                        "Music resumed:",
-                        bgMusic.currentTime
-                    );
-
-                })
-                .catch(function () {
-                  /*
-                     * Trình duyệt chặn autoplay.
-                     * Không báo lỗi cho người dùng.
-                     */
-
-                    updateButton();
-
-                    console.log(
-                        "Autoplay blocked. Waiting for user interaction."
-                    );
-
-                });
-
-        },
-        { once: true }
-    );
-
-
-    /* =================================================
-       NẾU AUDIO ĐÃ LOAD SẴN
-       ================================================= */
-
-    if (bgMusic.readyState >= 1) {
-
-        restoreMusicPosition();
-
-        if (savedState !== "off") {
-
-            bgMusic.play()
-                .then(function () {
-
-                    updateButton();
-
-                })
-                .catch(function () {
-
-                    updateButton();
-
-                });
-
-        } else {
-
-            bgMusic.pause();
-
-            updateButton();
-
-        }
-
+    .mobile-menu.active {
+        display: flex;
     }
 
+    .mobile-menu ul {
+        list-style: none;
+    }
 
-    /* =================================================
-       MUSIC ON / OFF
-       ================================================= */
+    .mobile-menu li {
+        margin: 25px 0;
+    }
 
-    musicToggle.addEventListener(
-        "click",
-        function (event) {
+    .mobile-menu a {
+        text-decoration: none;
 
-            event.stopPropagation();
+        font-size: 15px;
 
+        letter-spacing: 3px;
 
-            /* ===== ĐANG TẮT → BẬT ===== */
+        color: #425b70;
 
-            if (bgMusic.paused) {
+        transition:
+            opacity 0.3s ease;
+    }
 
-                bgMusic.play()
-                    .then(function () {
+    .mobile-menu a:hover {
+        opacity: 0.6;
+    }
 
-                        localStorage.setItem(
-                            "otterMusicState",
-                            "on"
-                        );
+    .mobile-close {
+        position: absolute;
 
-                        updateButton();
+        top: 18px;
+        right: 25px;
 
-                    })
-                    .catch(function (error) {
+        font-size: 35px;
 
-                        console.log(
-                            "Cannot play music:",
-                            error
-                        );
+        color: #425b70;
 
-                    });
+        cursor: pointer;
+    }
 
-            }
+    .hero {
+        min-height: 80vh;
 
+        padding:
+            80px 20px
+            60px;
+    }
 
-            /* ===== ĐANG BẬT → TẮT ===== */
+    .stars {
+        font-size: 14px;
 
-            else {
+        letter-spacing: 4px;
 
-                bgMusic.pause();
+        margin-bottom: 25px;
+    }
 
-                saveMusicPosition();
+    .eyebrow {
+        font-size: 9px;
 
-                localStorage.setItem(
-                    "otterMusicState",
-                    "off"
-                );
+        letter-spacing: 2px;
+    }
 
-                updateButton();
+    .hero h1 {
+        letter-spacing: 5px;
+    }
 
-            }
+    .hero h1 span {
+        letter-spacing: 10px;
+    }
 
-        }
-    );
+    .artist {
+        font-size: 13px;
+    }
 
+    .quote {
+        font-size: 14px;
+    }
 
-    /* =================================================
-       TỰ PHÁT SAU LẦN CHẠM ĐẦU TIÊN
-       Cho iPhone / Safari
-       ================================================= */
+    .pn-profile {
+        width:
+            calc(100% - 30px);
 
-    document.addEventListener(
-        "pointerdown",
-        function (event) {
+        padding:
+            35px 18px;
 
-            /*
-             * Nếu bấm nút Music thì không xử lý ở đây
-             */
+        border-radius: 22px;
+    }
 
-            if (
-                event.target.closest("#musicToggle")
-            ) {
-                return;
-            }
+    .pn-photo {
+        width: 190px;
+        height: 240px;
+    }
 
+    .pn-profile-header h2 {
+        font-size: 27px;
 
-            /*
-             * Nếu người dùng đã tắt nhạc
-             * thì tuyệt đối không tự bật.
-             */
+        letter-spacing: 1.5px;
 
-            if (
-                localStorage.getItem(
-                    "otterMusicState"
-                ) === "off"
-            ) {
-                return;
-            }
-      /*
-             * Nếu nhạc đang chạy thì không làm gì.
-             */
+        line-height: 1.4;
+    }
 
-            if (!bgMusic.paused) {
-                return;
-            }
+    .pn-profile-card {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
 
+    .pn-info {
+        padding:
+            23px 10px;
+    }
 
-            /*
-             * Thử phát nhạc.
-             */
+    .pn-description p {
+        font-size: 14px;
+    }
 
-            bgMusic.play()
-                .then(function () {
+    .music-toggle {
+        left: 15px;
+        bottom: 15px;
 
-                    localStorage.setItem(
-                        "otterMusicState",
-                        "on"
-                    );
+        font-size: 9px;
 
-                    updateButton();
+        padding:
+            10px 15px;
+    }
 
-                })
-                .catch(function (error) {
-
-                    console.log(
-                        "Music still blocked:",
-                        error
-                    );
-
-                });
-
-        }
-    );
+}
 
 
-    /* =================================================
-       LƯU VỊ TRÍ MỖI 500ms
-       ================================================= */
+/* =====================================================
+   SMALL MOBILE
+   ===================================================== */
 
-    setInterval(
-        function () {
+@media (max-width: 420px) {
 
-            if (!bgMusic.paused) {
-                saveMusicPosition();
-            }
+    .hero h1 {
+        font-size: 55px;
+    }
 
-        },
-        500
-    );
+    .pn-profile-card {
+        grid-template-columns:
+            1fr;
+    }
 
+    .pn-photo {
+        width: 170px;
+        height: 220px;
+    }
 
-    /* =================================================
-       LƯU TRƯỚC KHI CHUYỂN TRANG
-       ================================================= */
-
-    window.addEventListener(
-        "pagehide",
-        function () {
-
-            saveMusicPosition();
-
-        }
-    );
+}
 
 
-    window.addEventListener(
-        "beforeunload",
-        function () {
+/* =====================================================
+   REDUCE MOTION
+   ===================================================== */
 
-            saveMusicPosition();
+@media (prefers-reduced-motion: reduce) {
 
-        }
-    );
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
 
+        animation-iteration-count: 1 !important;
 
-    /* ===== TRẠNG THÁI BAN ĐẦU ===== */
+        transition-duration: 0.01ms !important;
 
-    updateButton();
+        scroll-behavior: auto !important;
+    }
 
-});
+}
