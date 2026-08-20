@@ -195,7 +195,48 @@
     height: 100%;
     object-fit: cover;
 }
-</style>
+/* ✨ Dreamy floating background */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(70px);
+  opacity: 0.35;
+  animation: dreamyFloat 10s ease-in-out infinite alternate;
+}
+
+body::before {
+  top: 10%;
+  left: -100px;
+  background: rgba(170, 215, 255, 0.7);
+}
+
+body::after {
+  right: -100px;
+  bottom: 10%;
+  background: rgba(210, 230, 255, 0.8);
+  animation-delay: -5s;
+}
+
+@keyframes dreamyFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(40px, -25px) scale(1.08);
+  }
+
+  100% {
+    transform: translate(-20px, 30px) scale(0.95);
+  }
+}
+  </style>
 </head>
 <body>
   <!-- MOBILE MENU BUTTON -->
