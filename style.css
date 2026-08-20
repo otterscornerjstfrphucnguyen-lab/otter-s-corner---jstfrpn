@@ -850,3 +850,141 @@ header.nav nav {
     align-items: center !important;
     margin-left: auto !important;
 }
+===================================================== */
+
+.gallery-item.coming-soon {
+    opacity: 0.75;
+}
+
+.gallery-item.coming-soon h2 {
+    margin-bottom: 18px;
+}
+
+.gallery-item.coming-soon p {
+    margin: 0 0 25px;
+
+    color: #70889a;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.coming-text {
+    display: inline-block;
+
+    color: #9aabb8;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.gallery-footer {
+    width: 100%;
+
+    padding: 55px 20px 120px;
+
+    text-align: center;
+
+    border-top: 1px solid rgba(80, 110, 130, 0.12);
+}
+
+.gallery-footer p {
+    margin: 0;
+
+    color: #7890a1;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    .gallery-page {
+        width: calc(100% - 30px);
+
+        padding: 35px 0 70px;
+    }
+
+
+    .gallery-back {
+        margin-bottom: 45px;
+
+        font-size: 10px;
+    }
+
+
+    .gallery-header {
+        text-align: left;
+
+        margin-bottom: 45px;
+    }
+
+
+    .gallery-header h1 {
+        font-size: 58px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .gallery-header p {
+        font-size: 12px;
+
+        line-height: 1.7;
+
+        letter-spacing: 1px;
+    }
+
+
+    .gallery-list {
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+    }
+
+
+    .gallery-item {
+        min-height: 220px;
+
+        padding: 30px 25px;
+
+        border-radius: 20px;
+    }
+
+
+    .gallery-item h2 {
+        font-size: 28px;
+    }
+
+
+    .gallery-footer {
+        padding: 45px 20px 110px;
+    }
+
+
+    .gallery-footer p {
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+}
