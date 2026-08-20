@@ -2,7 +2,6 @@
 
 console.log("Otter's Corner project is ready!");
 
-
 /* ===== MOBILE MENU ===== */
 
 function openMobileMenu() {
@@ -26,35 +25,19 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-
-    /* ===== MUSIC SETTINGS ===== */
-
     bgMusic.volume = 0.4;
 
-    const savedTime = localStorage.getItem("otterMusicTime");
-    const savedState = localStorage.getItem("otterMusicState");
+    const savedTime = parseFloat(
+        localStorage.getItem("otterMusicTime") || "0"
+    );
+
+    const savedState =
+        localStorage.getItem("otterMusicState") || "on";
 
 
-    /* ===== KHÔI PHỤC VỊ TRÍ BÀI NHẠC ===== */
+    /* ===== CẬP NHẬT NÚT ===== */
 
-    if (savedTime) {
-
-        bgMusic.addEventListener("loadedmetadata", function () {
-
-            const time = parseFloat(savedTime);
-
-            if (!isNaN(time) && time < bgMusic.duration) {
-                bgMusic.currentTime = time;
-            }
-
-        }, { once: true });
-
-    }
-
-
-    /* ===== CẬP NHẬT NÚT MUSIC ===== */
-
-    function updateMusicButton() {
+    function updateButton() {
 
         if (bgMusic.paused) {
             musicToggle.textContent = "MUSIC OFF ♫";
@@ -65,69 +48,74 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== LƯU VỊ TRÍ NHẠC ===== */
+    /* ===== KHÔI PHỤC VỊ TRÍ ===== */
 
-    function saveMusicPosition() {
+    function restorePosition() {
 
-        if (!bgMusic.paused) {
-            localStorage.setItem(
-                "otterMusicTime",
+        if (
+            !isNaN(savedTime) &&
+            savedTime > 0 &&
+            isFinite(bgMusic.duration)
+        ) {
+
+            // Không cho currentTime vượt quá thời lượng bài
+            bgMusic.currentTime = Math.min(
+                savedTime,
+                bgMusic.duration - 0.1
+            );
+
+            console.log(
+                "Restored music position:",
                 bgMusic.currentTime
             );
+
         }
 
     }
 
 
-    /* ===== TỰ PHÁT KHI MỞ WEB ===== */
+    /*
+     * Khi metadata đã sẵn sàng
+     * thì khôi phục vị trí trước khi phát.
+     */
 
-    // Nếu người dùng đã tắt nhạc trước đó
-    // thì trang mới KHÔNG được tự bật lại.
+    if (bgMusic.readyState >= 1) {
 
-    if (savedState !== "off") {
-
-        bgMusic.play()
-            .then(function () {
-
-                localStorage.setItem("otterMusicState", "on");
-
-                updateMusicButton();
-
-                console.log("Music is playing.");
-
-            })
-            .catch(function (error) {
-
-                console.log(
-                    "Autoplay bị trình duyệt chặn:",
-                    error
-                );
-
-                // Vẫn hiện ON vì người dùng chưa chủ động tắt
-                musicToggle.textContent = "MUSIC ON ♫";
-
-            });
+        restorePosition();
 
     } else {
 
-        bgMusic.pause();
-
-        musicToggle.textContent = "MUSIC OFF ♫";
+        bgMusic.addEventListener(
+            "loadedmetadata",
+            restorePosition,
+            { once: true }
+        );
 
     }
 
 
-    /* ===== MUSIC ON / OFF ===== */
+    /* ===== PHÁT NHẠC SAU KHI KHÔI PHỤC ===== */
 
-    musicToggle.addEventListener("click", function (event) {
+    function playMusic() {
 
-        // Không cho sự kiện click chạy sang phần fallback
-        event.stopPropagation();
+        // Nếu người dùng đã tắt nhạc
+        // thì không tự phát.
+
+        if (savedState === "off") {
+
+            bgMusic.pause();
+            updateButton();
+            return;
+
+        }
 
 
-        if (bgMusic.paused) {
+        // Đợi audio load xong rồi mới play
+        // để currentTime không bị reset.
 
-            // ===== OFF → ON =====
+        function start() {
+
+            restorePosition();
 
             bgMusic.play()
                 .then(function () {
@@ -135,49 +123,112 @@ document.addEventListener("DOMContentLoaded", function () {
                     localStorage.setItem(
                         "otterMusicState",
                         "on"
-                        );
+                    );
 
-                    musicToggle.textContent = "MUSIC ON ♫";
+                    updateButton();
 
-                    console.log("Music ON.");
+                    console.log(
+                        "Music resumed from:",
+                        bgMusic.currentTime
+                    );
 
                 })
                 .catch(function (error) {
 
                     console.log(
-                        "Không thể phát nhạc:",
+                        "Autoplay blocked:",
                         error
                     );
+                    musicToggle.textContent =
+                        "MUSIC ON ♫";
 
                 });
 
+        }
+
+
+        if (bgMusic.readyState >= 1) {
+
+            start();
 
         } else {
 
-            // ===== ON → OFF =====
-
-            bgMusic.pause();
-
-            localStorage.setItem(
-                "otterMusicState",
-                "off"
+            bgMusic.addEventListener(
+                "loadedmetadata",
+                start,
+                { once: true }
             );
-
-            localStorage.setItem(
-                "otterMusicTime",
-                bgMusic.currentTime
-            );
-
-            musicToggle.textContent = "MUSIC OFF ♫";
-
-            console.log("Music OFF.");
 
         }
 
-    });
+    }
 
 
-    /* ===== LƯU VỊ TRÍ TRONG LÚC ĐANG PHÁT ===== */
+    /* ===== TỰ PHÁT / KHÔI PHỤC ===== */
+
+    playMusic();
+
+
+    /* ===== MUSIC ON / OFF ===== */
+
+    musicToggle.addEventListener(
+        "click",
+        function (event) {
+
+            event.stopPropagation();
+
+
+            if (bgMusic.paused) {
+
+                // OFF → ON
+
+                bgMusic.play()
+                    .then(function () {
+
+                        localStorage.setItem(
+                            "otterMusicState",
+                            "on"
+                        );
+
+                        musicToggle.textContent =
+                            "MUSIC ON ♫";
+
+                    })
+                    .catch(function (error) {
+
+                        console.log(
+                            "Cannot play music:",
+                            error
+                        );
+
+                    });
+
+            } else {
+
+                // ON → OFF
+
+                bgMusic.pause();
+
+                localStorage.setItem(
+                    "otterMusicState",
+                    "off"
+                );
+
+                localStorage.setItem(
+                    "otterMusicTime",
+                    bgMusic.currentTime
+                );
+
+                musicToggle.textContent =
+                    "MUSIC OFF ♫";
+
+            }
+
+        }
+    );
+
+
+    /* ===== LƯU VỊ TRÍ LIÊN TỤC ===== */
 
     setInterval(function () {
 
@@ -190,82 +241,89 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-    }, 1000);
+    }, 500);
 
 
-    /* ===== LƯU NGAY TRƯỚC KHI CHUYỂN TRANG ===== */
+    /* ===== LƯU TRƯỚC KHI ĐỔI TRANG ===== */
 
-    window.addEventListener("beforeunload", function () {
+    window.addEventListener(
+        "pagehide",
+        function () {
 
-        localStorage.setItem(
-            "otterMusicTime",
-            bgMusic.currentTime
-        );
+            localStorage.setItem(
+                "otterMusicTime",
+                bgMusic.currentTime
+            );
 
-    });
-
-
-    window.addEventListener("pagehide", function () {
-
-        localStorage.setItem(
-            "otterMusicTime",
-            bgMusic.currentTime
-        );
-
-    });
-
-
-    /* ===== IPHONE / SAFARI AUTOPLAY FALLBACK ===== */
-
-    document.addEventListener("pointerdown", function startMusic(event) {
-
-        // Nếu đang bấm nút MUSIC thì không can thiệp
-        if (event.target.closest("#musicToggle")) {
-            return;
         }
+    );
 
 
-        // Nếu người dùng đã chủ động OFF
-        // thì không tự bật lại.
+    window.addEventListener(
+        "beforeunload",
+        function () {
 
-        if (
-            localStorage.getItem("otterMusicState") === "off"
-        ) {
-            return;
+            localStorage.setItem(
+                "otterMusicTime",
+                bgMusic.currentTime
+            );
+
         }
+    );
 
 
-        // Nếu nhạc đang chạy thì không làm gì
+    /* ===== IPHONE / SAFARI ===== */
 
-        if (!bgMusic.paused) {
-            return;
+    document.addEventListener(
+        "pointerdown",
+        function (event) {
+
+            // Không can thiệp khi bấm Music
+
+            if (
+                event.target.closest("#musicToggle")
+            ) {
+                return;
+            }
+
+
+            // Người dùng đã OFF thì không tự bật
+
+            if (
+                localStorage.getItem(
+                    "otterMusicState"
+                ) === "off"
+            ) {
+                return;
+            }
+
+
+            if (!bgMusic.paused) {
+                return;
+            }
+
+
+            bgMusic.play()
+                .then(function () {
+
+                    localStorage.setItem(
+                        "otterMusicState",
+                        "on"
+                    );
+
+                    updateButton();
+
+                })
+                .catch(function (error) {
+
+                    console.log(
+                        "Music still blocked:",
+                        error
+                    );
+
+                });
+
         }
-
-
-        bgMusic.play()
-            .then(function () {
-
-                localStorage.setItem(
-                    "otterMusicState",
-                    "on"
-                );
-
-                musicToggle.textContent = "MUSIC ON ♫";
-
-                console.log(
-                    "Music started after user interaction."
-                );
-
-            })
-            .catch(function (error) {
-
-                console.log(
-                    "Music still blocked:",
-                    error
-                );
-
-            });
-
-    });
+    );
 
 });
