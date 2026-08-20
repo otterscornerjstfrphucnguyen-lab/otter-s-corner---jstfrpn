@@ -29,9 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
     bgMusic.volume = 0.4;
 
 
-    // ===== CẬP NHẬT TRẠNG THÁI NÚT =====
+    // ===== TRẠNG THÁI NÚT =====
 
-    function updateButton() {
+    function updateMusicButton() {
 
         if (bgMusic.paused) {
             musicToggle.textContent = "MUSIC OFF ♫";
@@ -42,19 +42,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ===== TỰ PHÁT KHI MỞ WEB =====
+    // ===== TỰ PHÁT NHẠC KHI MỞ WEB =====
 
     bgMusic.play()
         .then(function () {
 
+            // Autoplay được cho phép
             musicToggle.textContent = "MUSIC ON ♫";
+
+            console.log("Music is playing.");
 
         })
         .catch(function (error) {
 
-            console.log("Autoplay bị trình duyệt chặn:", error);
+            // Trình duyệt chặn autoplay
+            console.log("Autoplay blocked:", error);
 
-            // Vẫn để ON vì người dùng chưa chủ động tắt
+            // Vẫn hiển thị ON vì người dùng chưa tắt nhạc
             musicToggle.textContent = "MUSIC ON ♫";
 
         });
@@ -66,69 +70,65 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (bgMusic.paused) {
 
+            // OFF → ON
             bgMusic.play()
                 .then(function () {
 
                     musicToggle.textContent = "MUSIC ON ♫";
 
+                    console.log("Music ON.");
+
                 })
                 .catch(function (error) {
 
-                    console.log("Không thể phát nhạc:", error);
+                    console.log("Cannot play music:", error);
 
                 });
 
         } else {
 
+            // ON → OFF
             bgMusic.pause();
 
             musicToggle.textContent = "MUSIC OFF ♫";
 
+            console.log("Music OFF.");
+
         }
 
     });
 
 
-    // ===== AUTOPLAY FALLBACK CHO IPHONE / SAFARI =====
-    // Nếu trình duyệt chặn autoplay,
-    // lần đầu người dùng chạm vào trang sẽ phát nhạc.
+    // ===== IPHONE / SAFARI AUTOPLAY =====
+    // Nếu autoplay bị chặn, lần đầu người dùng
+    // chạm vào TRANG (không phải nút Music)
+    // thì nhạc sẽ bắt đầu.
 
-    let userTurnedOff = false;
+    document.addEventListener("pointerdown", function startMusic(event) {
 
-
-    musicToggle.addEventListener("click", function () {
-
-        if (bgMusic.paused) {
-            userTurnedOff = true;
-        } else {
-            userTurnedOff = false;
-        }
-
-    });
-
-
-    document.addEventListener("pointerdown", function () {
-
-        if (userTurnedOff) {
+        // Nếu người dùng đang bấm nút Music thì
+        // không can thiệp vào nút.
+        if (event.target.closest("#musicToggle")) {
             return;
         }
 
-        if (bgMusic.paused) {
-
-            bgMusic.play()
-                .then(function () {
-
-                    musicToggle.textContent = "MUSIC ON ♫";
-
-                })
-                .catch(function (error) {
-
-                    console.log("Music still blocked:", error);
-
-                });
-
+        // Nếu nhạc đã chạy thì không làm gì.
+        if (!bgMusic.paused) {
+            return;
         }
 
-    }, { once: true });
+        bgMusic.play()
+            .then(function () {
+
+                musicToggle.textContent = "MUSIC ON ♫";
+
+                console.log("Music started after user interaction.");
+
+            })
+            .catch(function (error) {
+});
+
+    });
 
 });
+                console.log("Music still blocked:", error);
