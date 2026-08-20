@@ -22,179 +22,243 @@ body {
 
 body {
     min-height: 100vh;
-    background: #f8f1e7;
-    color: #4b4038;
+
+    /* BABY BLUE BACKGROUND */
+    background: #EAF6FF;
+
+    color: #46657A;
+
     font-family: Georgia, "Times New Roman", serif;
 }
 
-/* MAIN GALLERY */
+
+/* =========================
+   MAIN GALLERY
+========================= */
 
 .gallery-page {
     width: calc(100% - 60px);
     max-width: 1050px;
+
     margin: 0 auto;
+
     padding: 45px 0 70px;
 }
 
-/* BACK */
+
+/* =========================
+   BACK
+========================= */
 
 .gallery-back {
     display: inline-block;
+
     margin-bottom: 55px;
 
-    color: #6b5a4d;
+    color: #5D829A;
+
     text-decoration: none;
 
     font-size: 14px;
     letter-spacing: 1px;
+
+    transition: 0.25s ease;
 }
 
 .gallery-back:hover {
-    text-decoration: underline;
+    color: #87B9D8;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 .gallery-header {
     text-align: center;
+
     margin-bottom: 55px;
 }
 
 .gallery-header h1 {
     margin: 0 0 18px;
 
-    font-size: clamp(45px, 7vw, 75px);
-    font-weight: normal;
-    letter-spacing: 9px;
+    color: #47718B;
 
-    color: #59483c;
+    font-size: clamp(45px, 7vw, 75px);
+
+    font-weight: normal;
+
+    letter-spacing: 9px;
 }
 
 .gallery-header p {
     margin: 0;
 
-    font-size: 16px;
-    line-height: 1.7;
+    color: #7194A9;
 
-    color: #806f61;
+    font-size: 16px;
+
+    line-height: 1.7;
 }
 
-/* GALLERY LIST */
+
+/* =========================
+   GALLERY LIST
+========================= */
 
 .gallery-list {
     width: 100%;
 
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 28px;
 }
 
-/* CARD */
+
+/* =========================
+   GALLERY CARD
+========================= */
 
 .gallery-item {
     min-height: 270px;
 
     padding: 35px;
 
-    background: #fffaf4;
+    /* SOFT BABY BLUE CARD */
+    background: #F8FCFF;
 
-    border: 1px solid #ded1c3;
+    border: 1px solid #C5E3F4;
+
     border-radius: 18px;
 
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
 
-    box-shadow: 0 8px 25px rgba(80, 60, 40, 0.08);
+    box-shadow:
+        0 8px 25px rgba(91, 150, 184, 0.12);
 
-    transition: 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .gallery-item:hover {
     transform: translateY(-5px);
 
-    box-shadow: 0 15px 35px rgba(80, 60, 40, 0.13);
+    box-shadow:
+        0 15px 35px rgba(91, 150, 184, 0.20);
 }
 
-/* NUMBER */
+
+/* =========================
+   GALLERY NUMBER
+========================= */
 
 .gallery-number {
     margin-bottom: 15px;
 
-    color: #a18872;
+    color: #79A9C2;
 
     font-size: 12px;
+
     letter-spacing: 3px;
 }
 
-/* TITLE */
+
+/* =========================
+   TITLE
+========================= */
 
 .gallery-item h2 {
     margin: 0 0 25px;
 
-    color: #554238;
+    color: #466A80;
 
     font-size: 30px;
+
     font-weight: normal;
 }
 
-/* BUTTON */
+
+/* =========================
+   VIEW BUTTON
+========================= */
 
 .gallery-link {
     display: inline-block;
+
     width: fit-content;
 
     padding: 11px 18px;
 
-    border: 1px solid #9c8672;
+    border: 1px solid #8FC1DD;
+
     border-radius: 30px;
 
-    color: #665448;
+    color: #56809A;
 
     text-decoration: none;
 
     font-size: 13px;
+
     letter-spacing: 1px;
 
     transition: 0.25s ease;
 }
 
 .gallery-link:hover {
-    background: #665448;
-    color: white;
+    background: #A9D8EF;
+
+    border-color: #A9D8EF;
+
+    color: #31586E;
 }
 
-/* COMING SOON */
+
+/* =========================
+   COMING SOON
+========================= */
 
 .coming-soon {
-    opacity: 0.75;
+    opacity: 0.78;
 }
 
 .coming-soon p {
     margin: 0 0 20px;
 
-    color: #89796c;
-
+    color: #7899AC;
     line-height: 1.6;
 }
 
 .coming-text {
     display: inline-block;
+
     width: fit-content;
 
     padding: 9px 15px;
 
-    border: 1px dashed #b8a493;
+    border: 1px dashed #A8CFE3;
+
     border-radius: 20px;
 
-    color: #a18d7c;
+    color: #79A9C2;
 
     font-size: 11px;
+
     letter-spacing: 2px;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 .gallery-footer {
     width: 100%;
@@ -203,18 +267,23 @@ body {
 
     padding: 25px 20px 40px;
 
-    color: #927e6d;
+    color: #7194A9;
 
     font-size: 13px;
+
     letter-spacing: 1px;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 700px) {
 
     .gallery-page {
         width: calc(100% - 35px);
+
         padding-top: 30px;
     }
 
@@ -224,11 +293,13 @@ body {
 
     .gallery-list {
         grid-template-columns: 1fr;
+
         gap: 18px;
     }
 
     .gallery-item {
         min-height: 230px;
+
         padding: 28px;
     }
 
