@@ -780,6 +780,72 @@ header.nav > .logo span {
 }
 
 header.nav nav {
+   /* =====================================================
+   MUSIC BUTTON
+   ===================================================== */
+
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+
+    z-index: 9999;
+
+    padding: 12px 20px;
+
+    border: 1px solid rgba(23, 58, 94, 0.25);
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.85);
+
+    color: #173a5e;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 5px 20px rgba(23, 58, 94, 0.12);
+
+    transition:
+        all 0.3s ease;
+}
+
+.music-toggle:hover {
+    background: #173a5e;
+    color: white;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px rgba(23, 58, 94, 0.2);
+}
+
+.music-toggle:active {
+    transform: scale(0.96);
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 768px) {
+
+    .music-toggle {
+        top: 15px;
+        right: 15px;
+
+        padding: 10px 15px;
+
+        font-size: 10px;
+    }
+
+}
     display: flex !important;
     align-items: center !important;
     margin-left: auto !important;
