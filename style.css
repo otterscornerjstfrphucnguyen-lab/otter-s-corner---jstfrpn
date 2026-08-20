@@ -500,3 +500,45 @@ footer{padding:55px 20px;text-align:center;background:#bcd8f0}footer p{font-size
         letter-spacing: 1.5px;
     }
 }
+/* ===== MUSIC BUTTON ===== */
+
+.music-toggle {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+
+    padding: 8px 14px;
+
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.35);
+
+    color: #425b70;
+
+    font-family: "Times New Roman", serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+
+    transition: opacity 0.3s ease;
+}
+
+.music-toggle:hover {
+    opacity: 0.65;
+}
+
+@media (max-width: 768px) {
+
+    .music-toggle {
+        right: 18px;
+        bottom: 18px;
+        font-size: 9px;
+        padding: 8px 12px;
+    }
+
+}
