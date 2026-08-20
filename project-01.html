@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Le Petit PriNce — Otter's Corner</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    background: #d8e8f5;
+
+    color: #425b70;
+}
+
+
+/* ===== CONTAINER ===== */
+
+.container {
+    width: min(950px, 90%);
+    margin: auto;
+
+    padding: 45px 0 60px;
+
+    text-align: center;
+}
+
+
+/* ===== BACK ===== */
+
+.back {
+    display: inline-block;
+
+    margin-bottom: 45px;
+
+    color: #425b70;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+.back:hover {
+    opacity: 0.7;
+}
+
+
+/* ===== PROJECT TITLE ===== */
+
+.header {
+    text-align: center;
+
+    margin-bottom: 45px;
+}
+
+.project-number {
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: #7890a0;
+}
+
+.header h1 {
+    margin: 0;
+
+    font-size: 42px;
+
+    font-weight: normal;
+
+    letter-spacing: 5px;
+
+    color: #38536a;
+}
+
+.header p {
+    margin-top: 14px;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    color: #61798c;
+}
+
+
+/* ===== 4 ẢNH ===== */
+
+.gallery {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin: 0 auto 35px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+.gallery-box {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    background: rgba(255,255,255,0.35);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+
+.gallery-box span {
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    color: #7890a0;
+}
+
+
+.gallery-box img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* ===== THÔNG TIN PROJECT ===== */
+
+.project-info {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    padding: 30px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.45);
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    text-align: center;
+}
+
+
+.info-title {
+
+    margin: 0 0 18px;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    color: #7890a0;
+}
+
+
+.project-info h2 {
+
+    margin: 0 0 18px;
+
+    text-align: center;
+
+    font-size: 25px;
+
+    font-weight: normal;
+
+    letter-spacing: 2px;
+
+    color: #38536a;
+}
+
+
+.project-info p {
+
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    line-height: 2;
+
+    color: #587186;
+}
+
+
+/* ===== FOOTER ===== */
+
+.footer {
+
+    text-align: center;
+
+    padding: 30px 20px 45px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: rgba(70,90,105,0.7);
+}
+
+
+.footer p {
+    margin: 0;
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 650px) {
+
+    .container {
+        width: 88%;
+    }
+
+    .header h1 {
+        font-size: 31px;
+
+        letter-spacing: 3px;
+    }
+
+    .gallery {
+}
+
+    .project-info {
+
+        padding: 24px 20px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ===== BACK ===== -->
+
+    <a href="project.html" class="back">
+
+        ← BACK TO PROJECT
+
+    </a>
+
+
+    <!-- ===== TÊN PROJECT ===== -->
+
+    <div class="header">
+
+        <span class="project-number">
+
+            PROJECT 01
+
+        </span>
+
+
+        <h1>
+
+            Le Petit PriNce
+
+        </h1>
+
+
+        <p>
+
+            A special support project for Phúc Nguyên
+
+        </p>
+
+    </div>
+
+
+    <!-- =============================== -->
+    <!-- 4 ẢNH PROJECT -->
+    <!-- =============================== -->
+
+    <div class="gallery">
+
+
+        <!-- ẢNH 1 -->
+
+        <div class="gallery-box">
+
+            <span>
+
+                IMAGE 01
+
+            </span>
+
+        </div>
+
+
+        <!-- ẢNH 2 -->
+
+        <div class="gallery-box">
+
+            <span>
+
+                IMAGE 02
+
+            </span>
+
+        </div>
+
+
+        <!-- ẢNH 3 -->
+
+        <div class="gallery-box">
+
+            <span>
+
+                IMAGE 03
+
+            </span>
+
+        </div>
+
+
+        <!-- ẢNH 4 -->
+
+        <div class="gallery-box">
+
+            <span>
+
+                IMAGE 04
+
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =============================== -->
+    <!-- THÔNG TIN PROJECT -->
+    <!-- =============================== -->
+
+    <div class="project-info">
+
+
+        <p class="info-title">
+
+            PROJECT INFORMATION
+
+        </p>
+
+
+        <h2>
+
+            Le Petit PriNce
+
+        </h2>
+
+
+        <p>
+
+            Le Petit PriNce là project đặc biệt được
+            Otter's Corner thực hiện dành riêng cho
+            Phúc Nguyên.
+
+            <br><br>
+
+            Thông tin chi tiết về concept, nội dung,
+            các hoạt động và những dấu mốc của project
+            sẽ được cập nhật tại đây.
+
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer class="footer">
+
+    <p>
+
+        Otter's Corner - Just for Phuc Nguyen
+
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
+        gap: 10px;
