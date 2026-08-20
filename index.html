@@ -239,11 +239,11 @@ body::after {
   </style>
 </head>
 <body>
-  <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
+ <audio id="bgMusic" loop preload="auto">
+    <source src="./music.mp3" type="audio/mpeg">
 </audio>
 
-<button id="musicToggle" class="music-toggle">
+<button id="musicToggle" class="music-toggle" type="button">
     MUSIC ON ♫
 </button>
   <!-- MOBILE MENU BUTTON -->
@@ -341,14 +341,5 @@ body::after {
   </footer>
 
   <script src="script.js"></script>
-  <script>
-function openMobileMenu() {
-    document.getElementById("mobileMenu").classList.add("active");
-}
-
-function closeMobileMenu() {
-    document.getElementById("mobileMenu").classList.remove("active");
-}
-</script>
 </body>
 </html>
