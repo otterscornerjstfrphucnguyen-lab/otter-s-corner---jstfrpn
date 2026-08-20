@@ -525,10 +525,46 @@ loadRecentWishes();
         <span>♡</span>
     </div>
 
-    <div id="recentWishes" class="recent-wishes-list">
-        <p class="loading-wishes">Loading little wishes...</p>
-    </div>
+    <div id="recentWishes" class="recent-wishes-list"></div>
 </section>
+
+<script>
+const wishesURL = "https://script.google.com/macros/s/AKfycby9-9ubjeKYyn1u784uOQGxkNVkI3QLOFoGt9ttWfp3RvNEHLX8GJJFse5ij2NrFkaleA";
+
+const script = document.createElement("script");
+
+script.src = wishesURL + "?callback=showRecentWishes";
+
+document.body.appendChild(script);
+
+function showRecentWishes(wishes) {
+
+    const container = document.getElementById("recentWishes");
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    wishes.slice(0, 2).forEach(function(wish) {
+
+        const card = document.createElement("div");
+        card.className = "wish-card";
+
+        const message = document.createElement("p");
+        message.className = "wish-message";
+        message.textContent = "“" + wish.message + "”";
+
+        const name = document.createElement("p");
+        name.className = "wish-name";
+        name.textContent = "— " + wish.name;
+
+        card.appendChild(message);
+        card.appendChild(name);
+
+        container.appendChild(card);
+    });
+}
+</script>
 </body>
 
 </html>
