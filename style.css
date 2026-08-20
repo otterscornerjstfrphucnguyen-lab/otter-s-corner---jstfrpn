@@ -31,7 +31,8 @@ footer{padding:55px 20px;text-align:center;background:#bcd8f0}footer p{font-size
 /* ===== BACK ===== */
 
 .gallery-back {
-    display: inline-block;
+    display: block;
+    width: fit-content;
 
     margin-bottom: 45px;
 
