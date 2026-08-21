@@ -14,9 +14,11 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap"
@@ -44,10 +46,14 @@
 
         body {
             font-family: "Be Vietnam Pro", Arial, sans-serif;
+
             background: #f4faff;
+
             color: #425b70;
+
             overflow-x: hidden;
         }
+
 
 
         /* =========================
@@ -56,31 +62,51 @@
 
         body::before,
         body::after {
+
             content: "";
 
             position: fixed;
+
             width: 300px;
             height: 300px;
+
             border-radius: 50%;
+
             pointer-events: none;
+
             z-index: -1;
+
             filter: blur(80px);
+
             opacity: 0.4;
-            animation: dreamyFloat 10s ease-in-out infinite alternate;
+
+            animation:
+                dreamyFloat
+                10s
+                ease-in-out
+                infinite
+                alternate;
         }
 
 
         body::before {
+
             top: 10%;
             left: -120px;
-            background: rgba(170, 215, 255, 0.7);
+
+            background:
+                rgba(170, 215, 255, 0.7);
         }
 
 
         body::after {
+
             right: -120px;
             bottom: 10%;
-            background: rgba(210, 230, 255, 0.8);
+
+            background:
+                rgba(210, 230, 255, 0.8);
+
             animation-delay: -5s;
         }
 
@@ -88,33 +114,42 @@
         @keyframes dreamyFloat {
 
             0% {
-                transform: translate(0, 0);
+                transform:
+                    translate(0, 0);
             }
 
             100% {
-                transform: translate(40px, 30px);
+                transform:
+                    translate(40px, 30px);
             }
 
         }
 
 
+
         /* =========================
-           BACK TO HOME
+           BACK HOME
         ========================= */
 
         .back-home {
+
             position: fixed;
+
             top: 25px;
             left: 30px;
+
             z-index: 100;
 
             padding: 12px 20px;
 
             border-radius: 30px;
 
-            background: rgba(255, 255, 255, 0.8);
+            background:
+                rgba(255, 255, 255, 0.85);
 
-            border: 1px solid rgba(120, 180, 220, 0.3);
+            border:
+                1px solid
+                rgba(120, 180, 220, 0.3);
 
             text-decoration: none;
 
@@ -129,9 +164,13 @@
 
 
         .back-home:hover {
+
             background: #dcefff;
-            transform: translateX(-5px);
+
+            transform:
+                translateX(-5px);
         }
+
 
 
         /* =========================
@@ -139,11 +178,15 @@
         ========================= */
 
         .hero {
+
             min-height: 100vh;
 
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             justify-content: center;
 
             text-align: center;
@@ -153,50 +196,80 @@
 
 
         .stars {
+
             margin-bottom: 25px;
+
             font-size: 18px;
+
             color: #8ebbd8;
+
             letter-spacing: 6px;
         }
 
 
         .hero-tag {
+
             margin-bottom: 20px;
+
             font-size: 11px;
+
             letter-spacing: 4px;
+
             color: #7da9c5;
         }
 
 
         .hero h1 {
-            font-family: "Playfair Display", serif;
-            font-size: clamp(50px, 9vw, 100px);
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(50px, 9vw, 100px);
+
             font-weight: 400;
+
             color: #426f8f;
+
             margin-bottom: 25px;
         }
 
 
         .hero h1 span {
+
             color: #426f8f;
         }
 
 
         .hero p {
+
             max-width: 650px;
+
             font-size: 14px;
+
             line-height: 2;
+
             color: #61798c;
         }
 
 
         .scroll-down {
+
             margin-top: 70px;
+
             color: #7aaed0;
+
             text-decoration: none;
+
             font-size: 11px;
+
             letter-spacing: 3px;
-            animation: bounce 2s infinite;
+
+            animation:
+                bounce
+                2s
+                infinite;
         }
 
 
@@ -204,14 +277,19 @@
 
             0%,
             100% {
-                transform: translateY(0);
+
+                transform:
+                    translateY(0);
             }
 
             50% {
-                transform: translateY(8px);
+
+                transform:
+                    translateY(8px);
             }
 
         }
+
 
 
         /* =========================
@@ -219,80 +297,206 @@
         ========================= */
 
         .journey {
-            width: min(720px, 90%);
-            margin: 0 auto;
-            padding: 80px 0 100px;
+
+            padding:
+                40px 0 120px;
+
+            overflow: hidden;
         }
 
 
-        /* =========================
-           MỖI ẢNH + THÔNG TIN
-        ========================= */
-
-.photo-story {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
-
-    margin-bottom: 110px;
-}
-
 
         /* =========================
-           ẢNH
+           HƯỚNG DẪN KÉO
         ========================= */
-.photo-image {
-    width: 340px;
-    aspect-ratio: 4 / 5;
 
-    overflow: hidden;
+        .drag-hint {
 
-    border-radius: 20px;
+            text-align: center;
 
-    background: #dcefff;
+            margin-bottom: 45px;
 
-    box-shadow:
-        0 20px 50px
-        rgba(80, 140, 180, 0.15);
-}
+            font-size: 11px;
 
-.photo-image img {
-    width: 100%;
-    height: 100%;
+            letter-spacing: 3px;
 
-    display: block;
-
-    object-fit: cover;
-
-    transition: transform 0.6s ease;
-}
-
-
-        .photo-image:hover img {
-            transform: scale(1.03);
+            color: #7aaed0;
         }
 
 
+
         /* =========================
-           THÔNG TIN
+           FILM STRIP
         ========================= */
 
-.photo-info {
-    width: 340px;
+        .film-strip {
 
-    padding: 25px 5px 0;
+            width: 100%;
 
-    text-align: center;
-}
+            overflow-x: auto;
+
+            overflow-y: hidden;
+
+            cursor: grab;
+
+            scrollbar-width: none;
+
+            padding:
+                70px 0 50px;
+
+            scroll-snap-type:
+                x mandatory;
+
+            scroll-behavior: smooth;
+        }
 
 
-        .photo-info p {
+        .film-strip::-webkit-scrollbar {
+
+            display: none;
+        }
+
+
+        .film-track {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 28px;
+
+            width: max-content;
+
+            padding:
+                0
+                calc(50vw - 170px);
+        }
+
+
+
+        /* =========================
+           MỖI KHUNG ẢNH
+        ========================= */
+
+        .film-item {
+
+            width: 260px;
+
+            flex-shrink: 0;
+
+            scroll-snap-align: center;
+
+            transition:
+                transform 0.5s ease,
+                opacity 0.5s ease,
+                filter 0.5s ease;
+
+            opacity: 0.4;
+
+            filter: blur(2px);
+
+            transform:
+                scale(0.82)
+                translateY(30px);
+        }
+
+
+        .film-item.active {
+
+            opacity: 1;
+
+            filter: blur(0);
+
+            transform:
+                scale(1.15)
+                translateY(-35px);
+
+            z-index: 10;
+        }
+
+
+
+        /* =========================
+           KHUNG ẢNH
+        ========================= */
+
+        .film-image {
+
+            width: 100%;
+
+            aspect-ratio: 4 / 5;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: #dcefff;
+
+            box-shadow:
+                0 20px 50px
+                rgba(80, 140, 180, 0.15);
+        }
+
+
+        .film-image img {
+
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            pointer-events: none;
+        }
+
+
+
+        /* =========================
+           GHI CHÚ
+        ========================= */
+
+        .story-note {
+
+            width:
+                min(650px, 88%);
+
+            margin:
+                40px auto 0;
+
+            text-align: center;
+
+            min-height: 100px;
+        }
+
+
+        .story-note p {
+
             font-size: 15px;
+
             line-height: 2;
+
             color: #61798c;
+
+            opacity: 0;
+
+            transform:
+                translateY(10px);
+
+            transition:
+                opacity 0.4s ease,
+                transform 0.4s ease;
         }
+
+
+        .story-note p.show {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
 
 
         /* =========================
@@ -300,16 +504,21 @@
         ========================= */
 
         footer {
+
             padding: 60px 20px;
 
             text-align: center;
 
-            background: rgba(220, 240, 255, 0.5);
+            background:
+                rgba(220, 240, 255, 0.5);
         }
 
 
         footer .logo {
-            font-family: "Playfair Display", serif;
+
+            font-family:
+                "Playfair Display",
+                serif;
 
             font-size: 28px;
 
@@ -320,6 +529,7 @@
 
 
         footer p {
+
             font-size: 11px;
 
             letter-spacing: 2px;
@@ -330,13 +540,16 @@
         }
 
 
+
         /* =========================
            MOBILE
         ========================= */
 
         @media (max-width: 768px) {
 
+
             .back-home {
+
                 top: 18px;
                 left: 18px;
 
@@ -346,25 +559,60 @@
             }
 
 
-            .journey {
-                width: 90%;
-                padding-top: 50px;
+            .film-track {
+
+                gap: 18px;
+
+                padding:
+                    0
+                    calc(50vw - 120px);
             }
 
 
-            .photo-story {
-                margin-bottom: 70px;
+            .film-item {
+
+                width: 200px;
+
+                transform:
+                    scale(0.8)
+                    translateY(20px);
             }
 
 
-            .photo-info {
-                padding: 25px 10px 0;
+            .film-item.active {
+
+                transform:
+                    scale(1.1)
+                    translateY(-25px);
             }
 
 
-            .photo-info p {
+            .film-strip {
+
+                padding:
+                    60px 0 35px;
+            }
+
+
+            .story-note {
+
+                margin-top: 30px;
+            }
+
+
+            .story-note p {
+
                 font-size: 14px;
+
                 line-height: 1.9;
+            }
+
+
+            .drag-hint {
+
+                font-size: 9px;
+
+                letter-spacing: 2px;
             }
 
         }
@@ -374,14 +622,19 @@
 </head>
 
 
+
 <body>
 
 
-    <!-- BACK TO HOME -->
+    <!-- BACK HOME -->
 
-    <a href="index.html" class="back-home">
+    <a
+        href="index.html"
+        class="back-home"
+    >
         ← BACK TO HOME
     </a>
+
 
 
     <!-- HERO -->
@@ -405,256 +658,286 @@
 
         <p>
             Những bước chân đầu tiên, những trải nghiệm
-            và những khoảnh khắc ghi dấu ấn tại Projcet100%
+            và những khoảnh khắc ghi dấu ấn tại PROJECT100%.
         </p>
 
 
-        <a href="#journey" class="scroll-down">
+        <a
+            href="#journey"
+            class="scroll-down"
+        >
             EXPLORE THE JOURNEY ↓
         </a>
 
     </section>
 
 
-   <!-- JOURNEY -->
 
-<section class="journey" id="journey">
+    <!-- JOURNEY -->
+
+    <section
+        class="journey"
+        id="journey"
+    >
 
 
-    <!-- ẢNH 1 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-1.jpg"
-                alt="Project100% - Khoảnh khắc 1"
-            >
+        <div class="drag-hint">
+            ← DRAG TO EXPLORE →
         </div>
 
-        <div class="photo-info">
-            <p>
+
+
+        <!-- FILM STRIP -->
+
+        <div
+            class="film-strip"
+            id="filmStrip"
+        >
+
+            <div class="film-track">
+
+
+                <!-- ẢNH 1 -->
+
+                <div
+                    class="film-item active"
+                    data-note="Viết thông tin của ảnh thứ nhất tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-1.jpg"
+                            alt="Project100% - Khoảnh khắc 1"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 2 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ hai tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-2.jpg"
+                            alt="Project100% - Khoảnh khắc 2"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 3 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ ba tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-3.jpg"
+                            alt="Project100% - Khoảnh khắc 3"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 4 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ tư tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-4.jpg"
+                            alt="Project100% - Khoảnh khắc 4"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 5 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ năm tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-5.jpg"
+                            alt="Project100% - Khoảnh khắc 5"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 6 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ sáu tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-6.jpg"
+                            alt="Project100% - Khoảnh khắc 6"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 7 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ bảy tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-7.jpg"
+                            alt="Project100% - Khoảnh khắc 7"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 8 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ tám tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-8.jpg"
+                            alt="Project100% - Khoảnh khắc 8"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 9 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ chín tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-9.jpg"
+                            alt="Project100% - Khoảnh khắc 9"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 10 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ mười tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-10.jpg"
+                            alt="Project100% - Khoảnh khắc 10"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ẢNH 11 -->
+
+                <div
+                    class="film-item"
+                    data-note="Viết thông tin của ảnh thứ mười một tại đây."
+                >
+
+                    <div class="film-image">
+
+                        <img
+                            src="project100-11.jpg"
+                            alt="Project100% - Khoảnh khắc 11"
+                        >
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- GHI CHÚ -->
+
+        <div class="story-note">
+
+            <p
+                id="storyText"
+                class="show"
+            >
                 Viết thông tin của ảnh thứ nhất tại đây.
             </p>
+
         </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 2 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-2.jpg"
-                alt="Project100% - Khoảnh khắc 2"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ hai tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 3 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-3.jpg"
-                alt="Project100% - Khoảnh khắc 3"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ ba tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 4 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-4.jpg"
-                alt="Project100% - Khoảnh khắc 4"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ tư tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 5 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-5.jpg"
-                alt="Project100% - Khoảnh khắc 5"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ năm tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 6 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-6.jpg"
-                alt="Project100% - Khoảnh khắc 6"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ sáu tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 7 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-7.jpg"
-                alt="Project100% - Khoảnh khắc 7"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ bảy tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 8 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-8.jpg"
-                alt="Project100% - Khoảnh khắc 8"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ tám tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 9 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-9.jpg"
-                alt="Project100% - Khoảnh khắc 9"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ chín tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 10 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-10.jpg"
-                alt="Project100% - Khoảnh khắc 10"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ mười tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-
-    <!-- ẢNH 11 -->
-
-    <article class="photo-story">
-
-        <div class="photo-image">
-            <img
-                src="project100-11.jpg"
-                alt="Project100% - Khoảnh khắc 11"
-            >
-        </div>
-
-        <div class="photo-info">
-            <p>
-                Viết thông tin của ảnh thứ mười một tại đây.
-            </p>
-        </div>
-
-    </article>
-
-
-</section>
 
 
     </section>
+
 
 
     <!-- FOOTER -->
@@ -665,15 +948,241 @@
             Otter's Corner
         </div>
 
+
         <p>
             Always beside PN, on every step of the way.
         </p>
+
 
         <p>
             MADE WITH ♥ FOR PN
         </p>
 
     </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        const filmStrip =
+            document.getElementById("filmStrip");
+
+        const filmItems =
+            document.querySelectorAll(".film-item");
+
+        const storyText =
+            document.getElementById("storyText");
+
+
+        function updateActiveImage() {
+
+            const stripCenter =
+                filmStrip.getBoundingClientRect().left
+                +
+                filmStrip.offsetWidth / 2;
+
+
+            let closestItem = null;
+
+            let closestDistance =
+                Infinity;
+
+
+            filmItems.forEach(item => {
+
+                const rect =
+                    item.getBoundingClientRect();
+
+
+                const itemCenter =
+                    rect.left
+                    +
+                    rect.width / 2;
+
+
+                const distance =
+                    Math.abs(
+                        stripCenter
+                        -
+                        itemCenter
+                    );
+
+
+                if (
+                    distance
+                    <
+                    closestDistance
+                ) {
+
+                    closestDistance =
+                        distance;
+
+                    closestItem =
+                        item;
+
+                }
+
+            });
+
+
+            if (closestItem) {
+
+                filmItems.forEach(item => {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                });
+
+
+                closestItem.classList.add(
+                    "active"
+                );
+
+
+                storyText.classList.remove(
+                    "show"
+                );
+
+
+                setTimeout(() => {
+
+                    storyText.textContent =
+                        closestItem.dataset.note;
+
+
+                    storyText.classList.add(
+                        "show"
+                    );
+
+                }, 150);
+
+            }
+
+        }
+
+
+        filmStrip.addEventListener(
+            "scroll",
+            updateActiveImage
+        );
+
+
+        updateActiveImage();
+
+
+        /* DRAG BẰNG CHUỘT */
+
+        let isDown = false;
+
+        let startX;
+
+        let scrollLeft;
+
+
+        filmStrip.addEventListener(
+            "mousedown",
+            event => {
+
+                isDown = true;
+
+                filmStrip.style.cursor =
+                    "grabbing";
+
+
+                startX =
+                    event.pageX
+                    -
+                    filmStrip.offsetLeft;
+
+
+                scrollLeft =
+                    filmStrip.scrollLeft;
+
+            }
+        );
+
+
+        filmStrip.addEventListener(
+            "mouseleave",
+            () => {
+
+                isDown = false;
+
+                filmStrip.style.cursor =
+                    "grab";
+
+            }
+        );
+
+
+        filmStrip.addEventListener(
+            "mouseup",
+            () => {
+
+                isDown = false;
+
+                filmStrip.style.cursor =
+                    "grab";
+
+            }
+        );
+
+
+        filmStrip.addEventListener(
+            "mousemove",
+            event => {
+
+                if (!isDown) return;
+
+
+                event.preventDefault();
+
+
+                const x =
+                    event.pageX
+                    -
+                    filmStrip.offsetLeft;
+
+
+                const walk =
+                    (x - startX) * 1.5;
+
+
+                filmStrip.scrollLeft =
+                    scrollLeft - walk;
+
+            }
+        );
+
+
+        /* CLICK ẢNH ĐỂ ĐƯA RA GIỮA */
+
+        filmItems.forEach(item => {
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    item.scrollIntoView({
+
+                        behavior: "smooth",
+
+                        inline: "center",
+
+                        block: "nearest"
+
+                    });
+
+                }
+            );
+
+        });
+
+    </script>
 
 
 </body>
