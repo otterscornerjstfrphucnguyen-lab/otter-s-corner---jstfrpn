@@ -252,16 +252,29 @@
         }
 
 
-        .photo-image img {
-            width: 100%;
-            height: auto;
+.photo-image {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
 
-            display: block;
+    border-radius: 25px;
 
-            object-fit: cover;
+    background: #dcefff;
 
-            transition: transform 0.6s ease;
-        }
+    box-shadow:
+        0 20px 50px
+        rgba(80, 140, 180, 0.15);
+}
+
+.photo-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.6s ease;
+}
 
 
         .photo-image:hover img {
