@@ -219,7 +219,7 @@
         ========================= */
 
         .journey {
-            width: min(750px, 90%);
+            width: min(720px, 90%);
             margin: 0 auto;
             padding: 80px 0 100px;
         }
@@ -229,34 +229,27 @@
            MỖI ẢNH + THÔNG TIN
         ========================= */
 
-        .photo-story {
-            width: 100%;
-            margin-bottom: 100px;
-        }
+.photo-story {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+
+    margin-bottom: 110px;
+}
 
 
         /* =========================
            ẢNH
         ========================= */
-
-        .photo-image {
-            overflow: hidden;
-
-            border-radius: 25px;
-
-            background: #dcefff;
-
-            box-shadow:
-                0 20px 50px
-                rgba(80, 140, 180, 0.15);
-        }
-
-
 .photo-image {
+    width: 340px;
     aspect-ratio: 4 / 5;
+
     overflow: hidden;
 
-    border-radius: 25px;
+    border-radius: 20px;
 
     background: #dcefff;
 
@@ -286,10 +279,13 @@
            THÔNG TIN
         ========================= */
 
-        .photo-info {
-            padding: 30px 20px 0;
-            text-align: center;
-        }
+.photo-info {
+    width: 340px;
+
+    padding: 25px 5px 0;
+
+    text-align: center;
+}
 
 
         .photo-info p {
