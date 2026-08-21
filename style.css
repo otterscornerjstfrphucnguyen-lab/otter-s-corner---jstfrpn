@@ -34,7 +34,6 @@ body {
 
     color: #425b70;
 
-    /* ONE GLOBAL BACKGROUND */
     background: #e8f4fc;
 }
 
@@ -155,8 +154,7 @@ header.nav nav a:hover,
 nav a:hover {
     color: #7895ab;
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
 
@@ -171,20 +169,20 @@ nav a:hover {
     min-height: 100vh;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
-
     justify-content: center;
 
     text-align: center;
 
-    padding:
-        120px 25px
-        90px;
+    padding: 120px 25px 90px;
 }
-===================================================== */
+
+
+/* =====================================================
+   STARS
+   ===================================================== */
 
 .stars {
     margin-bottom: 35px;
@@ -320,8 +318,7 @@ nav a:hover {
 
     margin-top: 30px;
 
-    padding:
-        13px 25px;
+    padding: 13px 25px;
 
     border-radius: 30px;
 
@@ -362,8 +359,7 @@ nav a:hover {
 }
 
 .scroll:hover {
-    transform:
-        translateY(-4px);
+    transform: translateY(-4px);
 
     background:
         rgba(
@@ -387,6 +383,7 @@ nav a:hover {
 /* =====================================================
    MUSIC NOTES
    ===================================================== */
+
 .decor {
     margin-top: 55px;
 
@@ -434,8 +431,7 @@ nav a:hover {
 
     z-index: 2000;
 
-    padding:
-        12px 20px;
+    padding: 12px 20px;
 
     border:
         1px solid
@@ -466,11 +462,8 @@ nav a:hover {
 
     cursor: pointer;
 
-    backdrop-filter:
-        blur(10px);
-
-    -webkit-backdrop-filter:
-        blur(10px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 
     box-shadow:
         0 5px 20px
@@ -481,8 +474,7 @@ nav a:hover {
             0.12
         );
 
-    transition:
-        all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .music-toggle:hover {
@@ -490,8 +482,7 @@ nav a:hover {
 
     color: white;
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 
     box-shadow:
         0 8px 25px
@@ -504,8 +495,7 @@ nav a:hover {
 }
 
 .music-toggle:active {
-    transform:
-        scale(0.96);
+    transform: scale(0.96);
 }
 
 
@@ -520,12 +510,9 @@ nav a:hover {
             calc(100% - 40px)
         );
 
-    margin:
-        50px auto
-        100px;
+    margin: 50px auto 100px;
 
-    padding:
-        60px 25px;
+    padding: 60px 25px;
 
     text-align: center;
 }
@@ -534,13 +521,16 @@ nav a:hover {
     margin-bottom: 40px;
 }
 
+
+/* =====================================================
+   PN PHOTO
+   ===================================================== */
+
 .pn-photo {
     width: 220px;
     height: 275px;
 
-    margin:
-        0 auto
-        25px;
+    margin: 0 auto 25px;
 
     overflow: hidden;
 
@@ -554,18 +544,21 @@ nav a:hover {
             255,
             0.8
         );
+
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .pn-photo img {
     width: 100%;
     height: 100%;
 
+    display: block;
+
     object-fit: cover;
 }
 
 .pn-profile-header h2 {
-    margin:
-        12px 0 8px;
+    margin: 12px 0 8px;
 
     color: #38536a;
 
@@ -575,6 +568,11 @@ nav a:hover {
 
     letter-spacing: 5px;
 }
+
+
+/* =====================================================
+   PROFILE CARD
+   ===================================================== */
 
 .pn-profile-card {
     display: grid;
@@ -598,8 +596,9 @@ nav a:hover {
 }
 
 .pn-info {
-    padding:
-        28px 15px;
+    padding: 28px 15px;
+
+    text-align: center;
 
     background:
         rgba(
@@ -616,7 +615,8 @@ nav a:hover {
     margin-bottom: 10px;
 
     color: #7892a7;
-font-size: 10px;
+
+    font-size: 10px;
 
     letter-spacing: 2px;
 }
@@ -629,12 +629,15 @@ font-size: 10px;
     font-weight: normal;
 }
 
+
+/* =====================================================
+   PN DESCRIPTION
+   ===================================================== */
+
 .pn-description {
     max-width: 650px;
 
-    margin:
-        35px auto
-        0;
+    margin: 35px auto 0;
 }
 
 .pn-description p {
@@ -643,6 +646,35 @@ font-size: 10px;
     font-size: 14px;
 
     line-height: 1.9;
+}
+
+
+/* =====================================================
+   JOURNEY TITLE
+   ===================================================== */
+
+.journey-title {
+    margin: 0 auto 38px;
+
+    text-align: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            30px,
+            4vw,
+            44px
+        );
+
+    font-weight: normal;
+
+    line-height: 1.3;
+
+    color: #38536a;
 }
 
 
@@ -657,9 +689,7 @@ font-size: 10px;
             90%
         );
 
-    margin:
-        50px auto
-        80px;
+    margin: 50px auto 80px;
 
     display: flex;
 
@@ -673,8 +703,7 @@ font-size: 10px;
 
     align-items: center;
 
-    padding:
-        25px 30px;
+    padding: 25px 30px;
 
     text-decoration: none;
 
@@ -695,5 +724,279 @@ font-size: 10px;
             180,
             220,
             0.35
+        );
+
+    border-radius: 18px;
+
+    transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.journey-link:hover {
+    transform: translateY(-5px);
+
+    background:
+        rgba(
+            210,
+            235,
+            252,
+            0.9
+        );
+
+    box-shadow:
+        0 15px 35px
+        rgba(
+            80,
+            150,
+            200,
+            0.18
+        );
+}
+
+.journey-link-number {
+    min-width: 45px;
+
+    font-size: 13px;
+
+    color: #7db8dd;
+
+    text-align: left;
+}
+
+.journey-link-text {
+    flex: 1;
+
+    text-align: left;
+}
+
+.journey-link-text small {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #7aaed0;
+}
+
+.journey-link-text h3 {
+    margin: 0;
+
+    font-family:
+        Arial,
+        "Helvetica Neue",
+        sans-serif;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    color: #4d87ad;
+
+    font-weight: 500;
+}
+
+.journey-arrow {
+    margin-left: 15px;
+
+    font-size: 25px;
+
+    color: #79b6dc;
+
+    transition: transform 0.3s ease;
+}
+
+.journey-link:hover .journey-arrow {
+    transform: translateX(7px);
+}
+
+
 /* =====================================================
-   STARS
+   FOOTER
+   ===================================================== */
+
+footer {
+    width: 100%;
+
+    margin-top: auto;
+
+    padding: 60px 20px;
+
+    text-align: center;
+
+    background:
+        rgba(
+            220,
+            240,
+            255,
+            0.5
+        );
+}
+
+footer .logo {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 28px;
+
+    color: #426f8f;
+
+    margin-bottom: 15px;
+}
+
+footer p {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #7892a7;
+
+    margin: 8px 0;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    header.nav {
+        height: 75px;
+
+        padding: 0 20px;
+    }
+
+    header.nav > .logo {
+        font-size: 24px;
+    }
+
+    header.nav nav {
+        gap: 12px;
+    }
+
+    header.nav nav a {
+        font-size: 8px;
+
+        letter-spacing: 1px;
+    }
+
+    .hero {
+        min-height: 100vh;
+
+        padding: 100px 20px 70px;
+    }
+
+    .stars {
+        font-size: 15px;
+
+        letter-spacing: 3px;
+    }
+
+    .eyebrow {
+        font-size: 11px;
+
+        letter-spacing: 3px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(
+                65px,
+                18vw,
+                100px
+            );
+
+        letter-spacing: -3px;
+    }
+
+    .artist {
+        margin-top: 45px;
+
+        font-size: 13px;
+
+        letter-spacing: 1px;
+    }
+
+    .quote {
+        font-size: 12px;
+    }
+
+    .pn-profile {
+        width: 100%;
+
+        margin: 20px auto 70px;
+
+        padding: 50px 20px;
+    }
+
+    .pn-profile-header h2 {
+        font-size: 28px;
+
+        letter-spacing: 2px;
+    }
+
+    .pn-profile-card {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .pn-info {
+        padding: 22px 10px;
+    }
+
+    .journey-links {
+        width: 100%;
+
+        margin: 35px auto 60px;
+    }
+
+    .journey-link {
+        padding: 20px 18px;
+    }
+
+    .journey-link-number {
+        min-width: 35px;
+    }
+
+    .journey-link-text h3 {
+        font-size: 15px;
+
+        line-height: 1.5;
+    }
+
+    .journey-link-text small {
+        font-size: 9px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .journey-arrow {
+        font-size: 21px;
+
+        margin-left: 10px;
+    }
+
+    footer {
+        padding: 45px 20px;
+    }
+
+}
