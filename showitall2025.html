@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SHOW IT ALL 2025 — Otter's Corner</title>
+
+    <!-- FONT HỖ TRỢ TIẾNG VIỆT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Be Vietnam Pro", Arial, sans-serif;
+            background: #f4faff;
+            color: #425b70;
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           DREAMY BACKGROUND
+        ========================= */
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            pointer-events: none;
+            z-index: -1;
+
+            filter: blur(80px);
+            opacity: 0.4;
+
+            animation: dreamyFloat 10s ease-in-out infinite alternate;
+        }
+
+        body::before {
+            top: 10%;
+            left: -120px;
+
+            background: rgba(170, 215, 255, 0.7);
+        }
+
+        body::after {
+            right: -120px;
+            bottom: 10%;
+
+            background: rgba(210, 230, 255, 0.8);
+
+            animation-delay: -5s;
+        }
+
+        @keyframes dreamyFloat {
+
+            0% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(40px, -20px);
+            }
+
+            100% {
+                transform: translate(20px, 30px);
+            }
+
+        }
+
+
+        /* =========================
+           BACK HOME
+        ========================= */
+
+        .back-home {
+            position: fixed;
+
+            top: 25px;
+            left: 30px;
+
+            z-index: 100;
+
+            padding: 12px 20px;
+
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, 0.85);
+
+            border: 1px solid rgba(120, 180, 220, 0.3);
+
+            text-decoration: none;
+
+            font-size: 11px;
+            letter-spacing: 2px;
+
+            color: #4d87ad;
+
+            transition: 0.3s ease;
+        }
+
+        .back-home:hover {
+            background: #dcefff;
+            transform: translateX(-5px);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 120px 20px 80px;
+        }
+
+        .stars {
+            margin-bottom: 25px;
+
+            font-size: 18px;
+            letter-spacing: 6px;
+
+            color: #8ebbd8;
+        }
+
+        .hero-tag {
+            margin-bottom: 20px;
+
+            font-size: 11px;
+            letter-spacing: 4px;
+
+            color: #7da9c5;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(45px, 8vw, 90px);
+
+            font-weight: 400;
+
+            color: #426f8f;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #6fa6ca;
+        }
+
+        .hero p {
+            max-width: 650px;
+
+            font-size: 14px;
+            line-height: 2;
+
+            color: #61798c;
+        }
+
+        .scroll-down {
+            margin-top: 70px;
+
+            color: #7aaed0;
+
+            text-decoration: none;
+
+            font-size: 11px;
+            letter-spacing: 3px;
+
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(8px);
+            }
+
+        }
+
+
+        /* =========================
+           JOURNEY
+        ========================= */
+
+        .journey {
+            width: min(900px, 90%);
+
+            margin: 0 auto;
+
+            padding: 80px 0 100px;
+        }
+
+
+        /* =========================
+           MỖI CỤM
+        ========================= */
+
+        .journey-item {
+            width: 100%;
+
+            margin: 0 auto 110px;
+        }
+
+
+        /* =========================
+           2 ẢNH CẠNH NHAU
+        ========================= */
+
+        .photo-pair {
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            gap: 24px;
+
+            align-items: start;
+        }
+
+
+        /* =========================
+           KHUNG ẢNH 4:5
+        ========================= */
+
+        .photo-image {
+            width: 100%;
+
+            aspect-ratio: 4 / 5;
+
+            overflow: hidden;
+
+            border-radius: 25px;
+
+            background: #dcefff;
+
+            box-shadow:
+                0 20px 50px
+                rgba(80, 140, 180, 0.15);
+        }
+
+
+        .photo-image img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            transition: transform 0.6s ease;
+        }
+
+
+        .photo-image:hover img {
+            transform: scale(1.03);
+        }
+
+
+        /* =========================
+           GHI CHÚ
+        ========================= */
+
+        .journey-note {
+            width: 100%;
+
+            margin: 28px auto 0;
+
+            padding: 0 40px;
+
+            text-align: center;
+        }
+
+
+        .journey-note p {
+            font-size: 14px;
+
+            line-height: 2;
+
+            color: #61798c;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 60px 20px;
+
+            text-align: center;
+
+            background: rgba(220, 240, 255, 0.5);
+        }
+
+        footer .logo {
+            font-family: "Playfair Display", serif;
+
+            font-size: 28px;
+
+            color: #426f8f;
+
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            font-size: 11px;
+
+            letter-spacing: 2px;
+
+            color: #7892a7;
+
+            margin: 8px 0;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            .back-home {
+                top: 18px;
+                left: 18px;
+
+                padding: 10px 15px;
+
+                font-size: 9px;
+            }
+
+            .journey {
+                width: 92%;
+
+                padding-top: 50px;
+            }
+
+            .photo-pair {
+                gap: 12px;
+            }
+
+            .photo-image {
+                border-radius: 16px;
+            }
+
+            .journey-item {
+                margin-bottom: 75px;
+            }
+
+            .journey-note {
+                margin-top: 22px;
+
+                padding: 0 8px;
+            }
+
+            .journey-note p {
+                font-size: 13px;
+
+                line-height: 1.9;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         BACK TO HOME
+    ========================= -->
+
+    <a href="index.html" class="back-home">
+        ← BACK TO HOME
+    </a>
+
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+        <div class="stars">
+            ✦ ⋆ ✧ ⋆ ✦
+        </div>
+
+        <div class="hero-tag">
+            THE JOURNEY OF PN
+        </div>
+
+        <h1>
+            SHOW IT <span>ALL</span> 2025
+        </h1>
+
+        <p>
+            Hành trình Tân binh thăng cấp Phúc Nguyên.
+            Những sân khấu, những khoảnh khắc
+            và từng bước tiến trên hành trình
+            SHOW IT ALL 2025.
+        </p>
+
+        <a href="#journey" class="scroll-down">
+            EXPLORE THE JOURNEY ↓
+        </a>
+
+    </section>
+
+
+
+    <!-- =========================
+         16 CỤM HÀNH TRÌNH
+    ========================= -->
+
+    <section class="journey" id="journey">
+
+
+        <!-- CỤM 1 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-1.jpg"
+                         alt="Show It All 2025 - Ảnh 1">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-1-1.jpg"
+                         alt="Show It All 2025 - Ảnh 1.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ nhất tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 2 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-2.jpg"
+                         alt="Show It All 2025 - Ảnh 2">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-2-1.jpg"
+                         alt="Show It All 2025 - Ảnh 2.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ hai tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 3 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-3.jpg"
+                         alt="Show It All 2025 - Ảnh 3">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-3-1.jpg"
+                         alt="Show It All 2025 - Ảnh 3.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ ba tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 4 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-4.jpg"
+                         alt="Show It All 2025 - Ảnh 4">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-4-1.jpg"
+                         alt="Show It All 2025 - Ảnh 4.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ tư tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 5 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-5.jpg"
+                         alt="Show It All 2025 - Ảnh 5">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-5-1.jpg"
+                         alt="Show It All 2025 - Ảnh 5.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ năm tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 6 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-6.jpg"
+                         alt="Show It All 2025 - Ảnh 6">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-6-1.jpg"
+                         alt="Show It All 2025 - Ảnh 6.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ sáu tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 7 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-7.jpg"
+                         alt="Show It All 2025 - Ảnh 7">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-7-1.jpg"
+                         alt="Show It All 2025 - Ảnh 7.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ bảy tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 8 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-8.jpg"
+                         alt="Show It All 2025 - Ảnh 8">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-8-1.jpg"
+                         alt="Show It All 2025 - Ảnh 8.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ tám tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 9 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-9.jpg"
+                         alt="Show It All 2025 - Ảnh 9">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-9-1.jpg"
+                         alt="Show It All 2025 - Ảnh 9.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ chín tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 10 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-10.jpg"
+                         alt="Show It All 2025 - Ảnh 10">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-10-1.jpg"
+                         alt="Show It All 2025 - Ảnh 10.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ mười tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 11 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-11.jpg"
+                         alt="Show It All 2025 - Ảnh 11">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-11-1.jpg"
+                         alt="Show It All 2025 - Ảnh 11.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ mười một tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 12 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-12.jpg"
+                         alt="Show It All 2025 - Ảnh 12">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-12-1.jpg"
+                         alt="Show It All 2025 - Ảnh 12.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ mười hai tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 13 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-13.jpg"
+                         alt="Show It All 2025 - Ảnh 13">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-13-1.jpg"
+                         alt="Show It All 2025 - Ảnh 13.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ mười ba tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 14 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-14.jpg"
+                         alt="Show It All 2025 - Ảnh 14">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-14-1.jpg"
+                         alt="Show It All 2025 - Ảnh 14.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ mười bốn tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 15 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-15.jpg"
+                         alt="Show It All 2025 - Ảnh 15">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-15-1.jpg"
+                         alt="Show It All 2025 - Ảnh 15.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ mười lăm tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+
+        <!-- CỤM 16 -->
+
+        <article class="journey-item">
+
+            <div class="photo-pair">
+
+                <div class="photo-image">
+                    <img src="showitall-16.jpg"
+                         alt="Show It All 2025 - Ảnh 16">
+                </div>
+
+                <div class="photo-image">
+                    <img src="showitall-16-1.jpg"
+                         alt="Show It All 2025 - Ảnh 16.1">
+                </div>
+
+            </div>
+
+            <div class="journey-note">
+                <p>
+                    Viết thông tin và câu chuyện của khoảnh khắc thứ mười sáu tại đây.
+                </p>
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <div class="logo">
+            Otter's Corner
+        </div>
+
+        <p>
+            Always beside PN, on every step of the way.
+        </p>
+
+        <p>
+            MADE WITH ♥ FOR PN
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
