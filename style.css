@@ -1,6 +1,12 @@
 /* =====================================================
    OTTER'S CORNER
    UPRIZE PN
+   GLOBAL STYLE
+   ===================================================== */
+
+
+/* =====================================================
+   RESET
    ===================================================== */
 
 * {
@@ -11,11 +17,15 @@
 
 html {
     scroll-behavior: smooth;
+    min-height: 100%;
 }
 
 body {
     min-height: 100vh;
     overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
 
     font-family:
         Georgia,
@@ -24,106 +34,18 @@ body {
 
     color: #425b70;
 
-    background:
-        linear-gradient(
-            135deg,
-            #edf5f9 0%,
-            #e4f0f7 45%,
-            #f5f8fa 100%
-        );
+    /* ONE GLOBAL BACKGROUND */
+    background: #e8f4fc;
 }
 
 
 /* =====================================================
-   DREAMY BACKGROUND
+   MAIN CONTENT
    ===================================================== */
 
-body::before {
-    content: "";
-
-    position: fixed;
-
-    width: 450px;
-    height: 450px;
-
-    top: -180px;
-    left: -160px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(190, 220, 240, 0.45);
-
-    filter: blur(90px);
-
-    pointer-events: none;
-
-    z-index: -1;
-
-    animation:
-        floatLeft
-        12s
-        ease-in-out
-        infinite alternate;
-}
-
-body::after {
-    content: "";
-
-    position: fixed;
-
-    width: 500px;
-    height: 500px;
-
-    right: -180px;
-    bottom: -180px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(190, 220, 245, 0.4);
-
-    filter: blur(100px);
-
-    pointer-events: none;
-
-    z-index: -1;
-
-    animation:
-        floatRight
-        14s
-        ease-in-out
-        infinite alternate;
-}
-
-@keyframes floatLeft {
-
-    0% {
-        transform:
-            translate(0, 0)
-            scale(1);
-    }
-
-    100% {
-        transform:
-            translate(70px, 50px)
-            scale(1.15);
-    }
-}
-
-@keyframes floatRight {
-
-    0% {
-        transform:
-            translate(0, 0)
-            scale(1);
-    }
-
-    100% {
-        transform:
-            translate(-60px, -50px)
-            scale(1.1);
-    }
+main {
+    flex: 1;
+    width: 100%;
 }
 
 
@@ -138,25 +60,20 @@ header.nav {
     left: 0;
 
     width: 100%;
-
     height: 90px;
 
     z-index: 1000;
 
     display: flex;
-
     align-items: center;
+    justify-content: space-between;
 
-    justify-content: flex-end;
+    padding: 0 55px;
 
-    padding:
-        0 55px;
+    background: rgba(232, 244, 252, 0.88);
 
-    background:
-        rgba(238, 246, 250, 0.55);
-
-    backdrop-filter:
-        blur(12px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     border-bottom:
         1px solid
@@ -168,33 +85,53 @@ header.nav {
    LOGO
    ===================================================== */
 
-header.nav .logo {
+header.nav > .logo {
     display: block;
-    margin-right: auto;
+
+    margin: 0 auto 0 0;
+    padding: 0;
+
     color: #173a5e;
-    font-family: Georgia, "Times New Roman", serif;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
     font-size: 30px;
+    font-weight: normal;
+
     line-height: 0.95;
+
     letter-spacing: -1px;
+
     text-align: left;
+
+    text-decoration: none;
 }
 
-header.nav .logo span {
+header.nav > .logo span {
     display: block;
+
+    color: #173a5e;
 }
+
 
 /* =====================================================
    NAVIGATION
    ===================================================== */
 
-nav {
+header.nav nav {
     display: flex;
 
     align-items: center;
 
     gap: 35px;
+
+    margin-left: auto;
 }
 
+header.nav nav a,
 nav a {
     color: #40566b;
 
@@ -211,9 +148,10 @@ nav a {
 
     transition:
         color 0.3s ease,
-       transform 0.3s ease;
+        transform 0.3s ease;
 }
 
+header.nav nav a:hover,
 nav a:hover {
     color: #7895ab;
 
@@ -230,7 +168,6 @@ nav a:hover {
     position: relative;
 
     width: 100%;
-
     min-height: 100vh;
 
     display: flex;
@@ -247,11 +184,7 @@ nav a:hover {
         120px 25px
         90px;
 }
-
-
-/* =====================================================
-   STARS
-   ===================================================== */
+===================================================== */
 
 .stars {
     margin-bottom: 35px;
@@ -274,24 +207,22 @@ nav a:hover {
 @keyframes starFloat {
 
     0% {
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 
     50% {
-        transform:
-            translateY(-7px);
+        transform: translateY(-7px);
     }
 
     100% {
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
+
 }
 
 
 /* =====================================================
-   NAME
+   EYEBROW
    ===================================================== */
 
 .eyebrow {
@@ -385,7 +316,6 @@ nav a:hover {
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
     margin-top: 30px;
@@ -420,7 +350,7 @@ nav a:hover {
         0 8px 25px
         rgba(
             70,
-           100,
+            100,
             120,
             0.10
         );
@@ -457,7 +387,6 @@ nav a:hover {
 /* =====================================================
    MUSIC NOTES
    ===================================================== */
-
 .decor {
     margin-top: 55px;
 
@@ -479,19 +408,17 @@ nav a:hover {
 @keyframes musicFloat {
 
     0% {
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 
     50% {
-        transform:
-            translateY(-8px);
+        transform: translateY(-8px);
     }
 
     100% {
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
+
 }
 
 
@@ -502,17 +429,17 @@ nav a:hover {
 .music-toggle {
     position: fixed;
 
-    left: 25px;
-    bottom: 25px;
+    top: 20px;
+    right: 25px;
 
     z-index: 2000;
 
     padding:
-        10px 17px;
+        12px 20px;
 
     border:
         1px solid
-        rgba(110, 140, 160, 0.2);
+        rgba(23, 58, 94, 0.25);
 
     border-radius: 30px;
 
@@ -521,43 +448,64 @@ nav a:hover {
             255,
             255,
             255,
-            0.65
+            0.85
         );
 
-    color: #62798c;
+    color: #173a5e;
 
     font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-    font-size: 9px;
+    font-size: 12px;
 
-    letter-spacing: 1px;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
 
     cursor: pointer;
 
     backdrop-filter:
         blur(10px);
 
+    -webkit-backdrop-filter:
+        blur(10px);
+
     box-shadow:
         0 5px 20px
         rgba(
-            70,
-            100,
-            120,
-            0.08
+            23,
+            58,
+            94,
+            0.12
         );
+
+    transition:
+        all 0.3s ease;
 }
 
 .music-toggle:hover {
-    background:
+    background: #173a5e;
+
+    color: white;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
         rgba(
-            255,
-            255,
-            255,
-            0.95
+            23,
+            58,
+            94,
+            0.20
         );
+}
+
+.music-toggle:active {
+    transform:
+        scale(0.96);
 }
 
 
@@ -588,7 +536,6 @@ nav a:hover {
 
 .pn-photo {
     width: 220px;
-
     height: 275px;
 
     margin:
@@ -601,12 +548,16 @@ nav a:hover {
 
     border:
         2px solid
-        rgba(255,255,255,0.8);
+        rgba(
+            255,
+            255,
+            255,
+            0.8
+        );
 }
 
 .pn-photo img {
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
@@ -640,7 +591,7 @@ nav a:hover {
     background:
         rgba(
             255,
-           255,
+            255,
             255,
             0.5
         );
@@ -665,8 +616,7 @@ nav a:hover {
     margin-bottom: 10px;
 
     color: #7892a7;
-
-    font-size: 10px;
+font-size: 10px;
 
     letter-spacing: 2px;
 }
@@ -697,396 +647,53 @@ nav a:hover {
 
 
 /* =====================================================
-   FOOTER
-   ===================================================== */
-
-footer {
-    padding:
-        60px 20px
-        40px;
-
-    text-align: center;
-
-    border-top:
-        1px solid
-        rgba(120, 150, 170, 0.12);
-
-    color: #718596;
-}
-
-footer .logo {
-    margin-bottom: 15px;
-
-    font-size: 22px;
-
-    color: #52697d;
-}
-
-footer p {
-    margin: 8px 0;
-
-    font-size:
-/* ===== FORCE OTTER'S CORNER LOGO ===== */
-
-header.nav {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-
-    width: 100% !important;
-    height: 90px !important;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-
-    padding: 0 55px !important;
-
-    z-index: 9999 !important;
-}
-
-header.nav > .logo {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-
-    position: relative !important;
-
-    width: auto !important;
-    height: auto !important;
-
-    margin: 0 auto 0 0 !important;
-    padding: 0 !important;
-
-    color: #173a5e !important;
-
-    font-family: Georgia, "Times New Roman", serif !important;
-    font-size: 30px !important;
-    font-weight: normal !important;
-    line-height: 0.95 !important;
-    letter-spacing: -1px !important;
-
-    text-align: left !important;
-
-    transform: none !important;
-}
-
-header.nav > .logo span {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-
-    color: #173a5e !important;
-}
-
-header.nav nav {
-   /* =====================================================
-   MUSIC BUTTON
-   ===================================================== */
-
-.music-toggle {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-
-    z-index: 9999;
-
-    padding: 12px 20px;
-
-    border: 1px solid rgba(23, 58, 94, 0.25);
-    border-radius: 30px;
-
-    background: rgba(255, 255, 255, 0.85);
-
-    color: #173a5e;
-
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-
-    letter-spacing: 1.5px;
-
-    cursor: pointer;
-
-    backdrop-filter: blur(10px);
-
-    box-shadow:
-        0 5px 20px rgba(23, 58, 94, 0.12);
-
-    transition:
-        all 0.3s ease;
-}
-
-.music-toggle:hover {
-    background: #173a5e;
-    color: white;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 8px 25px rgba(23, 58, 94, 0.2);
-}
-
-.music-toggle:active {
-    transform: scale(0.96);
-}
-
-
-/* ===== MOBILE ===== */
-
-@media (max-width: 768px) {
-
-    .music-toggle {
-        top: 15px;
-        right: 15px;
-
-        padding: 10px 15px;
-
-        font-size: 10px;
-    }
-
-}
-    display: flex !important;
-    align-items: center !important;
-    margin-left: auto !important;
-}
-===================================================== */
-
-.gallery-item.coming-soon {
-    opacity: 0.75;
-}
-
-.gallery-item.coming-soon h2 {
-    margin-bottom: 18px;
-}
-
-.gallery-item.coming-soon p {
-    margin: 0 0 25px;
-
-    color: #70889a;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    font-size: 13px;
-
-    line-height: 1.7;
-}
-
-.coming-text {
-    display: inline-block;
-
-    color: #9aabb8;
-
-    font-family: Arial, Helvetica, sans-serif;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-}
-
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
-
-.gallery-footer {
-    width: 100%;
-
-    padding: 55px 20px 120px;
-
-    text-align: center;
-
-    border-top: 1px solid rgba(80, 110, 130, 0.12);
-}
-
-.gallery-footer p {
-    margin: 0;
-
-    color: #7890a1;
-
-    font-family: Georgia, "Times New Roman", serif;
-
-    font-size: 16px;
-
-    letter-spacing: 1px;
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-    .gallery-page {
-        width: calc(100% - 30px);
-
-        padding: 35px 0 70px;
-    }
-
-
-    .gallery-back {
-        margin-bottom: 45px;
-
-        font-size: 10px;
-    }
-
-
-    .gallery-header {
-        text-align: left;
-
-        margin-bottom: 45px;
-    }
-
-
-    .gallery-header h1 {
-        font-size: 58px;
-
-        letter-spacing: 2px;
-    }
-
-
-    .gallery-header p {
-        font-size: 12px;
-
-        line-height: 1.7;
-
-        letter-spacing: 1px;
-    }
-
-
-    .gallery-list {
-        grid-template-columns: 1fr;
-
-        gap: 18px;
-    }
-
-
-    .gallery-item {
-        min-height: 220px;
-
-        padding: 30px 25px;
-
-        border-radius: 20px;
-    }
-
-
-    .gallery-item h2 {
-        font-size: 28px;
-    }
-
-
-    .gallery-footer {
-        padding: 45px 20px 110px;
-    }
-
-
-    .gallery-footer p {
-        font-size: 14px;
-
-        line-height: 1.6;
-    }
-
-}
-/* =========================
    JOURNEY LINKS - HOME
-========================= */
+   ===================================================== */
 
 .journey-links {
-    width: min(900px, 90%);
-    margin: 50px auto 80px;
+    width:
+        min(
+            900px,
+            90%
+        );
+
+    margin:
+        50px auto
+        80px;
 
     display: flex;
+
     flex-direction: column;
+
     gap: 18px;
 }
 
 .journey-link {
     display: flex;
+
     align-items: center;
 
-    padding: 25px 30px;
+    padding:
+        25px 30px;
 
     text-decoration: none;
 
-    background: rgba(220, 240, 255, 0.65);
-
-    border: 1px solid rgba(120, 180, 220, 0.35);
-
-    border-radius: 20px;
-
-    transition: all 0.35s ease;
-
     color: inherit;
-}
 
-.journey-link:hover {
-    transform: translateY(-5px);
+    background:
+        rgba(
+            220,
+            240,
+            255,
+            0.65
+        );
 
-    background: #d8efff;
-
-    box-shadow: 0 15px 35px rgba(80, 150, 200, 0.18);
-}
-
-.journey-link-number {
-    font-size: 14px;
-
-    color: #7db8dd;
-
-    margin-right: 25px;
-}
-
-.journey-link-text {
-    flex: 1;
-
-    text-align: left;
-}
-
-.journey-link-text small {
-    font-size: 11px;
-
-    letter-spacing: 2px;
-
-    color: #7aaed0;
-}
-
-.journey-link-text h3 {
-    margin: 8px 0 0;
-
-    font-size: 20px;
-
-    color: #4d87ad;
-
-    font-weight: 500;
-}
-
-.journey-arrow {
-    font-size: 28px;
-
-    color: #79b6dc;
-
-    transition: transform 0.3s ease;
-}
-
-.journey-link:hover .journey-arrow {
-    transform: translateX(8px);
-}
-
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-
-    .journey-link {
-        padding: 20px;
-    }
-
-    .journey-link-number {
-        margin-right: 15px;
-    }
-
-    .journey-link-text h3 {
-        font-size: 16px;
-    }
-
-}
+    border:
+        1px solid
+        rgba(
+            120,
+            180,
+            220,
+            0.35
+/* =====================================================
+   STARS
