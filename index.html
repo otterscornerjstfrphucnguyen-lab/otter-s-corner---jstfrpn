@@ -1,397 +1,681 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>UPRIZE PN — Otter's Corner</title>
+
   <link rel="stylesheet" href="style.css">
+
   <style>
-/* ===== MOBILE MENU ===== */
-.menu-toggle {
-    display: none;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    width: 45px;
-    height: 45px;
-    border: none;
-    background: #6f94b3;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 23px;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(60, 90, 115, 0.18);
-}
-.mobile-menu {
-    display: none;
-}
-/* ===== ĐIỆN THOẠI ===== */
-@media (max-width: 768px) {
-    /* Ẩn menu ngang hiện tại */
-    nav {
-        display: none !important;
-    }
-    /* Hiện nút 3 gạch */
+
+    /* ===== MOBILE MENU ===== */
+
     .menu-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    /* Menu mở ra */
-    .mobile-menu {
-        position: fixed;
-        inset: 0;
-        z-index: 9998;
-        background: rgba(201,222,239,0.98);
         display: none;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-    .mobile-menu.active {
-        display: flex;
-    }
-    .mobile-menu ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    .mobile-menu li {
-        margin: 22px 0;
-    }
-    .mobile-menu a {
-        color: #425b70;
-        text-decoration: none;
-        font-size: 17px;
-        letter-spacing: 3px;
-    }
-    .mobile-menu a:hover {
-        opacity: 0.6;
-    }
-    .mobile-close {
-        position: absolute;
+        position: fixed;
         top: 20px;
         right: 20px;
-        font-size: 32px;
-        color: #425b70;
+        z-index: 9999;
+        width: 45px;
+        height: 45px;
+        border: none;
+        background: #6f94b3;
+        border-radius: 50%;
         cursor: pointer;
+        font-size: 23px;
+        color: #ffffff;
+        box-shadow: 0 4px 12px rgba(60, 90, 115, 0.18);
     }
-}
-</style>
+
+    .mobile-menu {
+        display: none;
+    }
+
+
+    /* ===== ĐIỆN THOẠI ===== */
+
+    @media (max-width: 768px) {
+
+        /* Ẩn menu ngang hiện tại */
+
+        nav {
+            display: none !important;
+        }
+
+
+        /* Hiện nút 3 gạch */
+
+        .menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* Menu mở ra */
+
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(201,222,239,0.98);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mobile-menu li {
+            margin: 22px 0;
+        }
+
+        .mobile-menu a {
+            color: #425b70;
+            text-decoration: none;
+            font-size: 17px;
+            letter-spacing: 3px;
+        }
+
+        .mobile-menu a:hover {
+            opacity: 0.6;
+        }
+
+        .mobile-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 32px;
+            color: #425b70;
+            cursor: pointer;
+        }
+
+    }
+
+  </style>
+
+
   <style>
 
-.pn-profile {
-    max-width: 900px;
-    margin: 80px auto;
-    padding: 20px;
-    color: #425b70;
-}
-
-.pn-profile-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.pn-profile-header span {
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: #7892a7;
-}
-
-.pn-profile-header h2 {
-    margin: 12px 0 8px;
-    font-size: 38px;
-    letter-spacing: 5px;
-    color: #38536a;
-    font-weight: normal;
-}
-
-.pn-profile-header p {
-    margin: 0;
-    font-size: 14px;
-    color: #61798c;
-}
-
-.pn-profile-card {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    overflow: hidden;
-    border-radius: 22px;
-    background: rgba(255,255,255,0.5);
-    border: 1px solid rgba(255,255,255,0.7);
-}
-
-.pn-info {
-    padding: 28px 15px;
-    text-align: center;
-    background: rgba(255,255,255,0.3);
-}
-
-.pn-info span {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #7892a7;
-}
-
-.pn-info strong {
-    font-size: 15px;
-    letter-spacing: 1px;
-    font-weight: normal;
-    color: #425b70;
-}
-
-.pn-description {
-    max-width: 650px;
-    margin: 35px auto 0;
-    text-align: center;
-}
-
-.pn-description p {
-    font-size: 14px;
-    line-height: 1.9;
-    color: #587186;
-}
-
-@media (max-width: 700px) {
+    /* ===== PN PROFILE ===== */
 
     .pn-profile {
-        margin: 50px auto;
+        max-width: 900px;
+        margin: 80px auto;
+        padding: 20px;
+        color: #425b70;
     }
 
-.pn-profile-header h2 {
-    margin: 0 0 35px;
-    font-size: 30px;
-    letter-spacing: 1.5px;
-    color: #38536a;
-    font-weight: normal;
-}
+    .pn-profile-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .pn-profile-header span {
+        font-size: 11px;
+        letter-spacing: 4px;
+        color: #7892a7;
+    }
+
+    .pn-profile-header h2 {
+        margin: 12px 0 8px;
+        font-size: 38px;
+        letter-spacing: 5px;
+        color: #38536a;
+        font-weight: normal;
+    }
+
+    .pn-profile-header p {
+        margin: 0;
+        font-size: 14px;
+        color: #61798c;
+    }
+
     .pn-profile-card {
-        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        overflow: hidden;
+        border-radius: 22px;
+        background: rgba(255,255,255,0.5);
+        border: 1px solid rgba(255,255,255,0.7);
     }
 
-}
-.pn-photo {
-    width: 220px;
-    height: 275px;
-    margin: 0 auto 25px;
-    overflow: hidden;
-    border-radius: 12px;
-    border: 2px solid rgba(255,255,255,0.8);
-    background: rgba(255,255,255,0.3);
-}
+    .pn-info {
+        padding: 28px 15px;
+        text-align: center;
+        background: rgba(255,255,255,0.3);
+    }
 
-.pn-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    .pn-info span {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 10px;
+        letter-spacing: 2px;
+        color: #7892a7;
+    }
 
-.pn-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-/* ✨ Dreamy floating background */
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(70px);
-  opacity: 0.35;
-  animation: dreamyFloat 10s ease-in-out infinite alternate;
-}
+    .pn-info strong {
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-weight: normal;
+        color: #425b70;
+    }
 
-body::before {
-  top: 10%;
-  left: -100px;
-  background: rgba(170, 215, 255, 0.7);
-}
 
-body::after {
-  right: -100px;
-  bottom: 10%;
-  background: rgba(210, 230, 255, 0.8);
-  animation-delay: -5s;
-}
+    /* ===== PN DESCRIPTION ===== */
 
-@keyframes dreamyFloat {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
+    .pn-description {
+        max-width: 650px;
+        margin: 35px auto 0;
+        text-align: center;
+    }
 
-  50% {
-    transform: translate(40px, -25px) scale(1.08);
-  }
+    .pn-description > p {
+        font-size: 14px;
+        line-height: 1.9;
+        color: #587186;
+    }
 
-  100% {
-    transform: translate(-20px, 30px) scale(0.95);
-  }
-}
+
+    /* ===== PN PHOTO ===== */
+
+    .pn-photo {
+        width: 220px;
+        height: 275px;
+        margin: 0 auto 25px;
+        overflow: hidden;
+        border-radius: 12px;
+        border: 2px solid rgba(255,255,255,0.8);
+        background: rgba(255,255,255,0.3);
+    }
+
+    .pn-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    /* =================================
+       JOURNEY LINKS
+    ================================= */
+
+    .journey-links {
+        width: 100%;
+        margin: 35px auto 0;
+
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+
+    .journey-link {
+        display: flex;
+        align-items: center;
+
+        padding: 22px 25px;
+
+        text-decoration: none;
+
+        background: rgba(220, 240, 255, 0.55);
+
+        border: 1px solid rgba(120, 180, 220, 0.35);
+
+        border-radius: 18px;
+
+        color: #425b70;
+
+        transition: all 0.35s ease;
+    }
+
+
+    .journey-link:hover {
+        transform: translateY(-5px);
+
+        background: rgba(210, 235, 252, 0.9);
+
+        box-shadow:
+            0 15px 35px
+            rgba(80, 150, 200, 0.18);
+    }
+
+
+    .journey-link-number {
+        min-width: 45px;
+
+        font-size: 13px;
+
+        color: #7db8dd;
+
+        text-align: left;
+    }
+
+
+    .journey-link-text {
+        flex: 1;
+
+        text-align: left;
+    }
+
+
+    .journey-link-text small {
+        display: block;
+
+        margin-bottom: 6px;
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+
+        color: #7aaed0;
+    }
+
+
+    .journey-link-text h3 {
+        margin: 0;
+
+        font-size: 18px;
+
+        line-height: 1.5;
+
+        color: #4d87ad;
+
+        font-weight: normal;
+    }
+
+
+    .journey-arrow {
+        margin-left: 15px;
+
+        font-size: 25px;
+
+        color: #79b6dc;
+
+        transition: transform 0.3s ease;
+    }
+
+
+    .journey-link:hover .journey-arrow {
+        transform: translateX(7px);
+    }
+
+
+    /* ===== MOBILE ===== */
+
+    @media (max-width: 700px) {
+
+        .pn-profile {
+            margin: 50px auto;
+        }
+
+        .pn-profile-header h2 {
+            margin: 0 0 35px;
+            font-size: 30px;
+            letter-spacing: 1.5px;
+            color: #38536a;
+            font-weight: normal;
+        }
+
+        .pn-profile-card {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .journey-link {
+            padding: 20px 18px;
+        }
+
+        .journey-link-number {
+            min-width: 35px;
+        }
+
+        .journey-link-text h3 {
+            font-size: 15px;
+        }
+
+    }
+
+
+    /* ✨ Dreamy floating background */
+
+    body::before,
+    body::after {
+        content: "";
+        position: fixed;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -1;
+        filter: blur(70px);
+        opacity: 0.35;
+        animation: dreamyFloat 10s ease-in-out infinite alternate;
+    }
+
+    body::before {
+        top: 10%;
+        left: -100px;
+        background: rgba(170, 215, 255, 0.7);
+    }
+
+    body::after {
+        right: -100px;
+        bottom: 10%;
+        background: rgba(210, 230, 255, 0.8);
+        animation-delay: -5s;
+    }
+
+    @keyframes dreamyFloat {
+
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+
+        50% {
+            transform: translate(40px, -25px) scale(1.08);
+        }
+
+        100% {
+            transform: translate(-20px, 30px) scale(0.95);
+        }
+
+    }
+
   </style>
-</head>
-<body>
- <audio id="bgMusic" loop preload="auto">
-    <source src="./music.mp3" type="audio/mpeg">
-</audio>
 
-<button id="musicToggle" class="music-toggle" type="button">
-    MUSIC ON ♫
-</button>
+</head>
+
+
+<body>
+
+
+  <!-- MUSIC -->
+
+  <audio id="bgMusic" loop preload="auto">
+      <source src="./music.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="musicToggle" class="music-toggle" type="button">
+      MUSIC ON ♫
+  </button>
+
+
   <!-- MOBILE MENU BUTTON -->
-<button class="menu-toggle" onclick="openMobileMenu()" aria-label="Open menu">
-    ☰
-</button>
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-close" onclick="closeMobileMenu()">
-        ×
-    </div>
-    <ul>
-        <li><a href="index.html">HOME</a></li>
-      <li><a href="about.html">ABOUT</a></li>
-        <li><a href="project.html">PROJECT</a></li>
-        <li><a href="donation.html">DONATION</a></li>
-        <li><a href="gallery.html">GALLERY</a></li>
-       <li><a href="wish.html">A LITTLE WISH</a></li>
-    </ul>
-</div>
+
+  <button
+      class="menu-toggle"
+      onclick="openMobileMenu()"
+      aria-label="Open menu"
+  >
+      ☰
+  </button>
+
+
+  <!-- MOBILE MENU -->
+
+  <div class="mobile-menu" id="mobileMenu">
+
+      <div
+          class="mobile-close"
+          onclick="closeMobileMenu()"
+      >
+          ×
+      </div>
+
+      <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="project.html">PROJECT</a></li>
+          <li><a href="donation.html">DONATION</a></li>
+          <li><a href="gallery.html">GALLERY</a></li>
+          <li><a href="wish.html">A LITTLE WISH</a></li>
+      </ul>
+
+  </div>
+
+
+  <!-- HEADER -->
+
   <header class="nav">
-    <div class="logo">Otter's<br><span>Corner</span></div>
-    <nav>
-      <a href="#home">HOME</a>
-      <a href="about.html">ABOUT</a>
-    <a href="project.html">PROJECT</a>
-    <a href="donation.html">DONATION</a>
-      <a href="gallery.html">GALLERY</a>
-    <a href="wish.html">A LITTLE WISH</a></li>
-    </nav>
+
+      <div class="logo">
+          Otter's<br>
+          <span>Corner</span>
+      </div>
+
+
+      <nav>
+          <a href="#home">HOME</a>
+          <a href="about.html">ABOUT</a>
+          <a href="project.html">PROJECT</a>
+          <a href="donation.html">DONATION</a>
+          <a href="gallery.html">GALLERY</a>
+          <a href="wish.html">A LITTLE WISH</a>
+      </nav>
+
   </header>
 
+
   <main>
-  <section id="home" class="hero">
 
-    <div class="stars">
-        ✦　⋆　✧　⋆　✦
-    </div>
 
-    <p class="eyebrow">
-        Nguyễn Thanh Phúc Nguyên
-    </p>
+    <!-- HOME -->
 
-    <h1>
-        UPRIZE
-        <br>
-        <span>PN</span>
-    </h1>
+    <section id="home" class="hero">
 
-    <p class="artist">
-        Otter's Corner - Just for Phuc Nguyen
-    </p>
-
-    <p class="quote">
-        Where PN light shines,<br>
-        our little corner becomes home.
-    </p>
-
-    <a class="scroll" href="#about">
-        SCROLL DOWN ↓
-    </a>
-
-    <div class="decor">
-        ♪　♬　♩　♫
-    </div>
-
-</section>
-
-<section class="pn-profile">
-
-    <div class="pn-profile-header">
-
-    <div class="pn-photo">
-        <img src="phuc-nguyen.jpg" alt="Nguyễn Thanh Phúc Nguyên">
-    </div>
-
-    <h2>Nguyễn Thanh Phúc Nguyên</h2>
-
-</div>
-
-    <div class="pn-profile-card">
-
-        <div class="pn-info">
-            <span>STAGE NAME</span>
-            <strong>PN</strong>
+        <div class="stars">
+            ✦　⋆　✧　⋆　✦
         </div>
 
-        <div class="pn-info">
-            <span>GROUP</span>
-            <strong>UPRIZE</strong>
+        <p class="eyebrow">
+            Nguyễn Thanh Phúc Nguyên
+        </p>
+
+        <h1>
+            UPRIZE
+            <br>
+            <span>PN</span>
+        </h1>
+
+        <p class="artist">
+            Otter's Corner - Just for Phuc Nguyen
+        </p>
+
+        <p class="quote">
+            Where PN light shines,<br>
+            our little corner becomes home.
+        </p>
+
+        <a class="scroll" href="#about">
+            SCROLL DOWN ↓
+        </a>
+
+        <div class="decor">
+            ♪　♬　♩　♫
         </div>
 
-        <div class="pn-info">
-            <span>BORN</span>
-            <strong>12.12.2005</strong>
+    </section>
+
+
+
+    <!-- PN PROFILE -->
+
+    <section class="pn-profile">
+
+
+        <div class="pn-profile-header">
+
+            <div class="pn-photo">
+                <img
+                    src="phuc-nguyen.jpg"
+                    alt="Nguyễn Thanh Phúc Nguyên"
+                >
+            </div>
+
+            <h2>
+                Nguyễn Thanh Phúc Nguyên
+            </h2>
+
         </div>
 
-        <div class="pn-info">
-            <span>FROM</span>
-            <strong>ĐÀ LẠT</strong>
+
+
+        <!-- PROFILE INFO -->
+
+        <div class="pn-profile-card">
+
+            <div class="pn-info">
+                <span>STAGE NAME</span>
+                <strong>PN</strong>
+            </div>
+
+            <div class="pn-info">
+                <span>GROUP</span>
+                <strong>UPRIZE</strong>
+            </div>
+
+            <div class="pn-info">
+                <span>BORN</span>
+                <strong>12.12.2005</strong>
+            </div>
+
+            <div class="pn-info">
+                <span>FROM</span>
+                <strong>ĐÀ LẠT</strong>
+            </div>
+
         </div>
 
-    </div>
 
-    <div class="pn-description">
-      <p>
-    Let's show the world who we are
-        <!-- JOURNEY BUTTONS -->
-<div class="journey-links">
 
-    <a href="project100.html" class="journey-link">
-        <span class="journey-link-number">01</span>
+        <!-- DESCRIPTION + JOURNEYS -->
 
-        <div class="journey-link-text">
-            <small>PROJECT100%</small>
-            <h3>Hành trình của Tân binh Phúc Nguyên</h3>
+        <div class="pn-description">
+
+
+            <!-- GIỮ CÂU CỦA BẠN -->
+
+            <p>
+                Let's show the world who we are
+            </p>
+
+
+            <!-- JOURNEY 01 + 02 -->
+
+            <div class="journey-links">
+
+
+                <!-- PROJECT100% -->
+
+                <a
+                    href="project100.html"
+                    class="journey-link"
+                >
+
+                    <span class="journey-link-number">
+                        01
+                    </span>
+
+
+                    <div class="journey-link-text">
+
+                        <small>
+                            PROJECT100%
+                        </small>
+
+                        <h3>
+                            Hành trình của Tân binh Phúc Nguyên
+                        </h3>
+
+                    </div>
+
+
+                    <span class="journey-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+
+                <!-- SHOW IT ALL 2025 -->
+
+                <a
+                    href="showitall2025.html"
+                    class="journey-link"
+                >
+
+                    <span class="journey-link-number">
+                        02
+                    </span>
+
+
+                    <div class="journey-link-text">
+
+                        <small>
+                            SHOW IT ALL 2025
+                        </small>
+
+                        <h3>
+                            Hành trình Tân binh thăng cấp của Phúc Nguyên
+                        </h3>
+
+                    </div>
+
+
+                    <span class="journey-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
         </div>
 
-        <span class="journey-arrow">→</span>
-    </a>
 
-
-    <a href="showitall2025.html" class="journey-link">
-        <span class="journey-link-number">02</span>
-
-        <div class="journey-link-text">
-            <small>SHOW IT ALL 2025</small>
-            <h3>Hành trình Tân binh thăng cấp của Phúc Nguyên</h3>
-        </div>
-
-        <span class="journey-arrow">→</span>
-    </a>
-
-</div>
-</p>
-    </div>
-
-</section>
+    </section>
 
 
   </main>
 
+
+  <!-- FOOTER -->
+
   <footer>
-    <div class="logo">Otter's Corner</div>
-    <p>Always beside PN, on every step of the way.</p>
-    <p>MADE WITH ♥ FOR PN</p>
+
+      <div class="logo">
+          Otter's Corner
+      </div>
+
+      <p>
+          Always beside PN, on every step of the way.
+      </p>
+
+      <p>
+          MADE WITH ♥ FOR PN
+      </p>
+
   </footer>
 
+
   <script src="script.js"></script>
+
 </body>
+
 </html>
