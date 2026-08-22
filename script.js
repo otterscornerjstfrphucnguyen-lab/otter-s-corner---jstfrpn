@@ -3,6 +3,7 @@
 console.log("Otter's Corner project is ready!");
 
 
+
 /* ===== MOBILE MENU ===== */
 
 function openMobileMenu() {
@@ -14,6 +15,7 @@ function closeMobileMenu() {
 }
 
 
+
 /* ===== BACKGROUND MUSIC ===== */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -21,22 +23,23 @@ document.addEventListener("DOMContentLoaded", function () {
     const bgMusic = document.getElementById("bgMusic");
     const musicToggle = document.getElementById("musicToggle");
 
+
     if (!bgMusic || !musicToggle) {
         console.log("Music elements not found.");
         return;
     }
 
 
+
     /* ===== SETTINGS ===== */
 
     bgMusic.volume = 0.4;
+
 
     const savedTime = parseFloat(
         localStorage.getItem("otterMusicTime") || "0"
     );
 
-    const savedState =
-        localStorage.getItem("otterMusicState") || "on";
 
 
     /* ===== BUTTON ===== */
@@ -44,12 +47,19 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateButton() {
 
         if (bgMusic.paused) {
-            musicToggle.textContent = "MUSIC OFF ♫";
+
+            musicToggle.textContent =
+                "MUSIC OFF ♫";
+
         } else {
-            musicToggle.textContent = "MUSIC ON ♫";
+
+            musicToggle.textContent =
+                "MUSIC ON ♫";
+
         }
 
     }
+
 
 
     /* ===== RESTORE MUSIC POSITION ===== */
@@ -64,7 +74,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             bgMusic.currentTime = Math.min(
                 savedTime,
-                Math.max(0, bgMusic.duration - 0.1)
+                Math.max(
+                    0,
+                    bgMusic.duration - 0.1
+                )
             );
 
         }
@@ -72,22 +85,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+
     /* ===== START MUSIC ===== */
 
     function startMusic() {
 
-        if (
-            localStorage.getItem("otterMusicState") === "off"
-        ) {
+        const savedState =
+            localStorage.getItem(
+                "otterMusicState"
+            ) || "on";
+
+
+        /* Người dùng đã tắt nhạc */
+
+        if (savedState === "off") {
+
             bgMusic.pause();
+
             updateButton();
+
             return;
+
         }
 
 
-        function play() {
+
+        function playMusic() {
 
             restorePosition();
+
 
             bgMusic.play()
                 .then(function () {
@@ -97,7 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         "on"
                     );
 
+
                     updateButton();
+
 
                     console.log(
                         "🎵 Music playing from:",
@@ -112,22 +140,29 @@ document.addEventListener("DOMContentLoaded", function () {
                         error
                     );
 
-                    // Vẫn hiện ON vì người dùng chưa tắt
-                    musicToggle.textContent =
-                        "MUSIC ON ♫";
+
+                    /* 
+                       Chưa phát được vì trình duyệt chặn autoplay.
+                       Hiện trạng thái OFF.
+                    */
+
+                    updateButton();
 
                 });
 
         }
 
 
+
         if (bgMusic.readyState >= 1) {
-            play();
+
+            playMusic();
+
         } else {
 
             bgMusic.addEventListener(
                 "loadedmetadata",
-                play,
+                playMusic,
                 { once: true }
             );
 
@@ -136,24 +171,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== TỰ PHÁT NGAY KHI MỞ WEB ===== */
+
+    /* ===== START MUSIC ===== */
 
     startMusic();
 
 
-    /* ===== MUSIC ON / OFF ===== */
+
+    /* ===== MUSIC ON / OFF BUTTON ===== */
 
     musicToggle.addEventListener(
         "click",
         function (event) {
+
             event.stopPropagation();
 
 
+
+            /* ===== OFF → ON ===== */
+
             if (bgMusic.paused) {
 
-                // OFF → ON
-
                 restorePosition();
+
 
                 bgMusic.play()
                     .then(function () {
@@ -162,6 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             "otterMusicState",
                             "on"
                         );
+
 
                         updateButton();
 
@@ -175,21 +216,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     });
 
-            } else {
+            }
 
-                // ON → OFF
+
+            /* ===== ON → OFF ===== */
+
+            else {
 
                 bgMusic.pause();
+
 
                 localStorage.setItem(
                     "otterMusicState",
                     "off"
                 );
 
+
                 localStorage.setItem(
                     "otterMusicTime",
                     bgMusic.currentTime
                 );
+
 
                 updateButton();
 
@@ -199,20 +246,25 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* ===== SAVE POSITION ===== */
 
-    setInterval(function () {
+    /* ===== SAVE MUSIC POSITION ===== */
 
-        if (!bgMusic.paused) {
+    setInterval(
+        function () {
 
-            localStorage.setItem(
-                "otterMusicTime",
-                bgMusic.currentTime
-            );
+            if (!bgMusic.paused) {
 
-        }
+                localStorage.setItem(
+                    "otterMusicTime",
+                    bgMusic.currentTime
+                );
 
-    }, 500);
+            }
+
+        },
+        500
+    );
+
 
 
     /* ===== SAVE BEFORE LEAVING PAGE ===== */
@@ -230,18 +282,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    window.addEventListener(
-        "beforeunload",
-        function () {
-
-            localStorage.setItem(
-                "otterMusicTime",
-                bgMusic.currentTime
-            );
-
-        }
-    );
-
 
     /* ===== AUTOPLAY FALLBACK ===== */
 
@@ -249,7 +289,8 @@ document.addEventListener("DOMContentLoaded", function () {
         "pointerdown",
         function (event) {
 
-            // Không can thiệp vào nút MUSIC
+            /* Không ảnh hưởng khi bấm nút MUSIC */
+
             if (
                 event.target.closest("#musicToggle")
             ) {
@@ -257,7 +298,9 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            // Người dùng đã OFF
+
+            /* Người dùng đã chủ động tắt */
+
             if (
                 localStorage.getItem(
                     "otterMusicState"
@@ -267,14 +310,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-            // Nhạc đang chạy
+
+            /* Nhạc đang phát rồi */
+
             if (!bgMusic.paused) {
                 return;
             }
 
 
-            // Thử phát sau tương tác
+
             restorePosition();
+
 
             bgMusic.play()
                 .then(function () {
@@ -284,11 +330,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         "on"
                     );
 
-                    updateButton();
 
-                    console.log(
-                        "🎵 Music started after interaction."
-                    );
+                    updateButton();
 
                 })
                 .catch(function (error) {
@@ -302,5 +345,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
+
+
+
+    /* ===== INITIAL BUTTON STATE ===== */
+
+    updateButton();
 
 });
