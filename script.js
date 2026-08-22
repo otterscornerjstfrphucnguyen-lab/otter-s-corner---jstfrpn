@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ===== START MUSIC ===== */
 
-    startMusic();
+// Không tự phát khi vừa mở trang
 
 
 
@@ -285,67 +285,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* ===== AUTOPLAY FALLBACK ===== */
 
-    document.addEventListener(
-        "pointerdown",
-        function (event) {
+/* ===== AUTOPLAY KHI NGƯỜI DÙNG LƯỚT / CHẠM ===== */
 
-            /* Không ảnh hưởng khi bấm nút MUSIC */
+function tryStartMusic() {
 
-            if (
-                event.target.closest("#musicToggle")
-            ) {
-                return;
-            }
+    /* Người dùng đã chủ động tắt */
+    if (
+        localStorage.getItem(
+            "otterMusicState"
+        ) === "off"
+    ) {
+        return;
+    }
 
+    /* Nhạc đang phát */
+    if (!bgMusic.paused) {
+        return;
+    }
 
+    restorePosition();
 
-            /* Người dùng đã chủ động tắt */
+    bgMusic.play()
+        .then(function () {
 
-            if (
-                localStorage.getItem(
-                    "otterMusicState"
-                ) === "off"
-            ) {
-                return;
-            }
+            localStorage.setItem(
+                "otterMusicState",
+                "on"
+            );
 
+            updateButton();
 
+        })
+        .catch(function (error) {
 
-            /* Nhạc đang phát rồi */
+            console.log(
+                "Music still blocked:",
+                error
+            );
 
-            if (!bgMusic.paused) {
-                return;
-            }
-
-
-
-            restorePosition();
-
-
-            bgMusic.play()
-                .then(function () {
-
-                    localStorage.setItem(
-                        "otterMusicState",
-                        "on"
-                    );
+        });
+}
 
 
-                    updateButton();
+/* ===== CLICK / CHẠM ===== */
 
-                })
-                .catch(function (error) {
+document.addEventListener(
+    "pointerdown",
+    function (event) {
 
-                    console.log(
-                        "Music still blocked:",
-                        error
-                    );
-
-                });
-
+        if (
+            event.target.closest(
+                "#musicToggle"
+            )
+        ) {
+            return;
         }
-    );
 
+        tryStartMusic();
+
+    }
+);
+
+
+/* ===== LƯỚT CHUỘT ===== */
+
+window.addEventListener(
+    "wheel",
+    function () {
+
+        tryStartMusic();
+
+    },
+    { passive: true }
+);
+
+
+/* ===== LƯỚT ĐIỆN THOẠI ===== */
+
+window.addEventListener(
+    "touchmove",
+    function () {
+
+        tryStartMusic();
+
+    },
+    { passive: true }
+);
 
 
     /* ===== INITIAL BUTTON STATE ===== */
