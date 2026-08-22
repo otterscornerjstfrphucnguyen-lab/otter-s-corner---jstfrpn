@@ -460,13 +460,20 @@ const musicToggle = document.getElementById("musicToggle");
 
 let musicPlaying = false;
 
-/* ===== TRẠNG THÁI BAN ĐẦU ===== */
-bgMusic.pause();
-musicToggle.textContent = "MUSIC OFF ♫";
+
+/* ===== KHÔI PHỤC VỊ TRÍ NHẠC ===== */
+
+const savedTime = sessionStorage.getItem("musicTime");
+const savedPlaying = sessionStorage.getItem("musicPlaying");
+
+if (savedTime !== null) {
+    bgMusic.currentTime = parseFloat(savedTime);
+}
 
 
-/* ===== BẬT NHẠC ===== */
-function startMusic() {
+/* ===== NẾU NHẠC ĐANG ĐƯỢC PHÁT ===== */
+
+if (savedPlaying === "true") {
 
     bgMusic.play().then(() => {
 
@@ -475,7 +482,55 @@ function startMusic() {
 
     }).catch(() => {
 
-        musicPlaying = false;
+        musicToggle.textContent = "MUSIC OFF ♫";
+
+    });
+
+} else {
+
+    musicToggle.textContent = "MUSIC OFF ♫";
+
+}
+
+
+/* ===== LƯU VỊ TRÍ NHẠC LIÊN TỤC ===== */
+
+setInterval(() => {
+
+    if (!bgMusic.paused) {
+
+        sessionStorage.setItem(
+            "musicTime",
+            bgMusic.currentTime
+        );
+
+        sessionStorage.setItem(
+            "musicPlaying",
+            "true"
+        );
+
+    }
+
+}, 500);
+
+
+/* ===== BẬT NHẠC ===== */
+
+function startMusic() {
+
+    bgMusic.play().then(() => {
+
+        musicPlaying = true;
+
+        musicToggle.textContent = "MUSIC ON ♫";
+
+        sessionStorage.setItem(
+            "musicPlaying",
+            "true"
+        );
+
+    }).catch(() => {
+
         musicToggle.textContent = "MUSIC OFF ♫";
 
     });
@@ -484,6 +539,7 @@ function startMusic() {
 
 
 /* ===== TẮT NHẠC ===== */
+
 function stopMusic() {
 
     bgMusic.pause();
@@ -492,10 +548,21 @@ function stopMusic() {
 
     musicToggle.textContent = "MUSIC OFF ♫";
 
+    sessionStorage.setItem(
+        "musicPlaying",
+        "false"
+    );
+
+    sessionStorage.setItem(
+        "musicTime",
+        bgMusic.currentTime
+    );
+
 }
 
 
-/* ===== BẤM MUSIC ===== */
+/* ===== NÚT MUSIC ===== */
+
 musicToggle.addEventListener("click", function () {
 
     if (musicPlaying) {
@@ -511,34 +578,19 @@ musicToggle.addEventListener("click", function () {
 });
 
 
-/* ===== NGƯỜI DÙNG BẮT ĐẦU TƯƠNG TÁC ===== */
+/* ===== LƯỚT XUỐNG → TỰ CHẠY NHẠC ===== */
 
-let userInteracted = false;
-
-function registerInteraction() {
-
-    userInteracted = true;
-
-    /*
-     * Nếu người dùng đã từng bật nhạc
-     * thì giữ trạng thái đó.
-     */
-}
-
-document.addEventListener("click", registerInteraction);
-document.addEventListener("touchstart", registerInteraction);
-document.addEventListener("keydown", registerInteraction);
-
-
-/* ===== LƯỚT XUỐNG ===== */
+let scrollStarted = false;
 
 window.addEventListener("scroll", function () {
 
     if (
         window.scrollY > 30 &&
-        !musicPlaying &&
-        userInteracted
+        !scrollStarted &&
+        !musicPlaying
     ) {
+
+        scrollStarted = true;
 
         startMusic();
 
@@ -547,26 +599,19 @@ window.addEventListener("scroll", function () {
 });
 
 
-/* ===== KHI NHẠC BỊ PAUSE ===== */
+/* ===== TRƯỚC KHI CHUYỂN TRANG ===== */
 
-bgMusic.addEventListener("pause", function () {
+window.addEventListener("beforeunload", function () {
 
-    if (musicPlaying) {
+    sessionStorage.setItem(
+        "musicTime",
+        bgMusic.currentTime
+    );
 
-        musicPlaying = false;
-        musicToggle.textContent = "MUSIC OFF ♫";
-
-    }
-
-});
-
-
-/* ===== KHI NHẠC ĐANG CHẠY ===== */
-
-bgMusic.addEventListener("play", function () {
-
-    musicPlaying = true;
-    musicToggle.textContent = "MUSIC ON ♫";
+    sessionStorage.setItem(
+        "musicPlaying",
+        musicPlaying ? "true" : "false"
+    );
 
 });
 </script>
