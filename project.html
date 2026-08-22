@@ -56,8 +56,9 @@ body {
 }
 /* ===== PROJECT LIST ===== */
 .projects {
-    display: grid;
-    gap: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
 }
 /* ===== PROJECT CARD ===== */
 .project {
@@ -114,25 +115,6 @@ body {
 /* ===== COMING SOON ===== */
 /* ===== PROJECT 02 SAME STYLE AS PROJECT 01 ===== */
 
-.coming-soon {
-    opacity: 1;
-}
-
-.coming-soon h2 {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 25px;
-    font-weight: normal;
-    letter-spacing: 2px;
-    color: #38536a;
-}
-
-.coming-soon p {
-    color: #587186;
-}
-
-.coming-soon .view {
-    opacity: 1;
-    cursor: pointer;
 }
 /* ===== FOOTER ===== */
 .footer {
@@ -256,7 +238,7 @@ body {
             </a>
         </div>
         <!-- PROJECT 02 -->
-        <div class="project coming-soon">
+        <div class="project">
             <div class="number">
                 PROJECT 02
             </div>
