@@ -36,31 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
     bgMusic.volume = 0.4;
 
 
-   function restorePosition() {
-
     const savedTime = parseFloat(
-        localStorage.getItem(
-            "otterMusicTime"
-        ) || "0"
+        localStorage.getItem("otterMusicTime") || "0"
     );
-
-    if (
-        !isNaN(savedTime) &&
-        savedTime > 0 &&
-        isFinite(bgMusic.duration)
-    ) {
-
-        bgMusic.currentTime = Math.min(
-            savedTime,
-            Math.max(
-                0,
-                bgMusic.duration - 0.1
-            )
-        );
-
-    }
-
-}
 
 
 
