@@ -460,34 +460,70 @@ const bgMusic = document.getElementById("bgMusic");
 const musicToggle = document.getElementById("musicToggle");
 
 let musicPlaying = false;
+let userStoppedMusic = false;
 
 
-/* ===== TRẠNG THÁI BAN ĐẦU ===== */
+/* ===== KHÔI PHỤC VỊ TRÍ NHẠC ===== */
 
-bgMusic.pause();
-musicToggle.textContent = "MUSIC OFF ♫";
+const savedTime = sessionStorage.getItem("musicTime");
+
+if (savedTime !== null) {
+
+    bgMusic.addEventListener("loadedmetadata", function () {
+
+        bgMusic.currentTime = parseFloat(savedTime);
+
+    }, { once: true });
+
+}
 
 
-/* ===== HÀM BẬT NHẠC ===== */
+/* ===== CẬP NHẬT NÚT MUSIC ===== */
+
+function updateMusicButton() {
+
+    if (musicPlaying) {
+
+        musicToggle.textContent = "MUSIC ON ♫";
+
+    } else {
+
+        musicToggle.textContent = "MUSIC OFF ♫";
+
+    }
+
+}
+
+
+/* ===== BẬT NHẠC ===== */
 
 function startMusic() {
 
-    bgMusic.play().then(() => {
+    bgMusic.play().then(function () {
 
         musicPlaying = true;
-        musicToggle.textContent = "MUSIC ON ♫";
 
-    }).catch(() => {
+        userStoppedMusic = false;
+
+        updateMusicButton();
+
+        sessionStorage.setItem(
+            "musicPlaying",
+            "true"
+        );
+
+    }).catch(function () {
 
         musicPlaying = false;
-        musicToggle.textContent = "MUSIC OFF ♫";
+
+        updateMusicButton();
 
     });
 
 }
 
 
-/* ===== HÀM TẮT NHẠC ===== */
+/* ===== TẮT NHẠC ===== */
 
 function stopMusic() {
 
@@ -495,14 +531,28 @@ function stopMusic() {
 
     musicPlaying = false;
 
-    musicToggle.textContent = "MUSIC OFF ♫";
+    userStoppedMusic = true;
+
+    updateMusicButton();
+
+    sessionStorage.setItem(
+        "musicPlaying",
+        "false"
+    );
+
+    sessionStorage.setItem(
+        "musicTime",
+        bgMusic.currentTime
+    );
 
 }
 
 
 /* ===== BẤM NÚT MUSIC ===== */
 
-musicToggle.addEventListener("click", function () {
+musicToggle.addEventListener("click", function (event) {
+
+    event.stopPropagation();
 
     if (musicPlaying) {
 
@@ -517,55 +567,90 @@ musicToggle.addEventListener("click", function () {
 });
 
 
-/* ===== LƯỚT XUỐNG → TỰ BẬT NHẠC ===== */
+/* ===== LƯỚT CHUỘT / TRACKPAD → BẬT NHẠC ===== */
 
-let scrollStarted = false;
+function startOnFirstInteraction() {
 
-window.addEventListener("scroll", function () {
-
-    if (
-        window.scrollY > 30 &&
-        !scrollStarted &&
-        !musicPlaying
-    ) {
-
-        scrollStarted = true;
+    if (!musicPlaying && !userStoppedMusic) {
 
         startMusic();
 
     }
 
-});
+}
 
 
-/* ===== KHI NHẠC BỊ DỪNG ===== */
+/* Máy tính */
 
-bgMusic.addEventListener("pause", function () {
+window.addEventListener(
+    "wheel",
+    startOnFirstInteraction,
+    { once: true, passive: true }
+);
 
-    if (musicPlaying) {
 
-        musicPlaying = false;
-        musicToggle.textContent = "MUSIC OFF ♫";
+/* Điện thoại */
+
+window.addEventListener(
+    "touchstart",
+    startOnFirstInteraction,
+    { once: true, passive: true }
+);
+
+
+/* Bấm phím */
+
+window.addEventListener(
+    "keydown",
+    startOnFirstInteraction,
+    { once: true }
+);
+
+
+/* ===== LƯU VỊ TRÍ NHẠC LIÊN TỤC ===== */
+
+setInterval(function () {
+
+    if (!bgMusic.paused) {
+
+        sessionStorage.setItem(
+            "musicTime",
+            bgMusic.currentTime
+        );
+
+        sessionStorage.setItem(
+            "musicPlaying",
+            "true"
+        );
 
     }
 
+}, 500);
+
+
+/* ===== RỜI TRANG ===== */
+
+window.addEventListener("beforeunload", function () {
+
+    sessionStorage.setItem(
+        "musicTime",
+        bgMusic.currentTime
+    );
+
+    sessionStorage.setItem(
+        "musicPlaying",
+        musicPlaying ? "true" : "false"
+    );
+
 });
 
 
-/* ===== KHI NHẠC ĐANG CHẠY ===== */
+/* ===== BAN ĐẦU ===== */
 
-bgMusic.addEventListener("play", function () {
-
-    musicPlaying = true;
-    musicToggle.textContent = "MUSIC ON ♫";
-
-});
+updateMusicButton();
 </script>
 
 </body>
 </html>
 
-</body>
 
-</html>
-      
