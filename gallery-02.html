@@ -1,38 +1,796 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Gallery 2 — Otter's Corner</title>
+    <meta charset="UTF-8">
 
-  <link rel="stylesheet" href="style.css">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Gallery 02 — Otter's Corner</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        /* =========================================
+           GALLERY 02 — MUSEUM EXHIBITION
+        ========================================= */
+
+        body {
+            margin: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #dcecf8 0%,
+                    #eaf5fb 50%,
+                    #d9ebf7 100%
+                );
+
+            color: #425b70;
+        }
+
+
+        /* =========================================
+           PAGE
+        ========================================= */
+
+        .gallery02-page {
+
+            min-height: 100vh;
+
+            padding:
+                65px
+                0
+                110px;
+
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .gallery02-header {
+
+            width:
+                min(
+                    1050px,
+                    90%
+                );
+
+            margin:
+                0 auto 70px;
+
+            text-align: center;
+
+        }
+
+
+        .gallery02-back {
+
+            display: inline-block;
+
+            margin-bottom: 28px;
+
+            color: #66869d;
+
+            text-decoration: none;
+
+            font-size: 10px;
+
+            letter-spacing: 3px;
+
+            transition:
+                opacity 0.3s ease;
+
+        }
+
+
+        .gallery02-back:hover {
+
+            opacity: 0.55;
+
+        }
+
+
+        .gallery02-header h1 {
+
+            margin: 0;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size:
+                clamp(
+                    34px,
+                    5vw,
+                    52px
+                );
+
+            font-weight: 400;
+
+            letter-spacing: 6px;
+
+            color: #38536a;
+
+        }
+
+
+        .gallery02-ornament {
+
+            margin-top: 22px;
+
+            color: #82aecb;
+
+            font-size: 15px;
+
+            letter-spacing: 7px;
+
+        }
+
+
+        /* =========================================
+           MUSEUM GALLERY
+        ========================================= */
+
+        .museum-gallery {
+
+            width:
+                min(
+                    1050px,
+                    90%
+                );
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            column-gap: 60px;
+
+            row-gap: 85px;
+
+            align-items: start;
+
+        }
+
+
+        /* =========================================
+           FRAME
+        ========================================= */
+
+        .museum-frame {
+
+            position: relative;
+
+            padding: 17px;
+
+            background: #ffffff;
+
+            border:
+                1px solid
+                rgba(
+                    130,
+                    160,
+                    180,
+                    0.18
+                );
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    65,
+                    95,
+                    115,
+                    0.13
+                );
+
+            cursor: pointer;
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+
+        }
+
+
+        /* =========================================
+           PHOTOS
+        ========================================= */
+
+        .museum-frame img {
+
+            display: block;
+
+            width: 100%;
+
+            height: 430px;
+
+            object-fit: cover;
+
+            background: #edf6fb;
+
+        }
+
+
+        /* =========================================
+           NATURAL EXHIBITION POSITION
+        ========================================= */
+
+        .museum-frame:nth-child(1) {
+            transform: rotate(-1deg);
+        }
+
+        .museum-frame:nth-child(2) {
+            transform:
+                rotate(1deg)
+                translateY(30px);
+        }
+
+        .museum-frame:nth-child(3) {
+            transform:
+                rotate(-0.5deg)
+                translateY(-12px);
+        }
+
+        .museum-frame:nth-child(4) {
+            transform:
+                rotate(1deg)
+                translateY(28px);
+        }
+
+        .museum-frame:nth-child(5) {
+            transform:
+                rotate(-1deg)
+                translateY(5px);
+        }
+
+        .museum-frame:nth-child(6) {
+            transform:
+                rotate(0.7deg)
+                translateY(38px);
+        }
+
+        .museum-frame:nth-child(7) {
+            transform:
+                rotate(-0.6deg)
+                translateY(-15px);
+        }
+
+        .museum-frame:nth-child(8) {
+            transform:
+                rotate(1deg)
+                translateY(25px);
+        }
+
+
+        /* =========================================
+           HOVER
+        ========================================= */
+
+        .museum-frame:hover {
+
+            transform:
+                translateY(-8px)
+                rotate(0deg)
+                scale(1.015);
+
+            box-shadow:
+                0 22px 45px
+                rgba(
+                    65,
+                    100,
+                    125,
+                    0.20
+                );
+
+        }
+
+
+        /* =========================================
+           LIGHTBOX
+        ========================================= */
+
+        .gallery-lightbox {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 99999;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 25px;
+
+            background:
+                rgba(
+                    42,
+                    61,
+                    76,
+                    0.90
+                );
+
+            backdrop-filter: blur(10px);
+
+            -webkit-backdrop-filter: blur(10px);
+
+        }
+
+
+        .gallery-lightbox.active {
+
+            display: flex;
+
+        }
+
+
+        .gallery-lightbox img {
+
+            max-width: 92vw;
+
+            max-height: 88vh;
+
+            width: auto;
+
+            height: auto;
+
+            object-fit: contain;
+
+            box-shadow:
+                0 25px 70px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.30
+                );
+
+        }
+
+
+        /* =========================================
+           CLOSE
+        ========================================= */
+
+        .lightbox-close {
+
+            position: fixed;
+
+            top: 20px;
+
+            right: 28px;
+
+            color: #ffffff;
+
+            font-size: 35px;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: 300;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 100000;
+
+            opacity: 0.85;
+
+        }
+
+
+        .lightbox-close:hover {
+
+            opacity: 1;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .gallery02-page {
+
+                padding:
+                    45px
+                    0
+                    70px;
+
+            }
+
+
+            .gallery02-header {
+
+                margin-bottom: 45px;
+
+            }
+
+
+            .gallery02-header h1 {
+
+                font-size: 32px;
+
+                letter-spacing: 4px;
+
+            }
+
+
+            .gallery02-ornament {
+
+                font-size: 13px;
+
+                letter-spacing: 5px;
+
+            }
+
+
+            .museum-gallery {
+
+                width: 88%;
+
+                grid-template-columns: 1fr;
+
+                gap: 48px;
+
+            }
+
+
+            .museum-frame {
+
+                padding: 12px;
+
+            }
+
+
+            .museum-frame:nth-child(1),
+            .museum-frame:nth-child(2),
+            .museum-frame:nth-child(3),
+            .museum-frame:nth-child(4),
+            .museum-frame:nth-child(5),
+            .museum-frame:nth-child(6),
+            .museum-frame:nth-child(7),
+            .museum-frame:nth-child(8) {
+
+                transform: none;
+
+            }
+
+
+            .museum-frame:hover {
+
+                transform:
+                    translateY(-5px)
+                    scale(1.01);
+
+            }
+
+
+            .museum-frame img {
+
+                height: auto;
+
+                aspect-ratio: 4 / 5;
+
+            }
+
+
+            .gallery-lightbox {
+
+                padding: 15px;
+
+            }
+
+
+            .gallery-lightbox img {
+
+                max-width: 94vw;
+
+                max-height: 82vh;
+
+            }
+
+
+            .lightbox-close {
+
+                top: 17px;
+
+                right: 20px;
+
+                font-size: 30px;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-  <main class="photo-gallery">
 
-    <h1>GALLERY 2</h1>
+    <!-- =========================================
+         GALLERY 02
+    ========================================= -->
 
-    <div class="photo-grid">
+    <main class="gallery02-page">
 
-      <img src="images/gallery2/01.jpg" alt="">
-      <img src="images/gallery2/02.jpg" alt="">
-      <img src="images/gallery2/03.jpg" alt="">
-      <img src="images/gallery2/04.jpg" alt="">
-      <img src="images/gallery2/05.jpg" alt="">
-      <img src="images/gallery2/06.jpg" alt="">
-      <img src="images/gallery2/07.jpg" alt="">
-      <img src="images/gallery2/08.jpg" alt="">
+
+        <!-- HEADER -->
+
+        <header class="gallery02-header">
+
+
+            <a
+                href="gallery.html"
+                class="gallery02-back"
+            >
+                ← BACK TO GALLERY
+            </a>
+
+
+            <h1>
+                GALLERY
+            </h1>
+
+
+            <div class="gallery02-ornament">
+                ✦　⋆　✧　⋆　✦
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =====================================
+             8 PHOTOS
+        ====================================== -->
+
+        <section class="museum-gallery">
+
+
+            <div class="museum-frame">
+                <img
+                    src="glr2.jpg"
+                    alt=""
+                >
+            </div>
+
+
+            <div class="museum-frame">
+                <img
+                    src="glr2-1.jpg"
+                    alt=""
+                >
+            </div>
+
+
+            <div class="museum-frame">
+                <img
+                    src="glr2-2.jpg"
+                    alt=""
+                >
+            </div>
+
+
+            <div class="museum-frame">
+                <img
+                    src="glr2-3.jpg"
+                    alt=""
+                >
+            </div>
+
+
+            <div class="museum-frame">
+                <img
+                    src="glr2-4.jpg"
+                    alt=""
+                >
+            </div>
+
+
+            <div class="museum-frame">
+                <img
+                    src="glr2-5.jpg"
+                    alt=""
+                >
+            </div>
+
+
+            <div class="museum-frame">
+                <img
+                    src="glr2-6.jpg"
+                    alt=""
+                >
+            </div>
+
+
+            <div class="museum-frame">
+                <img
+                    src="glr2-7.jpg"
+                    alt=""
+                >
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         LIGHTBOX
+    ========================================= -->
+
+    <div
+        class="gallery-lightbox"
+        id="galleryLightbox"
+    >
+
+        <div
+            class="lightbox-close"
+            id="lightboxClose"
+        >
+            ×
+        </div>
+
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt=""
+        >
 
     </div>
 
-    <a href="gallery.html" class="back-link">
-      ← BACK TO GALLERY
-    </a>
 
-  </main>
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        const images =
+            document.querySelectorAll(
+                ".museum-frame img"
+            );
+
+
+        const lightbox =
+            document.getElementById(
+                "galleryLightbox"
+            );
+
+
+        const lightboxImage =
+            document.getElementById(
+                "lightboxImage"
+            );
+
+
+        const closeButton =
+            document.getElementById(
+                "lightboxClose"
+            );
+
+
+        /* =====================================
+           OPEN IMAGE
+        ====================================== */
+
+        images.forEach(
+            function (image) {
+
+                image.addEventListener(
+                    "click",
+                    function () {
+
+                        lightboxImage.src =
+                            image.src;
+
+                        lightbox.classList.add(
+                            "active"
+                        );
+
+                        document.body.style.overflow =
+                            "hidden";
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =====================================
+           CLOSE LIGHTBOX
+        ====================================== */
+
+        function closeLightbox() {
+
+            lightbox.classList.remove(
+                "active"
+            );
+
+            lightboxImage.src = "";
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+
+        closeButton.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+
+        /* CLICK OUTSIDE IMAGE */
+
+        lightbox.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+
+        /* ESC */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    </script>
+
 
 </body>
+
 </html>
+```
