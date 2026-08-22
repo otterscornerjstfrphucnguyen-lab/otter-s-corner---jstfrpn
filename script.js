@@ -24,72 +24,68 @@ function closeMobileMenu() {
 
 
 
-/* ===== BACKGROUND MUSIC ===== */
+/* =========================================
+   BACKGROUND MUSIC — OTTER'S CORNER
+   Đồng bộ toàn bộ website
+========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const bgMusic = document.getElementById("bgMusic");
     const musicToggle = document.getElementById("musicToggle");
 
-
-    /* Không có nhạc trên trang này thì bỏ qua */
-
     if (!bgMusic || !musicToggle) {
+        console.log("Music elements not found.");
         return;
     }
 
 
+    /* ===== MUSIC SETTINGS ===== */
+
     bgMusic.volume = 0.4;
 
 
-    /* ===== LẤY TRẠNG THÁI ĐÃ LƯU ===== */
+    /* ===== LOAD SAVED DATA ===== */
 
-    const savedState =
-        localStorage.getItem("otterMusicState");
+    let savedTime = parseFloat(
+        localStorage.getItem("otterMusicTime") || "0"
+    );
+
+    let savedState =
+        localStorage.getItem("otterMusicState") || "on";
 
 
-    /* ===== CẬP NHẬT NÚT ===== */
+    /* ===== UPDATE BUTTON ===== */
 
     function updateButton() {
 
         if (bgMusic.paused) {
 
-            musicToggle.textContent =
-                "MUSIC OFF ♫";
+            musicToggle.textContent = "MUSIC OFF ♫";
 
         } else {
 
-            musicToggle.textContent =
-                "MUSIC ON ♫";
+            musicToggle.textContent = "MUSIC ON ♫";
 
         }
 
     }
 
 
-    /* ===== KHÔI PHỤC VỊ TRÍ NHẠC ===== */
+    /* ===== RESTORE POSITION ===== */
 
     function restorePosition() {
 
-        const savedTime = parseFloat(
-            localStorage.getItem(
-                "otterMusicTime"
-            ) || "0"
-        );
-
-
         if (
             !isNaN(savedTime) &&
-            savedTime > 0 &&
-            isFinite(bgMusic.duration)
+            savedTime >= 0 &&
+            isFinite(bgMusic.duration) &&
+            bgMusic.duration > 0
         ) {
 
             bgMusic.currentTime = Math.min(
                 savedTime,
-                Math.max(
-                    0,
-                    bgMusic.duration - 0.1
-                )
+                bgMusic.duration - 0.1
             );
 
         }
@@ -97,12 +93,56 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== PHÁT NHẠC ===== */
+    /* ===== SAVE CURRENT POSITION ===== */
 
-    function playMusic() {
+    function savePosition() {
+
+        if (
+            !isNaN(bgMusic.currentTime) &&
+            bgMusic.currentTime >= 0
+        ) {
+
+            localStorage.setItem(
+                "otterMusicTime",
+                bgMusic.currentTime
+            );
+
+        }
+
+    }
+
+
+    /* ===== WHEN AUDIO READY ===== */
+
+    function prepareMusic() {
 
         restorePosition();
 
+        updateButton();
+
+    }
+
+
+    if (bgMusic.readyState >= 1) {
+
+        prepareMusic();
+
+    } else {
+
+        bgMusic.addEventListener(
+            "loadedmetadata",
+            prepareMusic,
+            { once: true }
+        );
+
+    }
+
+
+    /* ===== START MUSIC ===== */
+
+    function startMusic() {
+
+        restorePosition();
 
         bgMusic.play()
             .then(function () {
@@ -114,11 +154,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 updateButton();
 
+                console.log(
+                    "🎵 Music ON — time:",
+                    bgMusic.currentTime
+                );
+
             })
             .catch(function (error) {
 
                 console.log(
-                    "Music waiting for interaction:",
+                    "Music play blocked:",
                     error
                 );
 
@@ -129,45 +174,25 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== AUDIO SẴN SÀNG ===== */
+    /* ===== STOP MUSIC ===== */
 
-    function setupMusic() {
+    function stopMusic() {
 
-        restorePosition();
+        savePosition();
+
+        bgMusic.pause();
+
+        localStorage.setItem(
+            "otterMusicState",
+            "off"
+        );
 
         updateButton();
 
-
-        /*
-        Nếu trang trước nhạc đang bật
-        thì cố gắng phát tiếp
-        */
-
-        if (savedState === "on") {
-
-            playMusic();
-
-        }
-
     }
 
 
-    if (bgMusic.readyState >= 1) {
-
-        setupMusic();
-
-    } else {
-
-        bgMusic.addEventListener(
-            "loadedmetadata",
-            setupMusic,
-            { once: true }
-        );
-
-    }
-
-
-    /* ===== CLICK NÚT MUSIC ===== */
+    /* ===== MUSIC BUTTON ===== */
 
     musicToggle.addEventListener(
         "click",
@@ -175,36 +200,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
             event.stopPropagation();
 
-
-            /* Nếu đang tắt → bật */
-
             if (bgMusic.paused) {
 
-                playMusic();
+                startMusic();
 
-            }
+            } else {
 
-
-            /* Nếu đang bật → tắt */
-
-            else {
-
-                bgMusic.pause();
-
-
-                localStorage.setItem(
-                    "otterMusicState",
-                    "off"
-                );
-
-
-                localStorage.setItem(
-                    "otterMusicTime",
-                    bgMusic.currentTime
-                );
-
-
-                updateButton();
+                stopMusic();
 
             }
 
@@ -212,32 +214,39 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* ===== TƯƠNG TÁC ĐẦU TIÊN → BẬT NHẠC ===== */
+    /* =========================================
+       FIRST USER INTERACTION
+    ========================================= */
 
-    function startOnInteraction(event) {
+    function userInteraction() {
 
         /*
-        Không tự bật nếu người dùng
-        đã chủ động tắt
-        */
+         * Nếu nhạc đang OFF do người dùng
+         * bấm nút OFF thì không tự bật lại.
+         */
 
-        if (
+        const state =
             localStorage.getItem(
                 "otterMusicState"
-            ) === "off"
-        ) {
+            );
+
+
+        if (state === "off") {
             return;
         }
 
 
-        if (bgMusic.paused) {
-
-            playMusic();
-
+        if (!bgMusic.paused) {
+            return;
         }
+
+
+        startMusic();
 
     }
 
+
+    /* ===== CLICK ===== */
 
     document.addEventListener(
         "pointerdown",
@@ -251,85 +260,82 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            startOnInteraction();
+            userInteraction();
 
-        },
-        { once: true }
+        }
     );
 
+
+    /* ===== WHEEL ===== */
 
     window.addEventListener(
         "wheel",
-        startOnInteraction,
-        {
-            once: true,
-            passive: true
-        }
+        userInteraction,
+        { passive: true }
     );
 
+
+    /* ===== TOUCH ===== */
 
     window.addEventListener(
         "touchstart",
-        startOnInteraction,
-        {
-            once: true,
-            passive: true
-        }
+        userInteraction,
+        { passive: true }
     );
 
+
+    /* ===== KEYBOARD ===== */
 
     window.addEventListener(
         "keydown",
-        startOnInteraction,
-        { once: true }
+        userInteraction
     );
 
 
-    /* ===== LƯU VỊ TRÍ LIÊN TỤC ===== */
+    /* =========================================
+       SAVE MUSIC TIME CONTINUOUSLY
+    ========================================= */
 
-    bgMusic.addEventListener(
-        "timeupdate",
+    setInterval(
         function () {
 
             if (!bgMusic.paused) {
 
-                localStorage.setItem(
-                    "otterMusicTime",
-                    bgMusic.currentTime
-                );
-
-
-                localStorage.setItem(
-                    "otterMusicState",
-                    "on"
-                );
+                savePosition();
 
             }
 
-        }
+        },
+        500
     );
 
 
-    /* ===== LƯU KHI RỜI TRANG ===== */
+    /* =========================================
+       SAVE BEFORE LEAVING PAGE
+    ========================================= */
 
     window.addEventListener(
         "pagehide",
         function () {
 
-            localStorage.setItem(
-                "otterMusicTime",
-                bgMusic.currentTime
-            );
-
-
-            localStorage.setItem(
-                "otterMusicState",
-                bgMusic.paused
-                    ? "off"
-                    : "on"
-            );
+            savePosition();
 
         }
     );
+
+
+    window.addEventListener(
+        "beforeunload",
+        function () {
+
+            savePosition();
+
+        }
+    );
+
+
+    /* ===== INITIAL BUTTON ===== */
+
+    updateButton();
 
 });
