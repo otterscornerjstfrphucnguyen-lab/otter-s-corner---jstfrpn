@@ -460,15 +460,12 @@ const musicToggle = document.getElementById("musicToggle");
 
 let musicPlaying = false;
 
-
 /* ===== TRẠNG THÁI BAN ĐẦU ===== */
-
 bgMusic.pause();
 musicToggle.textContent = "MUSIC OFF ♫";
 
 
-/* ===== HÀM BẬT NHẠC ===== */
-
+/* ===== BẬT NHẠC ===== */
 function startMusic() {
 
     bgMusic.play().then(() => {
@@ -486,8 +483,7 @@ function startMusic() {
 }
 
 
-/* ===== HÀM TẮT NHẠC ===== */
-
+/* ===== TẮT NHẠC ===== */
 function stopMusic() {
 
     bgMusic.pause();
@@ -499,8 +495,7 @@ function stopMusic() {
 }
 
 
-/* ===== BẤM NÚT MUSIC ===== */
-
+/* ===== BẤM MUSIC ===== */
 musicToggle.addEventListener("click", function () {
 
     if (musicPlaying) {
@@ -516,19 +511,34 @@ musicToggle.addEventListener("click", function () {
 });
 
 
-/* ===== LƯỚT XUỐNG ===== */
+/* ===== NGƯỜI DÙNG BẮT ĐẦU TƯƠNG TÁC ===== */
 
-let scrollStarted = false;
+let userInteracted = false;
+
+function registerInteraction() {
+
+    userInteracted = true;
+
+    /*
+     * Nếu người dùng đã từng bật nhạc
+     * thì giữ trạng thái đó.
+     */
+}
+
+document.addEventListener("click", registerInteraction);
+document.addEventListener("touchstart", registerInteraction);
+document.addEventListener("keydown", registerInteraction);
+
+
+/* ===== LƯỚT XUỐNG ===== */
 
 window.addEventListener("scroll", function () {
 
     if (
         window.scrollY > 30 &&
-        !scrollStarted &&
-        !musicPlaying
+        !musicPlaying &&
+        userInteracted
     ) {
-
-        scrollStarted = true;
 
         startMusic();
 
@@ -537,14 +547,13 @@ window.addEventListener("scroll", function () {
 });
 
 
-/* ===== NẾU NHẠC TỰ DỪNG ===== */
+/* ===== KHI NHẠC BỊ PAUSE ===== */
 
 bgMusic.addEventListener("pause", function () {
 
     if (musicPlaying) {
 
         musicPlaying = false;
-
         musicToggle.textContent = "MUSIC OFF ♫";
 
     }
@@ -557,7 +566,6 @@ bgMusic.addEventListener("pause", function () {
 bgMusic.addEventListener("play", function () {
 
     musicPlaying = true;
-
     musicToggle.textContent = "MUSIC ON ♫";
 
 });
