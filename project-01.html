@@ -459,43 +459,156 @@ const bgMusic = document.getElementById("bgMusic");
 const musicToggle = document.getElementById("musicToggle");
 
 let musicPlaying = false;
+let userStoppedMusic = false;
 
 
 /* ===== KHÔI PHỤC VỊ TRÍ NHẠC ===== */
 
 const savedTime = sessionStorage.getItem("musicTime");
-const savedPlaying = sessionStorage.getItem("musicPlaying");
 
 if (savedTime !== null) {
-    bgMusic.currentTime = parseFloat(savedTime);
+
+    bgMusic.addEventListener("loadedmetadata", function () {
+
+        bgMusic.currentTime = parseFloat(savedTime);
+
+    }, { once: true });
+
 }
 
 
-/* ===== NẾU NHẠC ĐANG ĐƯỢC PHÁT ===== */
+/* ===== CẬP NHẬT NÚT ===== */
 
-if (savedPlaying === "true") {
+function updateMusicButton() {
 
-    bgMusic.play().then(() => {
+    if (musicPlaying) {
 
-        musicPlaying = true;
         musicToggle.textContent = "MUSIC ON ♫";
 
-    }).catch(() => {
+    } else {
 
         musicToggle.textContent = "MUSIC OFF ♫";
 
-    });
-
-} else {
-
-    musicToggle.textContent = "MUSIC OFF ♫";
+    }
 
 }
 
 
-/* ===== LƯU VỊ TRÍ NHẠC LIÊN TỤC ===== */
+/* ===== BẬT NHẠC ===== */
 
-setInterval(() => {
+function startMusic() {
+
+    bgMusic.play().then(function () {
+
+        musicPlaying = true;
+
+        userStoppedMusic = false;
+
+        updateMusicButton();
+
+        sessionStorage.setItem(
+            "musicPlaying",
+            "true"
+        );
+
+    }).catch(function () {
+
+        musicPlaying = false;
+
+        updateMusicButton();
+
+    });
+
+}
+
+
+/* ===== TẮT NHẠC ===== */
+
+function stopMusic() {
+
+    bgMusic.pause();
+
+    musicPlaying = false;
+
+    userStoppedMusic = true;
+
+    updateMusicButton();
+
+    sessionStorage.setItem(
+        "musicPlaying",
+        "false"
+    );
+
+    sessionStorage.setItem(
+        "musicTime",
+        bgMusic.currentTime
+    );
+
+}
+
+
+/* ===== BẤM NÚT MUSIC ===== */
+
+musicToggle.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+    if (musicPlaying) {
+
+        stopMusic();
+
+    } else {
+
+        startMusic();
+
+    }
+
+});
+
+
+/* ===== LƯỚT CHUỘT / TRACKPAD → BẬT NHẠC ===== */
+
+function startOnFirstInteraction() {
+
+    if (!musicPlaying && !userStoppedMusic) {
+
+        startMusic();
+
+    }
+
+}
+
+
+/* Máy tính: lăn chuột hoặc trackpad */
+
+window.addEventListener(
+    "wheel",
+    startOnFirstInteraction,
+    { once: true, passive: true }
+);
+
+
+/* Điện thoại: chạm để bắt đầu lướt */
+
+window.addEventListener(
+    "touchstart",
+    startOnFirstInteraction,
+    { once: true, passive: true }
+);
+
+
+/* Bấm phím */
+
+window.addEventListener(
+    "keydown",
+    startOnFirstInteraction,
+    { once: true }
+);
+
+
+/* ===== LƯU VỊ TRÍ NHẠC ===== */
+
+setInterval(function () {
 
     if (!bgMusic.paused) {
 
@@ -514,92 +627,7 @@ setInterval(() => {
 }, 500);
 
 
-/* ===== BẬT NHẠC ===== */
-
-function startMusic() {
-
-    bgMusic.play().then(() => {
-
-        musicPlaying = true;
-
-        musicToggle.textContent = "MUSIC ON ♫";
-
-        sessionStorage.setItem(
-            "musicPlaying",
-            "true"
-        );
-
-    }).catch(() => {
-
-        musicToggle.textContent = "MUSIC OFF ♫";
-
-    });
-
-}
-
-
-/* ===== TẮT NHẠC ===== */
-
-function stopMusic() {
-
-    bgMusic.pause();
-
-    musicPlaying = false;
-
-    musicToggle.textContent = "MUSIC OFF ♫";
-
-    sessionStorage.setItem(
-        "musicPlaying",
-        "false"
-    );
-
-    sessionStorage.setItem(
-        "musicTime",
-        bgMusic.currentTime
-    );
-
-}
-
-
-/* ===== NÚT MUSIC ===== */
-
-musicToggle.addEventListener("click", function () {
-
-    if (musicPlaying) {
-
-        stopMusic();
-
-    } else {
-
-        startMusic();
-
-    }
-
-});
-
-
-/* ===== LƯỚT XUỐNG → TỰ CHẠY NHẠC ===== */
-
-let scrollStarted = false;
-
-window.addEventListener("scroll", function () {
-
-    if (
-        window.scrollY > 30 &&
-        !scrollStarted &&
-        !musicPlaying
-    ) {
-
-        scrollStarted = true;
-
-        startMusic();
-
-    }
-
-});
-
-
-/* ===== TRƯỚC KHI CHUYỂN TRANG ===== */
+/* ===== RỜI TRANG ===== */
 
 window.addEventListener("beforeunload", function () {
 
@@ -614,7 +642,13 @@ window.addEventListener("beforeunload", function () {
     );
 
 });
+
+
+/* ===== BAN ĐẦU ===== */
+
+updateMusicButton();
 </script>
+    
 </body>
 
 </html>
