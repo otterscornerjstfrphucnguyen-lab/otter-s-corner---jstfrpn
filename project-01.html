@@ -333,7 +333,7 @@ body {
 </audio>
 
 <button id="musicToggle" class="music-toggle" type="button">
-    MUSIC ON ♫
+    MUSIC OFF ♫
 </button>
     
 <div class="container">
@@ -460,40 +460,60 @@ const musicToggle = document.getElementById("musicToggle");
 
 let musicStarted = false;
 
-/* Bấm nút để ON / OFF */
+/* ===== TRẠNG THÁI BAN ĐẦU ===== */
+musicToggle.textContent = "MUSIC OFF ♫";
+
+
+/* ===== BẤM NÚT MUSIC ===== */
+
 musicToggle.addEventListener("click", function () {
 
     if (bgMusic.paused) {
-        bgMusic.play();
-        musicToggle.textContent = "MUSIC OFF ♫";
-        musicStarted = true;
+
+        bgMusic.play().then(() => {
+
+            musicToggle.textContent = "MUSIC ON ♫";
+            musicStarted = true;
+
+        }).catch(() => {
+
+            musicToggle.textContent = "MUSIC OFF ♫";
+
+        });
+
     } else {
+
         bgMusic.pause();
-        musicToggle.textContent = "MUSIC ON ♫";
+
+        musicToggle.textContent = "MUSIC OFF ♫";
+
+        musicStarted = false;
+
     }
 
 });
 
 
-/* Khi bắt đầu cuộn xuống → tự bật nhạc */
+/* ===== LƯỚT XUỐNG → TỰ ĐỘNG BẬT NHẠC ===== */
+
 window.addEventListener("scroll", function () {
 
     if (window.scrollY > 30 && !musicStarted) {
 
         bgMusic.play().then(() => {
 
-            musicToggle.textContent = "MUSIC OFF ♫";
+            musicToggle.textContent = "MUSIC ON ♫";
             musicStarted = true;
 
         }).catch(() => {
-            /* Trình duyệt có thể chặn autoplay */
+
+            /* Nếu trình duyệt chặn autoplay thì không làm gì */
         });
 
     }
 
 });
 </script>
-
 </body>
 
 </html>
