@@ -1,63 +1,112 @@
-// ===== OTTER'S CORNER =====
+```javascript
+// ======================================================
+// OTTER'S CORNER
+// GLOBAL JAVASCRIPT
+// ======================================================
 
 console.log("Otter's Corner project is ready!");
 
 
 
-/* ===== MOBILE MENU ===== */
+// ======================================================
+// MOBILE MENU
+// ======================================================
 
 function openMobileMenu() {
-    const mobileMenu = document.getElementById("mobileMenu");
 
-    if (mobileMenu) {
-        mobileMenu.classList.add("active");
+    const menu = document.getElementById("mobileMenu");
+
+    if (menu) {
+        menu.classList.add("active");
     }
+
 }
+
 
 function closeMobileMenu() {
-    const mobileMenu = document.getElementById("mobileMenu");
 
-    if (mobileMenu) {
-        mobileMenu.classList.remove("active");
+    const menu = document.getElementById("mobileMenu");
+
+    if (menu) {
+        menu.classList.remove("active");
     }
+
 }
 
 
 
-/* =========================================
-   BACKGROUND MUSIC — OTTER'S CORNER
-   Đồng bộ toàn bộ website
-========================================= */
+// ======================================================
+// GLOBAL BACKGROUND MUSIC
+// ======================================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
     const bgMusic = document.getElementById("bgMusic");
     const musicToggle = document.getElementById("musicToggle");
 
+
+    // --------------------------------------------------
+    // Nếu trang không có Music thì bỏ qua
+    // --------------------------------------------------
+
     if (!bgMusic || !musicToggle) {
-        console.log("Music elements not found.");
+
+        console.log("Music elements not found on this page.");
+
         return;
+
     }
 
 
-    /* ===== MUSIC SETTINGS ===== */
+
+    // --------------------------------------------------
+    // MUSIC SETTINGS
+    // --------------------------------------------------
 
     bgMusic.volume = 0.4;
 
 
-    /* ===== LOAD SAVED DATA ===== */
 
-    let savedTime = parseFloat(
-        localStorage.getItem("otterMusicTime") || "0"
-    );
+    // --------------------------------------------------
+    // LOCAL STORAGE
+    // --------------------------------------------------
 
-    let savedState =
-        localStorage.getItem("otterMusicState") || "on";
+    const TIME_KEY = "otterMusicTime";
+    const STATE_KEY = "otterMusicState";
 
 
-    /* ===== UPDATE BUTTON ===== */
 
-    function updateButton() {
+    // --------------------------------------------------
+    // LẤY VỊ TRÍ NHẠC ĐÃ LƯU
+    // --------------------------------------------------
+
+    function getSavedTime() {
+
+        const value = parseFloat(
+            localStorage.getItem(TIME_KEY)
+        );
+
+        if (
+            !isNaN(value) &&
+            isFinite(value) &&
+            value >= 0
+        ) {
+
+            return value;
+
+        }
+
+        return 0;
+
+    }
+
+
+
+    // --------------------------------------------------
+    // CẬP NHẬT NÚT MUSIC
+    // --------------------------------------------------
+
+    function updateMusicButton() {
 
         if (bgMusic.paused) {
 
@@ -72,20 +121,36 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== RESTORE POSITION ===== */
 
-    function restorePosition() {
+    // --------------------------------------------------
+    // KHÔI PHỤC VỊ TRÍ NHẠC
+    // --------------------------------------------------
+
+    function restoreMusicPosition() {
+
+        const savedTime = getSavedTime();
+
 
         if (
-            !isNaN(savedTime) &&
-            savedTime >= 0 &&
+            savedTime <= 0
+        ) {
+
+            return;
+
+        }
+
+
+        if (
             isFinite(bgMusic.duration) &&
             bgMusic.duration > 0
         ) {
 
             bgMusic.currentTime = Math.min(
                 savedTime,
-                bgMusic.duration - 0.1
+                Math.max(
+                    0,
+                    bgMusic.duration - 0.1
+                )
             );
 
         }
@@ -93,112 +158,126 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== SAVE CURRENT POSITION ===== */
 
-    function savePosition() {
+    // --------------------------------------------------
+    // AUDIO ĐÃ LOAD METADATA
+    // --------------------------------------------------
 
-        if (
-            !isNaN(bgMusic.currentTime) &&
-            bgMusic.currentTime >= 0
-        ) {
+    function audioReady() {
 
-            localStorage.setItem(
-                "otterMusicTime",
-                bgMusic.currentTime
-            );
+        restoreMusicPosition();
 
-        }
-
-    }
-
-
-    /* ===== WHEN AUDIO READY ===== */
-
-    function prepareMusic() {
-
-        restorePosition();
-
-        updateButton();
+        updateMusicButton();
 
     }
 
 
     if (bgMusic.readyState >= 1) {
 
-        prepareMusic();
+        audioReady();
 
     } else {
 
         bgMusic.addEventListener(
             "loadedmetadata",
-            prepareMusic,
+            audioReady,
             { once: true }
         );
 
     }
 
 
-    /* ===== START MUSIC ===== */
+
+    // ==================================================
+    // START MUSIC
+    // ==================================================
 
     function startMusic() {
 
-        restorePosition();
+        restoreMusicPosition();
+
 
         bgMusic.play()
+
             .then(function () {
 
                 localStorage.setItem(
-                    "otterMusicState",
+                    STATE_KEY,
                     "on"
                 );
 
-                updateButton();
+
+                updateMusicButton();
+
 
                 console.log(
-                    "🎵 Music ON — time:",
+                    "🎵 Music ON — position:",
                     bgMusic.currentTime
                 );
 
             })
+
             .catch(function (error) {
 
                 console.log(
-                    "Music play blocked:",
+                    "Music playback blocked:",
                     error
                 );
 
-                updateButton();
+
+                updateMusicButton();
 
             });
 
     }
 
 
-    /* ===== STOP MUSIC ===== */
+
+    // ==================================================
+    // STOP MUSIC
+    // ==================================================
 
     function stopMusic() {
 
-        savePosition();
+        // Lưu vị trí trước khi pause
+
+        localStorage.setItem(
+            TIME_KEY,
+            bgMusic.currentTime
+        );
+
 
         bgMusic.pause();
 
+
         localStorage.setItem(
-            "otterMusicState",
+            STATE_KEY,
             "off"
         );
 
-        updateButton();
+
+        updateMusicButton();
+
+
+        console.log(
+            "🔇 Music OFF — position:",
+            bgMusic.currentTime
+        );
 
     }
 
 
-    /* ===== MUSIC BUTTON ===== */
+
+    // ==================================================
+    // MUSIC BUTTON
+    // ==================================================
 
     musicToggle.addEventListener(
         "click",
         function (event) {
 
             event.stopPropagation();
+
 
             if (bgMusic.paused) {
 
@@ -214,30 +293,42 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* =========================================
-       FIRST USER INTERACTION
-    ========================================= */
 
-    function userInteraction() {
+    // ==================================================
+    // USER INTERACTION
+    // ==================================================
+
+    function startMusicFromInteraction() {
 
         /*
-         * Nếu nhạc đang OFF do người dùng
-         * bấm nút OFF thì không tự bật lại.
+         * Nếu người dùng đã chủ động
+         * tắt Music thì không tự bật lại.
          */
 
-        const state =
-            localStorage.getItem(
-                "otterMusicState"
-            );
+        const savedState =
+            localStorage.getItem(STATE_KEY);
 
 
-        if (state === "off") {
+        if (
+            savedState === "off"
+        ) {
+
             return;
+
         }
 
 
-        if (!bgMusic.paused) {
+        /*
+         * Nếu Music đang chạy
+         * thì không làm gì.
+         */
+
+        if (
+            !bgMusic.paused
+        ) {
+
             return;
+
         }
 
 
@@ -246,62 +337,104 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* ===== CLICK ===== */
+
+    // ==================================================
+    // CLICK / TAP
+    // ==================================================
 
     document.addEventListener(
         "pointerdown",
         function (event) {
+
+            /*
+             * Không kích hoạt khi click
+             * chính nút Music.
+             */
 
             if (
                 event.target.closest(
                     "#musicToggle"
                 )
             ) {
+
                 return;
+
             }
 
-            userInteraction();
+
+            startMusicFromInteraction();
 
         }
     );
 
 
-    /* ===== WHEEL ===== */
+
+    // ==================================================
+    // MOUSE WHEEL / TRACKPAD
+    // ==================================================
 
     window.addEventListener(
         "wheel",
-        userInteraction,
-        { passive: true }
+        function () {
+
+            startMusicFromInteraction();
+
+        },
+        {
+            passive: true
+        }
     );
 
 
-    /* ===== TOUCH ===== */
+
+    // ==================================================
+    // MOBILE TOUCH
+    // ==================================================
 
     window.addEventListener(
         "touchstart",
-        userInteraction,
-        { passive: true }
+        function () {
+
+            startMusicFromInteraction();
+
+        },
+        {
+            passive: true
+        }
     );
 
 
-    /* ===== KEYBOARD ===== */
+
+    // ==================================================
+    // KEYBOARD
+    // ==================================================
 
     window.addEventListener(
         "keydown",
-        userInteraction
+        function () {
+
+            startMusicFromInteraction();
+
+        }
     );
 
 
-    /* =========================================
-       SAVE MUSIC TIME CONTINUOUSLY
-    ========================================= */
+
+    // ==================================================
+    // SAVE MUSIC POSITION
+    // ==================================================
 
     setInterval(
         function () {
 
-            if (!bgMusic.paused) {
+            if (
+                !bgMusic.paused
+            ) {
 
-                savePosition();
+                localStorage.setItem(
+                    TIME_KEY,
+                    bgMusic.currentTime
+                );
 
             }
 
@@ -310,15 +443,19 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* =========================================
-       SAVE BEFORE LEAVING PAGE
-    ========================================= */
+
+    // ==================================================
+    // SAVE WHEN LEAVING PAGE
+    // ==================================================
 
     window.addEventListener(
         "pagehide",
         function () {
 
-            savePosition();
+            localStorage.setItem(
+                TIME_KEY,
+                bgMusic.currentTime
+            );
 
         }
     );
@@ -328,14 +465,21 @@ document.addEventListener("DOMContentLoaded", function () {
         "beforeunload",
         function () {
 
-            savePosition();
+            localStorage.setItem(
+                TIME_KEY,
+                bgMusic.currentTime
+            );
 
         }
     );
 
 
-    /* ===== INITIAL BUTTON ===== */
 
-    updateButton();
+    // ==================================================
+    // INITIAL BUTTON STATE
+    // ==================================================
+
+    updateMusicButton();
 
 });
+```
