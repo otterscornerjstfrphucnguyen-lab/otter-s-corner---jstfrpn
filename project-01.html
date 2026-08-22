@@ -273,7 +273,54 @@ body {
     }
 
 }
+/* ===== MUSIC BUTTON ===== */
 
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 2000;
+
+    padding: 12px 20px;
+
+    border: 1px solid rgba(23, 58, 94, 0.25);
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.85);
+
+    color: #173a5e;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 5px 20px
+        rgba(23, 58, 94, 0.12);
+
+    transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+    background: #173a5e;
+    color: white;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(23, 58, 94, 0.20);
+}
+
+.music-toggle:active {
+    transform: scale(0.96);
+}
 </style>
 
 </head>
@@ -281,7 +328,14 @@ body {
 
 <body>
 
+<audio id="bgMusic" loop preload="auto">
+    <source src="./music.mp3" type="audio/mpeg">
+</audio>
 
+<button id="musicToggle" class="music-toggle" type="button">
+    MUSIC ON ♫
+</button>
+    
 <div class="container">
 
 
@@ -400,7 +454,45 @@ body {
     </p>
 
 </footer>
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
 
+let musicStarted = false;
+
+/* Bấm nút để ON / OFF */
+musicToggle.addEventListener("click", function () {
+
+    if (bgMusic.paused) {
+        bgMusic.play();
+        musicToggle.textContent = "MUSIC OFF ♫";
+        musicStarted = true;
+    } else {
+        bgMusic.pause();
+        musicToggle.textContent = "MUSIC ON ♫";
+    }
+
+});
+
+
+/* Khi bắt đầu cuộn xuống → tự bật nhạc */
+window.addEventListener("scroll", function () {
+
+    if (window.scrollY > 30 && !musicStarted) {
+
+        bgMusic.play().then(() => {
+
+            musicToggle.textContent = "MUSIC OFF ♫";
+            musicStarted = true;
+
+        }).catch(() => {
+            /* Trình duyệt có thể chặn autoplay */
+        });
+
+    }
+
+});
+</script>
 
 </body>
 
